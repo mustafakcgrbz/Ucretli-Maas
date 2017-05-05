@@ -1,6 +1,6 @@
 ﻿namespace Ücretli_Maaş
 {
-    partial class FrmAna
+    partial class FrmAyar
     {
         /// <summary>
         /// Required designer variable.
@@ -30,17 +30,17 @@
         {
             this.SuspendLayout();
             // 
-            // FrmAna
+            // FrmAyar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ClientSize = new System.Drawing.Size(666, 377);
+            this.ClientSize = new System.Drawing.Size(575, 339);
             this.MaximizeBox = false;
-            this.Name = "FrmAna";
+            this.Name = "FrmAyar";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Ücretli Maaş Ana Menü";
+            this.Text = "FrmAyar";
             this.ResumeLayout(false);
 
         }
@@ -48,4 +48,3 @@
         #endregion
     }
 }
-
