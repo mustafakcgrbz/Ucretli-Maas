@@ -31,6 +31,9 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.maaşAyarlarıToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.maasAyarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.kurumİşlemleriToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.kurumEkleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.güncelleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,7 +51,8 @@
             // maaşAyarlarıToolStripMenuItem
             // 
             this.maaşAyarlarıToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.maasAyarToolStripMenuItem});
+            this.maasAyarToolStripMenuItem,
+            this.kurumİşlemleriToolStripMenuItem});
             this.maaşAyarlarıToolStripMenuItem.Name = "maaşAyarlarıToolStripMenuItem";
             this.maaşAyarlarıToolStripMenuItem.Size = new System.Drawing.Size(71, 24);
             this.maaşAyarlarıToolStripMenuItem.Text = "Ayarlar";
@@ -56,9 +60,32 @@
             // maasAyarToolStripMenuItem
             // 
             this.maasAyarToolStripMenuItem.Name = "maasAyarToolStripMenuItem";
-            this.maasAyarToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.maasAyarToolStripMenuItem.Size = new System.Drawing.Size(185, 24);
             this.maasAyarToolStripMenuItem.Text = "Maaş Ayar";
             this.maasAyarToolStripMenuItem.Click += new System.EventHandler(this.maasAyarToolStripMenuItem_Click);
+            // 
+            // kurumİşlemleriToolStripMenuItem
+            // 
+            this.kurumİşlemleriToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.kurumEkleToolStripMenuItem,
+            this.güncelleToolStripMenuItem});
+            this.kurumİşlemleriToolStripMenuItem.Name = "kurumİşlemleriToolStripMenuItem";
+            this.kurumİşlemleriToolStripMenuItem.Size = new System.Drawing.Size(185, 24);
+            this.kurumİşlemleriToolStripMenuItem.Text = "Kurum İşlemleri";
+            // 
+            // kurumEkleToolStripMenuItem
+            // 
+            this.kurumEkleToolStripMenuItem.Name = "kurumEkleToolStripMenuItem";
+            this.kurumEkleToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.kurumEkleToolStripMenuItem.Text = "Yeni Ekle";
+            this.kurumEkleToolStripMenuItem.Click += new System.EventHandler(this.kurumEkleToolStripMenuItem_Click);
+            // 
+            // güncelleToolStripMenuItem
+            // 
+            this.güncelleToolStripMenuItem.Name = "güncelleToolStripMenuItem";
+            this.güncelleToolStripMenuItem.Size = new System.Drawing.Size(193, 24);
+            this.güncelleToolStripMenuItem.Text = "Güncelle veya Sil";
+            this.güncelleToolStripMenuItem.Click += new System.EventHandler(this.güncelleToolStripMenuItem_Click);
             // 
             // FrmAna
             // 
@@ -85,6 +112,9 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem maaşAyarlarıToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem maasAyarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem kurumİşlemleriToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem kurumEkleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem güncelleToolStripMenuItem;
     }
 }
 

@@ -58,6 +58,18 @@
     <Compile Include="FrmAyar.Designer.cs">
       <DependentUpon>FrmAyar.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmKurumGuncelle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmKurumGuncelle.Designer.cs">
+      <DependentUpon>FrmKurumGuncelle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KurumEkle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KurumEkle.Designer.cs">
+      <DependentUpon>KurumEkle.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FrmAna.resx">
@@ -65,6 +77,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmAyar.resx">
       <DependentUpon>FrmAyar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmKurumGuncelle.resx">
+      <DependentUpon>FrmKurumGuncelle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KurumEkle.resx">
+      <DependentUpon>KurumEkle.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

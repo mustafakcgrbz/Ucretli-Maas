@@ -23,5 +23,17 @@ namespace Ücretli_Maaş
             ayarform.Show();
 
         }
+
+        private void kurumEkleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            KurumEkle KurumEkleFrm = new KurumEkle();
+            KurumEkleFrm.Show();
+        }
+
+        private void güncelleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmKurumGuncelle frmguncelle = new FrmKurumGuncelle();
+            frmguncelle.Show();
+        }
     }
 }
