@@ -16,5 +16,12 @@ namespace Ücretli_Maaş
         {
             InitializeComponent();
         }
+
+        private void maasAyarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmAyar ayarform = new FrmAyar();
+            ayarform.Show();
+
+        }
     }
 }
