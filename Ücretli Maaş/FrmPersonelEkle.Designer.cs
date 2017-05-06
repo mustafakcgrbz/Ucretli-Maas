@@ -30,38 +30,37 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.TxtKimlik = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.TxtAd = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.TxtSoyad = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.TxtCocuk = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.TxtEposta = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
-            this.maskedTextBox2 = new System.Windows.Forms.MaskedTextBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.CmbMedeniDurum = new System.Windows.Forms.ComboBox();
+            this.MskCep = new System.Windows.Forms.MaskedTextBox();
+            this.MskSabit = new System.Windows.Forms.MaskedTextBox();
+            this.RtxtAdres = new System.Windows.Forms.RichTextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.CmbCalisma = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.CmbAlan = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.CmbKurum = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.DtpBaslama = new System.Windows.Forms.DateTimePicker();
+            this.DtpAyrilma = new System.Windows.Forms.DateTimePicker();
             this.label14 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.TxtBes = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.TxtIban = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.BtnKaydet = new System.Windows.Forms.Button();
-            this.BtnSil = new System.Windows.Forms.Button();
             this.BtnCikis = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -80,18 +79,20 @@
             this.TxtKimlik.BackColor = System.Drawing.SystemColors.Info;
             this.TxtKimlik.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.TxtKimlik.Location = new System.Drawing.Point(120, 16);
+            this.TxtKimlik.MaxLength = 11;
             this.TxtKimlik.Name = "TxtKimlik";
             this.TxtKimlik.Size = new System.Drawing.Size(136, 27);
             this.TxtKimlik.TabIndex = 1;
             // 
-            // textBox1
+            // TxtAd
             // 
-            this.textBox1.BackColor = System.Drawing.SystemColors.Info;
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.textBox1.Location = new System.Drawing.Point(120, 64);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(168, 27);
-            this.textBox1.TabIndex = 2;
+            this.TxtAd.BackColor = System.Drawing.SystemColors.Info;
+            this.TxtAd.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.TxtAd.Location = new System.Drawing.Point(120, 64);
+            this.TxtAd.MaxLength = 25;
+            this.TxtAd.Name = "TxtAd";
+            this.TxtAd.Size = new System.Drawing.Size(168, 27);
+            this.TxtAd.TabIndex = 2;
             // 
             // label2
             // 
@@ -103,14 +104,15 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Adı :";
             // 
-            // textBox2
+            // TxtSoyad
             // 
-            this.textBox2.BackColor = System.Drawing.SystemColors.Info;
-            this.textBox2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.textBox2.Location = new System.Drawing.Point(120, 111);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(168, 27);
-            this.textBox2.TabIndex = 3;
+            this.TxtSoyad.BackColor = System.Drawing.SystemColors.Info;
+            this.TxtSoyad.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.TxtSoyad.Location = new System.Drawing.Point(120, 111);
+            this.TxtSoyad.MaxLength = 25;
+            this.TxtSoyad.Name = "TxtSoyad";
+            this.TxtSoyad.Size = new System.Drawing.Size(168, 27);
+            this.TxtSoyad.TabIndex = 3;
             // 
             // label3
             // 
@@ -132,14 +134,15 @@
             this.label4.TabIndex = 6;
             this.label4.Text = "Medeni Hal :";
             // 
-            // textBox4
+            // TxtCocuk
             // 
-            this.textBox4.BackColor = System.Drawing.SystemColors.Info;
-            this.textBox4.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.textBox4.Location = new System.Drawing.Point(121, 202);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(136, 27);
-            this.textBox4.TabIndex = 5;
+            this.TxtCocuk.BackColor = System.Drawing.SystemColors.Info;
+            this.TxtCocuk.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.TxtCocuk.Location = new System.Drawing.Point(121, 202);
+            this.TxtCocuk.MaxLength = 2;
+            this.TxtCocuk.Name = "TxtCocuk";
+            this.TxtCocuk.Size = new System.Drawing.Size(136, 27);
+            this.TxtCocuk.TabIndex = 5;
             // 
             // label5
             // 
@@ -171,14 +174,15 @@
             this.label7.TabIndex = 11;
             this.label7.Text = "Sabit Telefon :";
             // 
-            // textBox5
+            // TxtEposta
             // 
-            this.textBox5.BackColor = System.Drawing.SystemColors.Info;
-            this.textBox5.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.textBox5.Location = new System.Drawing.Point(120, 343);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(136, 27);
-            this.textBox5.TabIndex = 8;
+            this.TxtEposta.BackColor = System.Drawing.SystemColors.Info;
+            this.TxtEposta.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.TxtEposta.Location = new System.Drawing.Point(120, 343);
+            this.TxtEposta.MaxLength = 50;
+            this.TxtEposta.Name = "TxtEposta";
+            this.TxtEposta.Size = new System.Drawing.Size(136, 27);
+            this.TxtEposta.TabIndex = 8;
             // 
             // label8
             // 
@@ -200,46 +204,47 @@
             this.label9.TabIndex = 14;
             this.label9.Text = "Adres :";
             // 
-            // comboBox1
+            // CmbMedeniDurum
             // 
-            this.comboBox1.BackColor = System.Drawing.SystemColors.Info;
-            this.comboBox1.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(121, 156);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(167, 28);
-            this.comboBox1.TabIndex = 4;
-            this.comboBox1.Text = "Durum Seçiniz :";
+            this.CmbMedeniDurum.BackColor = System.Drawing.SystemColors.Info;
+            this.CmbMedeniDurum.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.CmbMedeniDurum.FormattingEnabled = true;
+            this.CmbMedeniDurum.Location = new System.Drawing.Point(121, 156);
+            this.CmbMedeniDurum.Name = "CmbMedeniDurum";
+            this.CmbMedeniDurum.Size = new System.Drawing.Size(167, 28);
+            this.CmbMedeniDurum.TabIndex = 4;
+            this.CmbMedeniDurum.Text = "Durum Seçiniz :";
             // 
-            // maskedTextBox1
+            // MskCep
             // 
-            this.maskedTextBox1.BackColor = System.Drawing.SystemColors.Info;
-            this.maskedTextBox1.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.maskedTextBox1.Location = new System.Drawing.Point(120, 250);
-            this.maskedTextBox1.Mask = "(999) 000-0000";
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(134, 27);
-            this.maskedTextBox1.TabIndex = 6;
+            this.MskCep.BackColor = System.Drawing.SystemColors.Info;
+            this.MskCep.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.MskCep.Location = new System.Drawing.Point(120, 250);
+            this.MskCep.Mask = "(999) 000-0000";
+            this.MskCep.Name = "MskCep";
+            this.MskCep.Size = new System.Drawing.Size(134, 27);
+            this.MskCep.TabIndex = 6;
             // 
-            // maskedTextBox2
+            // MskSabit
             // 
-            this.maskedTextBox2.BackColor = System.Drawing.SystemColors.Info;
-            this.maskedTextBox2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.maskedTextBox2.Location = new System.Drawing.Point(121, 295);
-            this.maskedTextBox2.Mask = "(999) 000-0000";
-            this.maskedTextBox2.Name = "maskedTextBox2";
-            this.maskedTextBox2.Size = new System.Drawing.Size(134, 27);
-            this.maskedTextBox2.TabIndex = 7;
+            this.MskSabit.BackColor = System.Drawing.SystemColors.Info;
+            this.MskSabit.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.MskSabit.Location = new System.Drawing.Point(121, 295);
+            this.MskSabit.Mask = "(999) 000-0000";
+            this.MskSabit.Name = "MskSabit";
+            this.MskSabit.Size = new System.Drawing.Size(134, 27);
+            this.MskSabit.TabIndex = 7;
             // 
-            // richTextBox1
+            // RtxtAdres
             // 
-            this.richTextBox1.BackColor = System.Drawing.SystemColors.Info;
-            this.richTextBox1.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.richTextBox1.Location = new System.Drawing.Point(458, 312);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(243, 58);
-            this.richTextBox1.TabIndex = 16;
-            this.richTextBox1.Text = "";
+            this.RtxtAdres.BackColor = System.Drawing.SystemColors.Info;
+            this.RtxtAdres.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.RtxtAdres.Location = new System.Drawing.Point(458, 312);
+            this.RtxtAdres.MaxLength = 50;
+            this.RtxtAdres.Name = "RtxtAdres";
+            this.RtxtAdres.Size = new System.Drawing.Size(243, 58);
+            this.RtxtAdres.TabIndex = 16;
+            this.RtxtAdres.Text = "";
             // 
             // label10
             // 
@@ -251,16 +256,16 @@
             this.label10.TabIndex = 19;
             this.label10.Text = "Çalışma Durumu :";
             // 
-            // comboBox2
+            // CmbCalisma
             // 
-            this.comboBox2.BackColor = System.Drawing.SystemColors.Info;
-            this.comboBox2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(456, 16);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(135, 28);
-            this.comboBox2.TabIndex = 9;
-            this.comboBox2.Text = "Durum Seçiniz :";
+            this.CmbCalisma.BackColor = System.Drawing.SystemColors.Info;
+            this.CmbCalisma.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.CmbCalisma.FormattingEnabled = true;
+            this.CmbCalisma.Location = new System.Drawing.Point(456, 16);
+            this.CmbCalisma.Name = "CmbCalisma";
+            this.CmbCalisma.Size = new System.Drawing.Size(135, 28);
+            this.CmbCalisma.TabIndex = 9;
+            this.CmbCalisma.Text = "Durum Seçiniz :";
             // 
             // label11
             // 
@@ -272,16 +277,16 @@
             this.label11.TabIndex = 21;
             this.label11.Text = "Alan Bilgisi :";
             // 
-            // comboBox3
+            // CmbAlan
             // 
-            this.comboBox3.BackColor = System.Drawing.SystemColors.Info;
-            this.comboBox3.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(456, 58);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(245, 28);
-            this.comboBox3.TabIndex = 10;
-            this.comboBox3.Text = "Alan Seçiniz :";
+            this.CmbAlan.BackColor = System.Drawing.SystemColors.Info;
+            this.CmbAlan.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.CmbAlan.FormattingEnabled = true;
+            this.CmbAlan.Location = new System.Drawing.Point(456, 58);
+            this.CmbAlan.Name = "CmbAlan";
+            this.CmbAlan.Size = new System.Drawing.Size(245, 28);
+            this.CmbAlan.TabIndex = 10;
+            this.CmbAlan.Text = "Alan Seçiniz :";
             // 
             // label12
             // 
@@ -293,16 +298,16 @@
             this.label12.TabIndex = 23;
             this.label12.Text = "Çalıştığı Kurum Bilgisi :";
             // 
-            // comboBox4
+            // CmbKurum
             // 
-            this.comboBox4.BackColor = System.Drawing.SystemColors.Info;
-            this.comboBox4.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(456, 100);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(245, 28);
-            this.comboBox4.TabIndex = 11;
-            this.comboBox4.Text = "Kurum Seçiniz :";
+            this.CmbKurum.BackColor = System.Drawing.SystemColors.Info;
+            this.CmbKurum.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.CmbKurum.FormattingEnabled = true;
+            this.CmbKurum.Location = new System.Drawing.Point(456, 100);
+            this.CmbKurum.Name = "CmbKurum";
+            this.CmbKurum.Size = new System.Drawing.Size(245, 28);
+            this.CmbKurum.TabIndex = 11;
+            this.CmbKurum.Text = "Kurum Seçiniz :";
             // 
             // label13
             // 
@@ -314,23 +319,23 @@
             this.label13.TabIndex = 25;
             this.label13.Text = "Başlama Tarihi :";
             // 
-            // dateTimePicker1
+            // DtpBaslama
             // 
-            this.dateTimePicker1.CalendarMonthBackground = System.Drawing.SystemColors.Info;
-            this.dateTimePicker1.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(456, 140);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(245, 27);
-            this.dateTimePicker1.TabIndex = 12;
+            this.DtpBaslama.CalendarMonthBackground = System.Drawing.SystemColors.Info;
+            this.DtpBaslama.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.DtpBaslama.Location = new System.Drawing.Point(456, 140);
+            this.DtpBaslama.Name = "DtpBaslama";
+            this.DtpBaslama.Size = new System.Drawing.Size(245, 27);
+            this.DtpBaslama.TabIndex = 12;
             // 
-            // dateTimePicker2
+            // DtpAyrilma
             // 
-            this.dateTimePicker2.CalendarMonthBackground = System.Drawing.SystemColors.Info;
-            this.dateTimePicker2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.dateTimePicker2.Location = new System.Drawing.Point(456, 183);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(245, 27);
-            this.dateTimePicker2.TabIndex = 13;
+            this.DtpAyrilma.CalendarMonthBackground = System.Drawing.SystemColors.Info;
+            this.DtpAyrilma.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.DtpAyrilma.Location = new System.Drawing.Point(456, 183);
+            this.DtpAyrilma.Name = "DtpAyrilma";
+            this.DtpAyrilma.Size = new System.Drawing.Size(245, 27);
+            this.DtpAyrilma.TabIndex = 13;
             // 
             // label14
             // 
@@ -342,14 +347,15 @@
             this.label14.TabIndex = 27;
             this.label14.Text = "Ayrılma Tarihi :";
             // 
-            // textBox3
+            // TxtBes
             // 
-            this.textBox3.BackColor = System.Drawing.SystemColors.Info;
-            this.textBox3.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.textBox3.Location = new System.Drawing.Point(456, 226);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(135, 27);
-            this.textBox3.TabIndex = 14;
+            this.TxtBes.BackColor = System.Drawing.SystemColors.Info;
+            this.TxtBes.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.TxtBes.Location = new System.Drawing.Point(456, 226);
+            this.TxtBes.MaxLength = 4;
+            this.TxtBes.Name = "TxtBes";
+            this.TxtBes.Size = new System.Drawing.Size(135, 27);
+            this.TxtBes.TabIndex = 14;
             // 
             // label15
             // 
@@ -361,14 +367,15 @@
             this.label15.TabIndex = 29;
             this.label15.Text = "Bireysel Emeklilik :";
             // 
-            // textBox6
+            // TxtIban
             // 
-            this.textBox6.BackColor = System.Drawing.SystemColors.Info;
-            this.textBox6.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.textBox6.Location = new System.Drawing.Point(458, 269);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(243, 27);
-            this.textBox6.TabIndex = 15;
+            this.TxtIban.BackColor = System.Drawing.SystemColors.Info;
+            this.TxtIban.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.TxtIban.Location = new System.Drawing.Point(458, 269);
+            this.TxtIban.MaxLength = 26;
+            this.TxtIban.Name = "TxtIban";
+            this.TxtIban.Size = new System.Drawing.Size(243, 27);
+            this.TxtIban.TabIndex = 15;
             // 
             // label16
             // 
@@ -389,16 +396,7 @@
             this.BtnKaydet.TabIndex = 17;
             this.BtnKaydet.Text = "Personel &Kaydet";
             this.BtnKaydet.UseVisualStyleBackColor = true;
-            // 
-            // BtnSil
-            // 
-            this.BtnSil.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.BtnSil.Location = new System.Drawing.Point(297, 394);
-            this.BtnSil.Name = "BtnSil";
-            this.BtnSil.Size = new System.Drawing.Size(140, 45);
-            this.BtnSil.TabIndex = 18;
-            this.BtnSil.Text = "Personel &Sil";
-            this.BtnSil.UseVisualStyleBackColor = true;
+            this.BtnKaydet.Click += new System.EventHandler(this.BtnKaydet_Click);
             // 
             // BtnCikis
             // 
@@ -419,37 +417,36 @@
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(724, 451);
             this.Controls.Add(this.BtnCikis);
-            this.Controls.Add(this.BtnSil);
             this.Controls.Add(this.BtnKaydet);
-            this.Controls.Add(this.textBox6);
+            this.Controls.Add(this.TxtIban);
             this.Controls.Add(this.label16);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.TxtBes);
             this.Controls.Add(this.label15);
-            this.Controls.Add(this.dateTimePicker2);
+            this.Controls.Add(this.DtpAyrilma);
             this.Controls.Add(this.label14);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.DtpBaslama);
             this.Controls.Add(this.label13);
-            this.Controls.Add(this.comboBox4);
+            this.Controls.Add(this.CmbKurum);
             this.Controls.Add(this.label12);
-            this.Controls.Add(this.comboBox3);
+            this.Controls.Add(this.CmbAlan);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.CmbCalisma);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.richTextBox1);
-            this.Controls.Add(this.maskedTextBox2);
-            this.Controls.Add(this.maskedTextBox1);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.RtxtAdres);
+            this.Controls.Add(this.MskSabit);
+            this.Controls.Add(this.MskCep);
+            this.Controls.Add(this.CmbMedeniDurum);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.TxtEposta);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.TxtCocuk);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.TxtSoyad);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.TxtAd);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.TxtKimlik);
             this.Controls.Add(this.label1);
@@ -457,6 +454,7 @@
             this.Name = "FrmPersonelEkle";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Personel Ekleme Menüsü";
+            this.Load += new System.EventHandler(this.FrmPersonelEkle_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -466,38 +464,37 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox TxtKimlik;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox TxtAd;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox TxtSoyad;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox TxtCocuk;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox TxtEposta;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox2;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.ComboBox CmbMedeniDurum;
+        private System.Windows.Forms.MaskedTextBox MskCep;
+        private System.Windows.Forms.MaskedTextBox MskSabit;
+        private System.Windows.Forms.RichTextBox RtxtAdres;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox CmbCalisma;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox CmbAlan;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.ComboBox CmbKurum;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker DtpBaslama;
+        private System.Windows.Forms.DateTimePicker DtpAyrilma;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox TxtBes;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox TxtIban;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Button BtnKaydet;
-        private System.Windows.Forms.Button BtnSil;
         private System.Windows.Forms.Button BtnCikis;
     }
 }
