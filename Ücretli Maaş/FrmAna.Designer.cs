@@ -36,6 +36,9 @@
             this.güncelleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.personelİşlemleriToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.personelEkleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.alanBilgisiİşlemleriToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.alanEklemeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.güncelleVeyaSilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,7 +58,8 @@
             // 
             this.maaşAyarlarıToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.maasAyarToolStripMenuItem,
-            this.kurumİşlemleriToolStripMenuItem});
+            this.kurumİşlemleriToolStripMenuItem,
+            this.alanBilgisiİşlemleriToolStripMenuItem});
             this.maaşAyarlarıToolStripMenuItem.Name = "maaşAyarlarıToolStripMenuItem";
             this.maaşAyarlarıToolStripMenuItem.Padding = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.maaşAyarlarıToolStripMenuItem.Size = new System.Drawing.Size(73, 30);
@@ -112,6 +116,29 @@
             this.personelEkleToolStripMenuItem.Text = "Personel Ekle";
             this.personelEkleToolStripMenuItem.Click += new System.EventHandler(this.personelEkleToolStripMenuItem_Click);
             // 
+            // alanBilgisiİşlemleriToolStripMenuItem
+            // 
+            this.alanBilgisiİşlemleriToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.alanEklemeToolStripMenuItem,
+            this.güncelleVeyaSilToolStripMenuItem});
+            this.alanBilgisiİşlemleriToolStripMenuItem.Name = "alanBilgisiİşlemleriToolStripMenuItem";
+            this.alanBilgisiİşlemleriToolStripMenuItem.Size = new System.Drawing.Size(214, 24);
+            this.alanBilgisiİşlemleriToolStripMenuItem.Text = "Alan Bilgisi İşlemleri";
+            // 
+            // alanEklemeToolStripMenuItem
+            // 
+            this.alanEklemeToolStripMenuItem.Name = "alanEklemeToolStripMenuItem";
+            this.alanEklemeToolStripMenuItem.Size = new System.Drawing.Size(193, 24);
+            this.alanEklemeToolStripMenuItem.Text = "Yeni Alan Ekle";
+            this.alanEklemeToolStripMenuItem.Click += new System.EventHandler(this.alanEklemeToolStripMenuItem_Click);
+            // 
+            // güncelleVeyaSilToolStripMenuItem
+            // 
+            this.güncelleVeyaSilToolStripMenuItem.Name = "güncelleVeyaSilToolStripMenuItem";
+            this.güncelleVeyaSilToolStripMenuItem.Size = new System.Drawing.Size(193, 24);
+            this.güncelleVeyaSilToolStripMenuItem.Text = "Güncelle veya Sil";
+            this.güncelleVeyaSilToolStripMenuItem.Click += new System.EventHandler(this.güncelleVeyaSilToolStripMenuItem_Click);
+            // 
             // FrmAna
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -142,6 +169,9 @@
         private System.Windows.Forms.ToolStripMenuItem güncelleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem personelİşlemleriToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem personelEkleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem alanBilgisiİşlemleriToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem alanEklemeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem güncelleVeyaSilToolStripMenuItem;
     }
 }
 

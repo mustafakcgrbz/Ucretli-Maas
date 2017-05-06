@@ -41,5 +41,17 @@ namespace Ücretli_Maaş
             FrmPersonelEkle frmperekle = new FrmPersonelEkle();
             frmperekle.Show();
         }
+
+        private void alanEklemeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmAlanEkle AlanEkleFrm = new FrmAlanEkle();
+            AlanEkleFrm.Show();
+        }
+
+        private void güncelleVeyaSilToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmAlanGuncelle AlanGuncelleFrm = new FrmAlanGuncelle();
+            AlanGuncelleFrm.Show();
+        }
     }
 }

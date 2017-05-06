@@ -36,7 +36,9 @@ namespace Ücretli_Maaş
             }
 
             baglanti.Close();
-            
+            CmbKurum.Text = "Kurum Seçiniz :";
+            TxtKurum.Select();
+
         }
         private void Guncelle()
         {
@@ -49,13 +51,27 @@ namespace Ücretli_Maaş
                 MessageBox.Show("Kayıt Başarıyla Güncellendi!!");
                 Temizle();
                 VeriOku();
-                CmbKurum.Text = "Kurum Seçiniz :";
-                TxtKurum.Select();
+                
                 
             }
             else
             {
                 MessageBox.Show("Lütfen Kurum Seçiniz!!");
+            }
+        }
+        private void VeriSil()
+        {
+            DialogResult cevap = MessageBox.Show("Silmek İstediğinize Emin misiniz?", "Dikkat!!!", MessageBoxButtons.YesNo);
+            if (cevap==DialogResult.Yes)
+            {
+                baglanti.Open();
+                SqlCommand komut = new SqlCommand("Delete From KurumBilgi Where KurumAd='" + CmbKurum.Text + "'", baglanti);
+                komut.ExecuteNonQuery();
+                MessageBox.Show("Kayıt Başarıyla Silindi!!");
+                baglanti.Close();
+                Temizle();
+                VeriOku();
+
             }
         }
         private void FrmKurumGuncelle_Load(object sender, EventArgs e)
@@ -72,6 +88,11 @@ namespace Ücretli_Maaş
         private void BtnGuncelle_Click(object sender, EventArgs e)
         {
             Guncelle();
+        }
+
+        private void BtnSil_Click(object sender, EventArgs e)
+        {
+            VeriSil();
         }
     }
 }

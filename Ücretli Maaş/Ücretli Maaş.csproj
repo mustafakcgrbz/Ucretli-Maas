@@ -46,6 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrmAlanEkle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAlanEkle.Designer.cs">
+      <DependentUpon>FrmAlanEkle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmAlanGuncelle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAlanGuncelle.Designer.cs">
+      <DependentUpon>FrmAlanGuncelle.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmAna.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +90,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FrmAlanEkle.resx">
+      <DependentUpon>FrmAlanEkle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmAlanGuncelle.resx">
+      <DependentUpon>FrmAlanGuncelle.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmAna.resx">
       <DependentUpon>FrmAna.cs</DependentUpon>
     </EmbeddedResource>
