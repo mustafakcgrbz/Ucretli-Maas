@@ -35,5 +35,11 @@ namespace Ücretli_Maaş
             FrmKurumGuncelle frmguncelle = new FrmKurumGuncelle();
             frmguncelle.Show();
         }
+
+        private void personelEkleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmPersonelEkle frmperekle = new FrmPersonelEkle();
+            frmperekle.Show();
+        }
     }
 }

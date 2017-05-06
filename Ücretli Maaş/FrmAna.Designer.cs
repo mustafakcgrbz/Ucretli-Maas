@@ -34,6 +34,8 @@
             this.kurumİşlemleriToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kurumEkleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.güncelleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.personelİşlemleriToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.personelEkleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -41,10 +43,11 @@
             // 
             this.menuStrip1.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.maaşAyarlarıToolStripMenuItem});
+            this.maaşAyarlarıToolStripMenuItem,
+            this.personelİşlemleriToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(666, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(666, 34);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -54,13 +57,15 @@
             this.maasAyarToolStripMenuItem,
             this.kurumİşlemleriToolStripMenuItem});
             this.maaşAyarlarıToolStripMenuItem.Name = "maaşAyarlarıToolStripMenuItem";
-            this.maaşAyarlarıToolStripMenuItem.Size = new System.Drawing.Size(71, 24);
+            this.maaşAyarlarıToolStripMenuItem.Padding = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.maaşAyarlarıToolStripMenuItem.Size = new System.Drawing.Size(73, 30);
             this.maaşAyarlarıToolStripMenuItem.Text = "Ayarlar";
             // 
             // maasAyarToolStripMenuItem
             // 
             this.maasAyarToolStripMenuItem.Name = "maasAyarToolStripMenuItem";
-            this.maasAyarToolStripMenuItem.Size = new System.Drawing.Size(185, 24);
+            this.maasAyarToolStripMenuItem.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this.maasAyarToolStripMenuItem.Size = new System.Drawing.Size(185, 28);
             this.maasAyarToolStripMenuItem.Text = "Maaş Ayar";
             this.maasAyarToolStripMenuItem.Click += new System.EventHandler(this.maasAyarToolStripMenuItem_Click);
             // 
@@ -70,22 +75,42 @@
             this.kurumEkleToolStripMenuItem,
             this.güncelleToolStripMenuItem});
             this.kurumİşlemleriToolStripMenuItem.Name = "kurumİşlemleriToolStripMenuItem";
-            this.kurumİşlemleriToolStripMenuItem.Size = new System.Drawing.Size(185, 24);
+            this.kurumİşlemleriToolStripMenuItem.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this.kurumİşlemleriToolStripMenuItem.Size = new System.Drawing.Size(185, 28);
             this.kurumİşlemleriToolStripMenuItem.Text = "Kurum İşlemleri";
             // 
             // kurumEkleToolStripMenuItem
             // 
             this.kurumEkleToolStripMenuItem.Name = "kurumEkleToolStripMenuItem";
-            this.kurumEkleToolStripMenuItem.Size = new System.Drawing.Size(152, 24);
+            this.kurumEkleToolStripMenuItem.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this.kurumEkleToolStripMenuItem.Size = new System.Drawing.Size(193, 28);
             this.kurumEkleToolStripMenuItem.Text = "Yeni Ekle";
             this.kurumEkleToolStripMenuItem.Click += new System.EventHandler(this.kurumEkleToolStripMenuItem_Click);
             // 
             // güncelleToolStripMenuItem
             // 
             this.güncelleToolStripMenuItem.Name = "güncelleToolStripMenuItem";
-            this.güncelleToolStripMenuItem.Size = new System.Drawing.Size(193, 24);
+            this.güncelleToolStripMenuItem.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this.güncelleToolStripMenuItem.Size = new System.Drawing.Size(193, 28);
             this.güncelleToolStripMenuItem.Text = "Güncelle veya Sil";
             this.güncelleToolStripMenuItem.Click += new System.EventHandler(this.güncelleToolStripMenuItem_Click);
+            // 
+            // personelİşlemleriToolStripMenuItem
+            // 
+            this.personelİşlemleriToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.personelEkleToolStripMenuItem});
+            this.personelİşlemleriToolStripMenuItem.Name = "personelİşlemleriToolStripMenuItem";
+            this.personelİşlemleriToolStripMenuItem.Padding = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.personelİşlemleriToolStripMenuItem.Size = new System.Drawing.Size(142, 30);
+            this.personelİşlemleriToolStripMenuItem.Text = "Personel İşlemleri";
+            // 
+            // personelEkleToolStripMenuItem
+            // 
+            this.personelEkleToolStripMenuItem.Name = "personelEkleToolStripMenuItem";
+            this.personelEkleToolStripMenuItem.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this.personelEkleToolStripMenuItem.Size = new System.Drawing.Size(168, 28);
+            this.personelEkleToolStripMenuItem.Text = "Personel Ekle";
+            this.personelEkleToolStripMenuItem.Click += new System.EventHandler(this.personelEkleToolStripMenuItem_Click);
             // 
             // FrmAna
             // 
@@ -115,6 +140,8 @@
         private System.Windows.Forms.ToolStripMenuItem kurumİşlemleriToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem kurumEkleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem güncelleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem personelİşlemleriToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem personelEkleToolStripMenuItem;
     }
 }
 
