@@ -37,6 +37,8 @@ namespace Ücretli_Maaş
             TxtBes.Clear();
             TxtIban.Clear();
             RtxtAdres.Clear();
+            DtpBaslama.Text = "";
+            DtpAyrilma.Text = "";
 
         }
         private void PersonelDoldur()
@@ -130,6 +132,7 @@ namespace Ücretli_Maaş
                 DtpBaslama.Text = oku["BaslamaTarihi"].ToString();
                 DtpAyrilma.Text = oku["AyrilmaTarihi"].ToString();
                 TxtBes.Text = oku["BireyselEmeklilik"].ToString();
+                TxtIban.Text = oku["IbanNo"].ToString();
                 RtxtAdres.Text = oku["Adres"].ToString();
                 baglanti.Close();
                 MedeniDurum();
@@ -243,9 +246,29 @@ namespace Ücretli_Maaş
             PersonelGetir();
         }
 
+        private void PersonelGuncelle()
+        {
+            if (CmbMedeniDurum.Text == "Durum Seçiniz :" | CmbCalisma.Text == "Durum Seçiniz :" | CmbAlan.Text == "Alan Seçiniz :" | CmbKurum.Text == "Kurum Seçiniz :")
+            {
+                MessageBox.Show("Lütfen Gerekli Bölümleri Seçiniz!!");
+
+            }
+            else
+            {
+                baglanti.Open();
+                SqlCommand komut = new SqlCommand("Update Personel Set KimlikNo='" + TxtKimlik.Text + "', Adi='" + TxtAd.Text + "', Soyadi='" + TxtSoyad.Text + "', MedeniHal=(select DurumId From MedeniDurum Where DurumAd='" + CmbMedeniDurum.Text + "'), CocukSayi='" + TxtCocuk.Text + "', CepTelefonu='" + MskCep.Text + "', SabitTelefon='" + MskSabit.Text + "', EPosta='" + TxtEposta.Text + "', Durum=(Select DurumId From CalismaDurumu Where DurumAd='" + CmbCalisma.Text + "'), Alan=(Select AlanId From AlanBilgi Where AlanAd='" + CmbAlan.Text + "'), Kurum=(Select KurumId From KurumBilgi Where KurumAd='" + CmbKurum.Text + "'), BaslamaTarihi='" + DtpBaslama.Value.ToString("yyyy-MM-dd") + "', AyrilmaTarihi='" + DtpAyrilma.Value.ToString("yyyy-MM-dd") + "', BireyselEmeklilik='" + TxtBes.Text + "',IbanNo='" + TxtIban.Text + "', Adres='" + RtxtAdres.Text + "' Where PersonelId='"+id+"'", baglanti);
+                komut.ExecuteNonQuery();                
+                baglanti.Close();
+                MessageBox.Show("Kayıt Başarıyla Güncellendi!!");
+                
+            }
+            }
         private void BtnGuncelle_Click(object sender, EventArgs e)
         {
-
+            PersonelGuncelle();
+            Temizle();
+            PersonelDoldur();
+            PersonelGetir();
         }
 
         private void BtnSil_Click(object sender, EventArgs e)

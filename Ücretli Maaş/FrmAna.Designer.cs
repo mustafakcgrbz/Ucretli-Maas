@@ -39,14 +39,13 @@
             this.güncelleVeyaSilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.personelİşlemleriToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.personelEkleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.güncelleVeSilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.maaşİşlemleriToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.bordroİşlemleriToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.geçiciMaaşBordrosuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.geçiciBordroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.geçiciBordroToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.kesinBordroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.maaşRaporlarıToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.güncelleVeSilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -145,26 +144,26 @@
             // 
             this.personelEkleToolStripMenuItem.Name = "personelEkleToolStripMenuItem";
             this.personelEkleToolStripMenuItem.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
-            this.personelEkleToolStripMenuItem.Size = new System.Drawing.Size(168, 28);
+            this.personelEkleToolStripMenuItem.Size = new System.Drawing.Size(177, 28);
             this.personelEkleToolStripMenuItem.Text = "Personel Ekle";
             this.personelEkleToolStripMenuItem.Click += new System.EventHandler(this.personelEkleToolStripMenuItem_Click);
+            // 
+            // güncelleVeSilToolStripMenuItem
+            // 
+            this.güncelleVeSilToolStripMenuItem.Name = "güncelleVeSilToolStripMenuItem";
+            this.güncelleVeSilToolStripMenuItem.Size = new System.Drawing.Size(177, 24);
+            this.güncelleVeSilToolStripMenuItem.Text = "Güncelle ve Sil";
+            this.güncelleVeSilToolStripMenuItem.Click += new System.EventHandler(this.güncelleVeSilToolStripMenuItem_Click);
             // 
             // maaşİşlemleriToolStripMenuItem
             // 
             this.maaşİşlemleriToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.bordroİşlemleriToolStripMenuItem,
             this.geçiciMaaşBordrosuToolStripMenuItem,
             this.geçiciBordroToolStripMenuItem,
             this.maaşRaporlarıToolStripMenuItem});
             this.maaşİşlemleriToolStripMenuItem.Name = "maaşİşlemleriToolStripMenuItem";
             this.maaşİşlemleriToolStripMenuItem.Size = new System.Drawing.Size(118, 30);
             this.maaşİşlemleriToolStripMenuItem.Text = "Maaş İşlemleri";
-            // 
-            // bordroİşlemleriToolStripMenuItem
-            // 
-            this.bordroİşlemleriToolStripMenuItem.Name = "bordroİşlemleriToolStripMenuItem";
-            this.bordroİşlemleriToolStripMenuItem.Size = new System.Drawing.Size(193, 24);
-            this.bordroİşlemleriToolStripMenuItem.Text = "Bordro İşlemleri";
             // 
             // geçiciMaaşBordrosuToolStripMenuItem
             // 
@@ -198,13 +197,6 @@
             this.maaşRaporlarıToolStripMenuItem.Name = "maaşRaporlarıToolStripMenuItem";
             this.maaşRaporlarıToolStripMenuItem.Size = new System.Drawing.Size(193, 24);
             this.maaşRaporlarıToolStripMenuItem.Text = "Maaş Raporları";
-            // 
-            // güncelleVeSilToolStripMenuItem
-            // 
-            this.güncelleVeSilToolStripMenuItem.Name = "güncelleVeSilToolStripMenuItem";
-            this.güncelleVeSilToolStripMenuItem.Size = new System.Drawing.Size(177, 24);
-            this.güncelleVeSilToolStripMenuItem.Text = "Güncelle ve Sil";
-            this.güncelleVeSilToolStripMenuItem.Click += new System.EventHandler(this.güncelleVeSilToolStripMenuItem_Click);
             // 
             // FrmAna
             // 
@@ -240,7 +232,6 @@
         private System.Windows.Forms.ToolStripMenuItem alanEklemeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem güncelleVeyaSilToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem maaşİşlemleriToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem bordroİşlemleriToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem geçiciMaaşBordrosuToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem geçiciBordroToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem geçiciBordroToolStripMenuItem1;

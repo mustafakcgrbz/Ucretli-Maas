@@ -38,6 +38,8 @@ namespace Ücretli_Maaş
             TxtBes.Clear();
             TxtIban.Clear();
             RtxtAdres.Clear();
+            DtpBaslama.Text = "";
+            DtpAyrilma.Text = "";
             
         }
         private void MDurumOku()
