@@ -53,5 +53,11 @@ namespace Ücretli_Maaş
             FrmAlanGuncelle AlanGuncelleFrm = new FrmAlanGuncelle();
             AlanGuncelleFrm.Show();
         }
+
+        private void güncelleVeSilToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmPersonelGuncelle pguncellefrm = new FrmPersonelGuncelle();
+            pguncellefrm.Show();
+        }
     }
 }

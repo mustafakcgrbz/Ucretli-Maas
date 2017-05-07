@@ -82,6 +82,12 @@
     <Compile Include="FrmPersonelEkle.Designer.cs">
       <DependentUpon>FrmPersonelEkle.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmPersonelGuncelle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmPersonelGuncelle.Designer.cs">
+      <DependentUpon>FrmPersonelGuncelle.cs</DependentUpon>
+    </Compile>
     <Compile Include="KurumEkle.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +113,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmPersonelEkle.resx">
       <DependentUpon>FrmPersonelEkle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmPersonelGuncelle.resx">
+      <DependentUpon>FrmPersonelGuncelle.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KurumEkle.resx">
       <DependentUpon>KurumEkle.cs</DependentUpon>
