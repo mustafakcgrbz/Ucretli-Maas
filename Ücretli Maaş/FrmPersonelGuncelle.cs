@@ -18,7 +18,7 @@ namespace Ücretli_Maaş
         {
             InitializeComponent();
         }
-        SqlConnection baglanti = new SqlConnection("Data Source=ACER-LAPTOP;Initial Catalog=UcretliMaas;Integrated Security=True");
+        SqlConnection baglanti = new SqlConnection("Data Source=85.214.46.212;Initial Catalog=mustafa_gurbuz_db;User ID=mustafa_gurbuz_user;Password=mustafa_gurbuz_user");
         string id;
         private void Temizle()
         {
