@@ -39,8 +39,13 @@ namespace Ücretli_Maaş
         }
         private void FrmOkul_Load(object sender, EventArgs e)
         {
-            LblKurumAd.Text = "İl Milli Eğitim Müdürlüğü";
+            //LblKurumAd.Text = "İl Milli Eğitim Müdürlüğü";
             PersonelDoldur();
+        }
+
+        private void FrmOkul_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

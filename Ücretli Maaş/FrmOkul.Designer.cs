@@ -104,6 +104,7 @@
             this.Name = "FrmOkul";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Okul İşlemleri Menüsü";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmOkul_FormClosed);
             this.Load += new System.EventHandler(this.FrmOkul_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -118,6 +119,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label LblKurumAd;
+        public System.Windows.Forms.Label LblKurumAd;
     }
 }

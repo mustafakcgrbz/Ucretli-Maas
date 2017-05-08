@@ -220,6 +220,7 @@
             this.Name = "FrmAna";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ücretli Maaş Ana Menü";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmAna_FormClosed);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

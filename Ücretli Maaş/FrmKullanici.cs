@@ -43,6 +43,51 @@ namespace Ücretli_Maaş
             }
             baglanti.Close();
         }
+        private void KurumDoldur()
+        {
+            baglanti.Open();
+            SqlCommand komut = new SqlCommand("Select KurumAd From KurumBilgi Order By KurumAd", baglanti);
+            SqlDataReader oku = komut.ExecuteReader();
+            while (oku.Read())
+            {
+                CmbKurum.Items.Add(oku["KurumAd"].ToString());
+            }
+            baglanti.Close();
+        }
+
+        private void KullaniciGetir()
+        {
+            baglanti.Open();
+            SqlCommand komut = new SqlCommand("Select KullaniciAd, Parola, Aciklama From Kullanicilar Where KullaniciAd='" + CmbKullanici.Text + "'", baglanti);
+            komut.ExecuteNonQuery();
+            SqlDataReader oku = komut.ExecuteReader();
+            if (oku.Read())
+            {
+                TxtKullanici.Text = oku["KullaniciAd"].ToString();
+                TxtParola.Text = oku["Parola"].ToString();
+                RTxtAciklama.Text = oku["Aciklama"].ToString();
+                baglanti.Close();
+                KurumGetir();
+            }
+            else
+            {
+                baglanti.Close();
+            }
+            
+        }
+
+        private void KurumGetir()
+        {
+            baglanti.Open();
+            SqlCommand komut = new SqlCommand("Select KurumAd From KurumBilgi Where KurumId=(Select KurumId From Kullanicilar Where KullaniciAd='" + CmbKullanici.Text + "')", baglanti);
+            komut.ExecuteNonQuery();
+            SqlDataReader oku = komut.ExecuteReader();
+            if (oku.Read())
+            {
+                CmbKurum.Text = oku["KurumAd"].ToString();
+            }
+            baglanti.Close();
+        }
         private void BtnCikis_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -52,6 +97,24 @@ namespace Ücretli_Maaş
         {
             Temizle();
             KullaniciDoldur();
+            KurumDoldur();
+        }
+
+        private void BtnKaydet_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CmbKullanici_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            KullaniciGetir();
+        }
+
+        private void BtnTemizle_Click(object sender, EventArgs e)
+        {
+            Temizle();
+            KullaniciDoldur();
+            KurumDoldur();
         }
     }
 }

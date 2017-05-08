@@ -62,8 +62,13 @@ namespace Ücretli_Maaş
 
         private void kullanıcıVeSifreislemleriToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmKullanici Kullanici = new FrmKullanici();
+            FrmKullanici Kullanici = new FrmKullanici();            
             Kullanici.Show();
+        }
+
+        private void FrmAna_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

@@ -65,6 +65,7 @@
             this.CmbKullanici.Size = new System.Drawing.Size(156, 25);
             this.CmbKullanici.TabIndex = 1;
             this.CmbKullanici.Text = "Kullanıcı Seçiniz :";
+            this.CmbKullanici.SelectedIndexChanged += new System.EventHandler(this.CmbKullanici_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -111,9 +112,9 @@
             this.CmbKurum.BackColor = System.Drawing.SystemColors.Info;
             this.CmbKurum.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.CmbKurum.FormattingEnabled = true;
-            this.CmbKurum.Location = new System.Drawing.Point(409, 12);
+            this.CmbKurum.Location = new System.Drawing.Point(376, 12);
             this.CmbKurum.Name = "CmbKurum";
-            this.CmbKurum.Size = new System.Drawing.Size(156, 25);
+            this.CmbKurum.Size = new System.Drawing.Size(189, 25);
             this.CmbKurum.TabIndex = 7;
             this.CmbKurum.Text = "Kurum Seçiniz :";
             // 
@@ -121,7 +122,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label4.Location = new System.Drawing.Point(323, 15);
+            this.label4.Location = new System.Drawing.Point(290, 12);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(80, 17);
             this.label4.TabIndex = 6;
@@ -131,7 +132,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label5.Location = new System.Drawing.Point(334, 56);
+            this.label5.Location = new System.Drawing.Point(301, 53);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(69, 17);
             this.label5.TabIndex = 8;
@@ -141,10 +142,10 @@
             // 
             this.RTxtAciklama.BackColor = System.Drawing.SystemColors.Info;
             this.RTxtAciklama.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.RTxtAciklama.Location = new System.Drawing.Point(409, 53);
+            this.RTxtAciklama.Location = new System.Drawing.Point(376, 53);
             this.RTxtAciklama.MaxLength = 50;
             this.RTxtAciklama.Name = "RTxtAciklama";
-            this.RTxtAciklama.Size = new System.Drawing.Size(156, 65);
+            this.RTxtAciklama.Size = new System.Drawing.Size(189, 65);
             this.RTxtAciklama.TabIndex = 9;
             this.RTxtAciklama.Text = "";
             // 
@@ -157,6 +158,7 @@
             this.BtnKaydet.TabIndex = 10;
             this.BtnKaydet.Text = "&Kaydet";
             this.BtnKaydet.UseVisualStyleBackColor = true;
+            this.BtnKaydet.Click += new System.EventHandler(this.BtnKaydet_Click);
             // 
             // BtnDuzenle
             // 
@@ -187,6 +189,7 @@
             this.BtnTemizle.TabIndex = 13;
             this.BtnTemizle.Text = "&Temizle";
             this.BtnTemizle.UseVisualStyleBackColor = true;
+            this.BtnTemizle.Click += new System.EventHandler(this.BtnTemizle_Click);
             // 
             // BtnCikis
             // 
