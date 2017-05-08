@@ -24,7 +24,7 @@ namespace Ücretli_Maaş
         private void PersonelDoldur()
         {
             baglanti.Open();
-            SqlCommand komut = new SqlCommand("Select PersonelId, KimlikNo, Adi, Soyadi From Personel Where Kurum=(Select KurumId From KurumBilgi Where KurumAd='" + LblKurumAd.Text + "') Order By Adi,Soyadi", baglanti);
+            SqlCommand komut = new SqlCommand("Select PersonelId, KimlikNo, Adi, Soyadi From Personel Where Kurum=(Select KurumId From KurumBilgi Where KurumAd='" + LblKurumAd.Text + "') And Durum='1' Order By Adi,Soyadi", baglanti);
             SqlDataReader oku = komut.ExecuteReader();
             while (oku.Read())
             {

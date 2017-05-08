@@ -167,8 +167,9 @@
             this.BtnDuzenle.Name = "BtnDuzenle";
             this.BtnDuzenle.Size = new System.Drawing.Size(85, 30);
             this.BtnDuzenle.TabIndex = 11;
-            this.BtnDuzenle.Text = "&Düzenle";
+            this.BtnDuzenle.Text = "&Güncelle";
             this.BtnDuzenle.UseVisualStyleBackColor = true;
+            this.BtnDuzenle.Click += new System.EventHandler(this.BtnDuzenle_Click);
             // 
             // BtnSil
             // 
@@ -179,6 +180,7 @@
             this.BtnSil.TabIndex = 12;
             this.BtnSil.Text = "&Sil";
             this.BtnSil.UseVisualStyleBackColor = true;
+            this.BtnSil.Click += new System.EventHandler(this.BtnSil_Click);
             // 
             // BtnTemizle
             // 
@@ -206,6 +208,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(585, 182);
             this.Controls.Add(this.BtnCikis);

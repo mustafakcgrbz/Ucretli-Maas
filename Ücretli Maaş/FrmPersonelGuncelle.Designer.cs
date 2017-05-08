@@ -463,7 +463,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1243, 471);
+            this.ClientSize = new System.Drawing.Size(1214, 471);
             this.Controls.Add(this.LstPersonel);
             this.Controls.Add(this.BtnCikis);
             this.Controls.Add(this.BtnSil);

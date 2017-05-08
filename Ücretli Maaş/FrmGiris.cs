@@ -20,7 +20,7 @@ namespace Ücretli_Maaş
         }
 
         SqlConnection baglanti = new SqlConnection("Data Source=85.214.46.212;Initial Catalog=mustafa_gurbuz_db;User ID=mustafa_gurbuz_user;Password=mustafa_gurbuz_user");
-
+        string KurumId;
         private void Giris()
         {
             baglanti.Open();
@@ -29,23 +29,42 @@ namespace Ücretli_Maaş
             SqlDataReader oku = komut.ExecuteReader();
             if (oku.Read())
             {
+                 KurumId= oku["KurumId"].ToString();
                 if (oku["KurumId"].ToString() == "1")
                 {
                     FrmAna AnaFrm = new FrmAna();
                     AnaFrm.Show();
+                    this.Visible = false;
                 }
                 else
                 {
-                    FrmOkul OkulFrm = new FrmOkul();
-                    OkulFrm.Show();
+                    baglanti.Close();
+                    baglanti.Open();
+                    SqlCommand komutk = new SqlCommand("Select KurumAd From KurumBilgi Where KurumId='" + KurumId + "'", baglanti);
+                    komutk.ExecuteNonQuery();
+                    SqlDataReader okuk = komutk.ExecuteReader();
+                    if (okuk.Read())
+                    {
+                        FrmOkul OkulFrm = new FrmOkul();
+                        OkulFrm.LblKurumAd.Text = okuk["KurumAd"].ToString();
+                        OkulFrm.Show();
+                        this.Visible = false;
+                    }
+                    
                 }
+                
+                
+            }
+            else
+            {
+                MessageBox.Show("Kullanıcı Adı veya Parola Hatalı!!");
             }
             baglanti.Close();
         }
         private void BtnGiris_Click(object sender, EventArgs e)
         {
             Giris();            
-            this.Visible = false;
+            
         }
 
         private void BtnCikis_Click(object sender, EventArgs e)

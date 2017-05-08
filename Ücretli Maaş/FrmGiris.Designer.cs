@@ -80,7 +80,7 @@
             // BtnGiris
             // 
             this.BtnGiris.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.BtnGiris.Location = new System.Drawing.Point(29, 126);
+            this.BtnGiris.Location = new System.Drawing.Point(29, 113);
             this.BtnGiris.Name = "BtnGiris";
             this.BtnGiris.Size = new System.Drawing.Size(108, 41);
             this.BtnGiris.TabIndex = 4;
@@ -91,7 +91,7 @@
             // BtnCikis
             // 
             this.BtnCikis.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.BtnCikis.Location = new System.Drawing.Point(165, 126);
+            this.BtnCikis.Location = new System.Drawing.Point(165, 113);
             this.BtnCikis.Name = "BtnCikis";
             this.BtnCikis.Size = new System.Drawing.Size(108, 41);
             this.BtnCikis.TabIndex = 5;
@@ -105,7 +105,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ClientSize = new System.Drawing.Size(307, 181);
+            this.ClientSize = new System.Drawing.Size(301, 169);
             this.Controls.Add(this.BtnCikis);
             this.Controls.Add(this.BtnGiris);
             this.Controls.Add(this.TxtParola);

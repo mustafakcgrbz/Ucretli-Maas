@@ -88,6 +88,38 @@ namespace Ücretli_Maaş
             }
             baglanti.Close();
         }
+
+        private void KullaniciKaydet()
+        {
+            baglanti.Open();
+            SqlCommand komut = new SqlCommand("Insert Into Kullanicilar (KullaniciAd, Parola, KurumId, Aciklama) Values ('" + TxtKullanici.Text + "', '" + TxtParola.Text + "', (Select KurumId From KurumBilgi Where KurumAd='" + CmbKurum.Text + "'), '" + RTxtAciklama.Text + "')", baglanti);
+            komut.ExecuteNonQuery();
+
+            baglanti.Close();
+            MessageBox.Show("Kullanıcı Kaydı Yapıldı");
+            Temizle();
+            KullaniciDoldur();
+            KurumDoldur();
+
+        }
+        private void Kontrol()
+        {
+            baglanti.Open();
+            SqlCommand komut = new SqlCommand("Select KullaniciAd From Kullanicilar Where KullaniciAd='" + TxtKullanici.Text + "'", baglanti);
+            komut.ExecuteNonQuery();
+            SqlDataReader oku = komut.ExecuteReader();
+            if (oku.Read())
+            {
+                MessageBox.Show("Aynı Kullanıcı Adı Sistemde Mevcut!!!");
+                baglanti.Close();
+            }
+            else
+            {
+                baglanti.Close();
+                KullaniciKaydet();
+            }
+            
+        }
         private void BtnCikis_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -102,7 +134,7 @@ namespace Ücretli_Maaş
 
         private void BtnKaydet_Click(object sender, EventArgs e)
         {
-
+            Kontrol();
         }
 
         private void CmbKullanici_SelectedIndexChanged(object sender, EventArgs e)
@@ -115,6 +147,50 @@ namespace Ücretli_Maaş
             Temizle();
             KullaniciDoldur();
             KurumDoldur();
+        }
+
+        private void KullaniciGuncelle()
+        {
+            if (TxtKullanici.Text=="" | TxtParola.Text=="" | CmbKurum.Text=="")
+            {
+                MessageBox.Show("Lütfen Gerekli Alanları Doldurun!!");
+            }
+            else
+            {
+                baglanti.Open();
+                SqlCommand komut = new SqlCommand("Update Kullanicilar Set KullaniciAd='" + TxtKullanici.Text + "', Parola='" + TxtParola.Text + "', KurumId=(Select KurumId From KurumBilgi Where KurumAd='" + CmbKurum.Text + "'), Aciklama='" + RTxtAciklama.Text + "' Where KullaniciAd='" + CmbKullanici.Text + "'", baglanti);
+                komut.ExecuteNonQuery();
+                baglanti.Close();
+                MessageBox.Show("Kullanıcı Başarılı Bir Şekilde Güncellendi!!");
+            }
+        }
+        private void BtnDuzenle_Click(object sender, EventArgs e)
+        {
+            DialogResult cevap = MessageBox.Show("Kullanıcıyı Güncellemek İstediğinize Emin misiniz?", "Dikkat", MessageBoxButtons.YesNo);
+            if (cevap == DialogResult.Yes)
+            {
+                KullaniciGuncelle();
+            }
+        }
+
+        private void KullaniciSil()
+        {
+            baglanti.Open();
+            SqlCommand komut = new SqlCommand("Delete From Kullanicilar Where KullaniciAd='" + CmbKullanici.Text + "'", baglanti);
+            komut.ExecuteNonQuery();
+            baglanti.Close();
+            MessageBox.Show("Kullanıcı Silindi!!");
+            Temizle();
+            KullaniciDoldur();
+            KurumDoldur();
+        }
+        private void BtnSil_Click(object sender, EventArgs e)
+        {
+            DialogResult cevap = MessageBox.Show("Kullanıcıyı Silmek İstediğinize Emin misiniz?", "Dikkat", MessageBoxButtons.YesNo);
+            if (cevap == DialogResult.Yes)
+            {
+                KullaniciSil();
+            }
         }
     }
 }
