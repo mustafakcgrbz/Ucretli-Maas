@@ -59,5 +59,11 @@ namespace Ücretli_Maaş
             FrmPersonelGuncelle pguncellefrm = new FrmPersonelGuncelle();
             pguncellefrm.Show();
         }
+
+        private void kullanıcıVeSifreislemleriToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmKullanici Kullanici = new FrmKullanici();
+            Kullanici.Show();
+        }
     }
 }

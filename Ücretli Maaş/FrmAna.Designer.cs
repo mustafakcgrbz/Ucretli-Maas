@@ -46,6 +46,7 @@
             this.geçiciBordroToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.kesinBordroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.maaşRaporlarıToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.kullanıcıVeSifreislemleriToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,7 +68,8 @@
             this.maaşAyarlarıToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.maasAyarToolStripMenuItem,
             this.kurumİşlemleriToolStripMenuItem,
-            this.alanBilgisiİşlemleriToolStripMenuItem});
+            this.alanBilgisiİşlemleriToolStripMenuItem,
+            this.kullanıcıVeSifreislemleriToolStripMenuItem});
             this.maaşAyarlarıToolStripMenuItem.Name = "maaşAyarlarıToolStripMenuItem";
             this.maaşAyarlarıToolStripMenuItem.Padding = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this.maaşAyarlarıToolStripMenuItem.Size = new System.Drawing.Size(73, 30);
@@ -77,7 +79,7 @@
             // 
             this.maasAyarToolStripMenuItem.Name = "maasAyarToolStripMenuItem";
             this.maasAyarToolStripMenuItem.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
-            this.maasAyarToolStripMenuItem.Size = new System.Drawing.Size(214, 28);
+            this.maasAyarToolStripMenuItem.Size = new System.Drawing.Size(252, 28);
             this.maasAyarToolStripMenuItem.Text = "Maaş Ayar";
             this.maasAyarToolStripMenuItem.Click += new System.EventHandler(this.maasAyarToolStripMenuItem_Click);
             // 
@@ -88,7 +90,7 @@
             this.güncelleToolStripMenuItem});
             this.kurumİşlemleriToolStripMenuItem.Name = "kurumİşlemleriToolStripMenuItem";
             this.kurumİşlemleriToolStripMenuItem.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
-            this.kurumİşlemleriToolStripMenuItem.Size = new System.Drawing.Size(214, 28);
+            this.kurumİşlemleriToolStripMenuItem.Size = new System.Drawing.Size(252, 28);
             this.kurumİşlemleriToolStripMenuItem.Text = "Kurum İşlemleri";
             // 
             // kurumEkleToolStripMenuItem
@@ -113,7 +115,7 @@
             this.alanEklemeToolStripMenuItem,
             this.güncelleVeyaSilToolStripMenuItem});
             this.alanBilgisiİşlemleriToolStripMenuItem.Name = "alanBilgisiİşlemleriToolStripMenuItem";
-            this.alanBilgisiİşlemleriToolStripMenuItem.Size = new System.Drawing.Size(214, 24);
+            this.alanBilgisiİşlemleriToolStripMenuItem.Size = new System.Drawing.Size(252, 24);
             this.alanBilgisiİşlemleriToolStripMenuItem.Text = "Alan Bilgisi İşlemleri";
             // 
             // alanEklemeToolStripMenuItem
@@ -198,6 +200,13 @@
             this.maaşRaporlarıToolStripMenuItem.Size = new System.Drawing.Size(193, 24);
             this.maaşRaporlarıToolStripMenuItem.Text = "Maaş Raporları";
             // 
+            // kullanıcıVeSifreislemleriToolStripMenuItem
+            // 
+            this.kullanıcıVeSifreislemleriToolStripMenuItem.Name = "kullanıcıVeSifreislemleriToolStripMenuItem";
+            this.kullanıcıVeSifreislemleriToolStripMenuItem.Size = new System.Drawing.Size(252, 24);
+            this.kullanıcıVeSifreislemleriToolStripMenuItem.Text = "Kullanıcı ve Şifre İşlemleri";
+            this.kullanıcıVeSifreislemleriToolStripMenuItem.Click += new System.EventHandler(this.kullanıcıVeSifreislemleriToolStripMenuItem_Click);
+            // 
             // FrmAna
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -238,6 +247,7 @@
         private System.Windows.Forms.ToolStripMenuItem kesinBordroToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem maaşRaporlarıToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem güncelleVeSilToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem kullanıcıVeSifreislemleriToolStripMenuItem;
     }
 }
 

@@ -70,11 +70,23 @@
     <Compile Include="FrmAyar.Designer.cs">
       <DependentUpon>FrmAyar.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmKullanici.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmKullanici.Designer.cs">
+      <DependentUpon>FrmKullanici.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmKurumGuncelle.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmKurumGuncelle.Designer.cs">
       <DependentUpon>FrmKurumGuncelle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmOkul.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmOkul.Designer.cs">
+      <DependentUpon>FrmOkul.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmPersonelEkle.cs">
       <SubType>Form</SubType>
@@ -108,8 +120,14 @@
     <EmbeddedResource Include="FrmAyar.resx">
       <DependentUpon>FrmAyar.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmKullanici.resx">
+      <DependentUpon>FrmKullanici.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmKurumGuncelle.resx">
       <DependentUpon>FrmKurumGuncelle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmOkul.resx">
+      <DependentUpon>FrmOkul.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmPersonelEkle.resx">
       <DependentUpon>FrmPersonelEkle.cs</DependentUpon>
