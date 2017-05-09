@@ -70,5 +70,12 @@ namespace Ücretli_Maaş
         {
             Application.Exit();
         }
+
+       
+        private void EkdersBordroToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmBordroAc bordrofrm = new FrmBordroAc();
+            bordrofrm.Show();
+        }
     }
 }

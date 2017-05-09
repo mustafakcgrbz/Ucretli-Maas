@@ -267,7 +267,7 @@ namespace Ücretli_Maaş
         {
             PersonelGuncelle();
             Temizle();
-            PersonelDoldur();
+            VeriOku();
             PersonelGetir();
         }
 

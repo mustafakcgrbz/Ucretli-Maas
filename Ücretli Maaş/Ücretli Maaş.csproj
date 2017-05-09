@@ -70,6 +70,12 @@
     <Compile Include="FrmAyar.Designer.cs">
       <DependentUpon>FrmAyar.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmBordroAc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmBordroAc.Designer.cs">
+      <DependentUpon>FrmBordroAc.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmGiris.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,6 +131,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmAyar.resx">
       <DependentUpon>FrmAyar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmBordroAc.resx">
+      <DependentUpon>FrmBordroAc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmGiris.resx">
       <DependentUpon>FrmGiris.cs</DependentUpon>
