@@ -124,10 +124,10 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox TxtKullanici;
         private System.Windows.Forms.TextBox TxtParola;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button BtnGiris;
         private System.Windows.Forms.Button BtnCikis;
+        public System.Windows.Forms.TextBox TxtKullanici;
     }
 }

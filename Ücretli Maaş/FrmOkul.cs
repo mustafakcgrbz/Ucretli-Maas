@@ -65,7 +65,7 @@ namespace Ücretli_Maaş
         private void EkdersGuncelle()
         {
             baglanti.Open();
-            SqlCommand komut = new SqlCommand("Update Puantaj Set DersSaati='" + TxtEkders.Text + "' Where PersonelId='" + id + "' And BordroId='" + LblBordroNo.Text + "'", baglanti);
+            SqlCommand komut = new SqlCommand("Update Puantaj Set DersSaati='" + TxtEkders.Text + "', KurumId=(Select KurumId From KurumBilgi Where KurumAd='"+LblKurumAd.Text + "'), KullaniciAd=(Select KullaniciAd From Kullanicilar Where KurumId=(Select KurumId From KurumBilgi Where KurumAd='" + LblKurumAd.Text + "'))  Where PersonelId='" + id + "' And BordroId='" + LblBordroNo.Text + "'", baglanti);
             komut.ExecuteNonQuery();
             baglanti.Close();
             PersonelDoldur();
@@ -90,6 +90,7 @@ namespace Ücretli_Maaş
         }
         private void PersonelGetir()
         {
+            Temizle();
             baglanti.Open();
             SqlCommand komut = new SqlCommand("Select * From Personel Where PersonelId='" + id + "'", baglanti);
             komut.ExecuteNonQuery();
@@ -104,6 +105,13 @@ namespace Ücretli_Maaş
             }
             baglanti.Close();
 
+        }
+        private void Temizle()
+        {
+            TxtKimlikNo.Clear();
+            TxtAd.Clear();
+            TxtSoyad.Clear();
+            TxtEkders.Clear();
         }
         private void FrmOkul_Load(object sender, EventArgs e)
         {

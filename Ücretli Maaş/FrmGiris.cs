@@ -44,9 +44,9 @@ namespace Ücretli_Maaş
                     komutk.ExecuteNonQuery();
                     SqlDataReader okuk = komutk.ExecuteReader();
                     if (okuk.Read())
-                    {
+                    {                        
                         FrmOkul OkulFrm = new FrmOkul();
-                        OkulFrm.LblKurumAd.Text = okuk["KurumAd"].ToString();
+                        OkulFrm.LblKurumAd.Text = okuk["KurumAd"].ToString();                        
                         OkulFrm.Show();
                         this.Visible = false;
                     }

@@ -67,7 +67,7 @@
             this.LstPersonel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.LstPersonel.Location = new System.Drawing.Point(8, 8);
             this.LstPersonel.Name = "LstPersonel";
-            this.LstPersonel.Size = new System.Drawing.Size(509, 366);
+            this.LstPersonel.Size = new System.Drawing.Size(509, 347);
             this.LstPersonel.TabIndex = 0;
             this.LstPersonel.UseCompatibleStateImageBehavior = false;
             this.LstPersonel.View = System.Windows.Forms.View.Details;
@@ -101,7 +101,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(4, 379);
+            this.label1.Location = new System.Drawing.Point(18, 372);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(90, 20);
             this.label1.TabIndex = 1;
@@ -110,7 +110,7 @@
             // LblKurumAd
             // 
             this.LblKurumAd.AutoSize = true;
-            this.LblKurumAd.Location = new System.Drawing.Point(100, 379);
+            this.LblKurumAd.Location = new System.Drawing.Point(114, 372);
             this.LblKurumAd.Name = "LblKurumAd";
             this.LblKurumAd.Size = new System.Drawing.Size(0, 20);
             this.LblKurumAd.TabIndex = 2;
@@ -288,7 +288,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.ClientSize = new System.Drawing.Size(981, 406);
+            this.ClientSize = new System.Drawing.Size(981, 407);
             this.Controls.Add(this.BtnCikis);
             this.Controls.Add(this.BtnGuncelle);
             this.Controls.Add(this.TxtEkders);
