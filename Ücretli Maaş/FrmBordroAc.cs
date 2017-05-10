@@ -68,14 +68,88 @@ namespace Ücretli_Maaş
             this.Close();
         }
 
+        private void BordroOku()
+        {
+            CmbBordro.Items.Clear();
+            baglanti.Open();
+            SqlCommand komut = new SqlCommand("Select * From Bordro Where BordroDurum='Acik Bordro'", baglanti);
+            komut.ExecuteNonQuery();
+            SqlDataReader oku = komut.ExecuteReader();
+            if (oku.Read())
+            {
+                CmbBordro.Items.Add(oku["Aciklama"].ToString());
+                
+            }
+            baglanti.Close();
+        }
         private void FrmBordroAc_Load(object sender, EventArgs e)
         {
-            
+            BordroOku();
         }
 
         private void BtnOlustur_Click(object sender, EventArgs e)
         {
             Kontrol();
+        }
+
+        private void Temizle()
+        {
+            DtpBaslangic.Text = "";
+            DtpBitis.Text = "";
+            TxtAciklama.Clear();
+            BordroOku();
+            CmbBordro.Text = "Bordro Seçiniz :";
+        }
+        private void BordroDoldur()
+        {
+            baglanti.Open();
+            SqlCommand komut = new SqlCommand("Select * From Bordro Where Aciklama='" + CmbBordro.Text + "'", baglanti);
+            komut.ExecuteNonQuery();
+            SqlDataReader oku = komut.ExecuteReader();
+            if (oku.Read())
+            {
+                DtpBaslangic.Text = oku["BaslangicTarihi"].ToString();
+                DtpBitis.Text = oku["BitisTarihi"].ToString();
+                TxtAciklama.Text = oku["Aciklama"].ToString();
+            }
+            baglanti.Close();
+        }
+
+        private void BordroSil()
+        {
+            DialogResult cevap = MessageBox.Show("Silmek İstediğinize Emin misiniz?", "Dikkat", MessageBoxButtons.YesNo);
+            if (cevap == DialogResult.Yes)
+            {
+                baglanti.Open();
+                baglantip.Open();
+                SqlCommand komut = new SqlCommand("Delete From Puantaj Where BordroId=(Select BordroId From Bordro Where Aciklama='" + CmbBordro.Text + "' And BordroDurum='Acik Bordro')", baglanti);
+                komut.ExecuteNonQuery();
+                SqlCommand komutp = new SqlCommand("Delete From Bordro Where Aciklama ='" + CmbBordro.Text + "' And BordroDurum='Acik Bordro'", baglantip);
+                komutp.ExecuteNonQuery();
+
+                baglanti.Close();
+                baglantip.Close();
+                Temizle();
+                MessageBox.Show("Bordro Başarıyla Silindi!!");
+
+            }
+        }
+        private void BtnSil_Click(object sender, EventArgs e)
+        {
+            if (CmbBordro.Text!="Bordro Seçiniz :")
+            {
+                BordroSil();
+            }
+            else
+            {
+                MessageBox.Show("Bordro Seçiniz!!");
+            }
+            
+        }
+
+        private void CmbBordro_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BordroDoldur();
         }
     }
 }
