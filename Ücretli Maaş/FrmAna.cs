@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.Sql;
+using System.Data.SqlClient;
 
 namespace Ücretli_Maaş
 {
@@ -17,6 +19,8 @@ namespace Ücretli_Maaş
             InitializeComponent();
         }
 
+        SqlConnection baglanti = new SqlConnection("Data Source=85.214.46.212;Initial Catalog=mustafa_gurbuz_db;User ID=mustafa_gurbuz_user;Password=mustafa_gurbuz_user");
+        SqlConnection baglantiek = new SqlConnection("Data Source=85.214.46.212;Initial Catalog=mustafa_gurbuz_db;User ID=mustafa_gurbuz_user;Password=mustafa_gurbuz_user");
         private void maasAyarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmAyar ayarform = new FrmAyar();
@@ -76,6 +80,34 @@ namespace Ücretli_Maaş
         {
             FrmBordroAc bordrofrm = new FrmBordroAc();
             bordrofrm.Show();
+        }
+
+        private void Temizle()
+        {
+            LstPersonel.Items.Clear();
+
+        }
+
+        private void PersonelDoldur()
+        {
+            baglanti.Open();
+            SqlCommand komut = new SqlCommand("Select * From Personel Where Durum='1'", baglanti);
+            komut.ExecuteNonQuery();
+            SqlDataReader oku = komut.ExecuteReader();
+            while (oku.Read())
+            {
+                ListViewItem ekle = new ListViewItem();
+                ekle.Text = oku["PersonelId"].ToString();
+                ekle.SubItems.Add(oku["KimlikNo"].ToString());
+                ekle.SubItems.Add(oku["Adi"].ToString());
+                ekle.SubItems.Add(oku["Soyadi"].ToString());
+
+            }
+            baglanti.Close();
+        }
+        private void FrmAna_Load(object sender, EventArgs e)
+        {
+            
         }
     }
 }

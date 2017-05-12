@@ -45,6 +45,13 @@
             this.geçiciMaaşBordrosuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.EkdersBordroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.maaşRaporlarıToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.LstPersonel = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,7 +64,7 @@
             this.maaşİşlemleriToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(666, 34);
+            this.menuStrip1.Size = new System.Drawing.Size(970, 34);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -191,13 +198,59 @@
             this.maaşRaporlarıToolStripMenuItem.Size = new System.Drawing.Size(232, 24);
             this.maaşRaporlarıToolStripMenuItem.Text = "Maaş Raporları";
             // 
+            // LstPersonel
+            // 
+            this.LstPersonel.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader5,
+            this.columnHeader6});
+            this.LstPersonel.Location = new System.Drawing.Point(3, 42);
+            this.LstPersonel.Name = "LstPersonel";
+            this.LstPersonel.Size = new System.Drawing.Size(660, 425);
+            this.LstPersonel.TabIndex = 1;
+            this.LstPersonel.UseCompatibleStateImageBehavior = false;
+            this.LstPersonel.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Personel No";
+            this.columnHeader1.Width = 73;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "T.C. Kimlik No";
+            this.columnHeader2.Width = 101;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Adı";
+            this.columnHeader3.Width = 111;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Soyadı";
+            this.columnHeader4.Width = 118;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Ekders";
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Çalıştığı Kurum";
+            this.columnHeader6.Width = 187;
+            // 
             // FrmAna
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ClientSize = new System.Drawing.Size(666, 377);
+            this.ClientSize = new System.Drawing.Size(970, 465);
+            this.Controls.Add(this.LstPersonel);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
@@ -205,6 +258,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ücretli Maaş Ana Menü";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmAna_FormClosed);
+            this.Load += new System.EventHandler(this.FrmAna_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -231,6 +285,13 @@
         private System.Windows.Forms.ToolStripMenuItem maaşRaporlarıToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem güncelleVeSilToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem kullanıcıVeSifreislemleriToolStripMenuItem;
+        private System.Windows.Forms.ListView LstPersonel;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
     }
 }
 
