@@ -86,6 +86,10 @@ namespace Ücretli_Maaş
                 DtpBitis.Text = oku["BitisTarihi"].ToString();
                 baglanti.Close();
             }
+            else
+            {
+                baglanti.Close();
+            }
             
         }
         private void PersonelGetir()

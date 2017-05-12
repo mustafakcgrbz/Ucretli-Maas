@@ -33,7 +33,7 @@ namespace Ücretli_Maaş
         private void PuantajOlustur()
         {
             baglanti.Open();
-            SqlCommand komut = new SqlCommand("Select PersonelId, From Personel Where Durum='1'", baglanti);
+            SqlCommand komut = new SqlCommand("Select PersonelId From Personel Where Durum='1'", baglanti);
             komut.ExecuteNonQuery();
             SqlDataReader oku = komut.ExecuteReader();
             
