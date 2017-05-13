@@ -18,7 +18,7 @@ namespace Ücretli_Maaş
         {
             InitializeComponent();
         }
-
+        String id;
         SqlConnection baglanti = new SqlConnection("Data Source=85.214.46.212;Initial Catalog=mustafa_gurbuz_db;User ID=mustafa_gurbuz_user;Password=mustafa_gurbuz_user");
         SqlConnection baglantiek = new SqlConnection("Data Source=85.214.46.212;Initial Catalog=mustafa_gurbuz_db;User ID=mustafa_gurbuz_user;Password=mustafa_gurbuz_user");
         private void maasAyarToolStripMenuItem_Click(object sender, EventArgs e)
@@ -84,14 +84,18 @@ namespace Ücretli_Maaş
 
         private void Temizle()
         {
-            LstPersonel.Items.Clear();
+            TxtKimlikNo.Clear();
+            TxtAd.Clear();
+            TxtSoyad.Clear();
+            TxtEkders.Clear();
 
         }
 
         private void PersonelDoldur()
         {
+            LstPersonel.Items.Clear();
             baglanti.Open();
-            SqlCommand komut = new SqlCommand("Select * From Personel Where Durum='1'", baglanti);
+            SqlCommand komut = new SqlCommand("Select * From Personel Where Durum='1' Order By Kurum, Adi, Soyadi", baglanti);
             komut.ExecuteNonQuery();
             SqlDataReader oku = komut.ExecuteReader();
             while (oku.Read())
@@ -101,13 +105,131 @@ namespace Ücretli_Maaş
                 ekle.SubItems.Add(oku["KimlikNo"].ToString());
                 ekle.SubItems.Add(oku["Adi"].ToString());
                 ekle.SubItems.Add(oku["Soyadi"].ToString());
+                baglantiek.Open();
+                SqlCommand komutb = new SqlCommand("Select BordroDurum From Bordro Where BordroDurum='Acik Bordro'", baglantiek);
+                komutb.ExecuteNonQuery();
+                SqlDataReader okub = komutb.ExecuteReader();
+                if (okub.Read())
+                {
+                    baglantiek.Close();
+                    baglantiek.Open();
+                    SqlCommand komutek = new SqlCommand("Select DersSaati From Puantaj Where PersonelId='" + oku["PersonelId"].ToString() + "'", baglantiek);
+                    komutek.ExecuteNonQuery();
+                    SqlDataReader okuek = komutek.ExecuteReader();
+                    if (okuek.Read())
+                    {
+                        ekle.SubItems.Add(okuek["DersSaati"].ToString());
+                    }
+                    baglantiek.Close();
+                }
+                else
+                {
+                    ekle.SubItems.Add("0");
+                    baglantiek.Close();
+                
+                }
+                
+                
+                baglantiek.Open();
+                SqlCommand komutk = new SqlCommand("Select KurumAd From KurumBilgi Where KurumId='" + oku["Kurum"].ToString() + "'", baglantiek);
+                komutk.ExecuteNonQuery();
+                SqlDataReader okuk = komutk.ExecuteReader();
+                if (okuk.Read())
+                {
+                    ekle.SubItems.Add(okuk["KurumAd"].ToString());
+                }
+                baglantiek.Close();
+                LstPersonel.Items.Add(ekle);
+                                
 
             }
             baglanti.Close();
         }
+        private void BordroGetir()
+        {
+            baglanti.Open();
+            SqlCommand komut = new SqlCommand("Select BordroId, BaslangicTarihi, BitisTarihi, Aciklama From Bordro Where BordroDurum='Acik Bordro'", baglanti);
+            komut.ExecuteNonQuery();
+            SqlDataReader oku = komut.ExecuteReader();
+            if (oku.Read())
+            {
+                LblBordroNo.Text = oku["BordroId"].ToString();
+                LblAciklama.Text = oku["Aciklama"].ToString();
+                DtpBaslangic.Text = oku["BaslangicTarihi"].ToString();
+                DtpBitis.Text = oku["BitisTarihi"].ToString();
+                baglanti.Close();
+            }
+            else
+            {
+                baglanti.Close();
+            }
+
+        }
         private void FrmAna_Load(object sender, EventArgs e)
         {
-            
+            BordroGetir();         
+            PersonelDoldur();
+        }
+
+        private void BtnCikis_Click(object sender, EventArgs e)
+        {
+            DialogResult cevap = MessageBox.Show("Silmek İstediğinize Emin misiniz?", "Dikkat", MessageBoxButtons.YesNo);
+            if (cevap == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+        }
+
+        private void BordroKontrol()
+        {
+            if (LblBordroNo.Text == "0")
+            {
+                MessageBox.Show("Açık Ekders Bordrosu Bulunamadı!!");
+            }
+            else
+            {
+                EkdersGuncelle();
+            }
+        }
+
+        private void EkdersGuncelle()
+        {
+            baglanti.Open();
+            SqlCommand komut = new SqlCommand("Update Puantaj Set DersSaati='" + TxtEkders.Text + "', KurumId=(Select KurumId From KurumBilgi Where KurumAd='" + LstPersonel.SelectedItems[0].SubItems[5].Text + "') Where PersonelId='" + id + "' And BordroId='" + LblBordroNo.Text + "'", baglanti);
+            komut.ExecuteNonQuery();
+            baglanti.Close();
+            PersonelDoldur();
+            MessageBox.Show("Ekders Başarıyla Güncellendi!!");
+
+        }
+
+        private void BtnGuncelle_Click(object sender, EventArgs e)
+        {
+            BordroKontrol();
+        }
+
+        private void PersonelGetir()
+        {
+            Temizle();
+            baglanti.Open();
+            SqlCommand komut = new SqlCommand("Select * From Personel Where PersonelId='" + id + "'", baglanti);
+            komut.ExecuteNonQuery();
+            SqlDataReader oku = komut.ExecuteReader();
+            if (oku.Read())
+            {
+                TxtKimlikNo.Text = oku["KimlikNo"].ToString();
+                TxtAd.Text = oku["Adi"].ToString();
+                TxtSoyad.Text = oku["Soyadi"].ToString();
+                TxtEkders.Select();
+
+
+            }
+            baglanti.Close();
+        }
+        private void LstPersonel_DoubleClick(object sender, EventArgs e)
+        {
+            id = LstPersonel.SelectedItems[0].SubItems[0].Text;
+            PersonelGetir();
         }
     }
 }

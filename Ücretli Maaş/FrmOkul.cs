@@ -131,7 +131,11 @@ namespace Ücretli_Maaş
 
         private void BtnCikis_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            DialogResult cevap = MessageBox.Show("Silmek İstediğinize Emin misiniz?", "Dikkat", MessageBoxButtons.YesNo);
+            if (cevap == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
         }
 
         private void BtnGuncelle_Click(object sender, EventArgs e)
