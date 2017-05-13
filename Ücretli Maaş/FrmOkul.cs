@@ -88,6 +88,7 @@ namespace Ücretli_Maaş
             }
             else
             {
+                TxtEkders.Enabled = false;
                 baglanti.Close();
             }
             

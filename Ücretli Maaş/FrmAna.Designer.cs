@@ -70,6 +70,7 @@
             this.LblAciklama = new System.Windows.Forms.Label();
             this.LblBordroNo = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.kesintiEkleVeSilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -192,7 +193,8 @@
             this.maaşİşlemleriToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.geçiciMaaşBordrosuToolStripMenuItem,
             this.EkdersBordroToolStripMenuItem,
-            this.maaşRaporlarıToolStripMenuItem});
+            this.maaşRaporlarıToolStripMenuItem,
+            this.kesintiEkleVeSilToolStripMenuItem});
             this.maaşİşlemleriToolStripMenuItem.Name = "maaşİşlemleriToolStripMenuItem";
             this.maaşİşlemleriToolStripMenuItem.Size = new System.Drawing.Size(118, 30);
             this.maaşİşlemleriToolStripMenuItem.Text = "Maaş İşlemleri";
@@ -285,7 +287,7 @@
             // TxtEkders
             // 
             this.TxtEkders.BackColor = System.Drawing.SystemColors.Info;
-            this.TxtEkders.Location = new System.Drawing.Point(752, 342);
+            this.TxtEkders.Location = new System.Drawing.Point(776, 335);
             this.TxtEkders.MaxLength = 3;
             this.TxtEkders.Name = "TxtEkders";
             this.TxtEkders.Size = new System.Drawing.Size(153, 20);
@@ -295,7 +297,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(647, 345);
+            this.label9.Location = new System.Drawing.Point(697, 338);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(73, 13);
             this.label9.TabIndex = 35;
@@ -314,7 +316,7 @@
             // 
             this.TxtSoyad.BackColor = System.Drawing.SystemColors.Info;
             this.TxtSoyad.Enabled = false;
-            this.TxtSoyad.Location = new System.Drawing.Point(752, 296);
+            this.TxtSoyad.Location = new System.Drawing.Point(776, 292);
             this.TxtSoyad.Name = "TxtSoyad";
             this.TxtSoyad.Size = new System.Drawing.Size(153, 20);
             this.TxtSoyad.TabIndex = 33;
@@ -322,7 +324,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(683, 299);
+            this.label7.Location = new System.Drawing.Point(725, 295);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(45, 13);
             this.label7.TabIndex = 32;
@@ -332,7 +334,7 @@
             // 
             this.TxtAd.BackColor = System.Drawing.SystemColors.Info;
             this.TxtAd.Enabled = false;
-            this.TxtAd.Location = new System.Drawing.Point(752, 251);
+            this.TxtAd.Location = new System.Drawing.Point(776, 251);
             this.TxtAd.Name = "TxtAd";
             this.TxtAd.Size = new System.Drawing.Size(153, 20);
             this.TxtAd.TabIndex = 31;
@@ -340,7 +342,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(706, 254);
+            this.label6.Location = new System.Drawing.Point(742, 254);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(28, 13);
             this.label6.TabIndex = 30;
@@ -350,7 +352,7 @@
             // 
             this.TxtKimlikNo.BackColor = System.Drawing.SystemColors.Info;
             this.TxtKimlikNo.Enabled = false;
-            this.TxtKimlikNo.Location = new System.Drawing.Point(752, 206);
+            this.TxtKimlikNo.Location = new System.Drawing.Point(776, 206);
             this.TxtKimlikNo.Name = "TxtKimlikNo";
             this.TxtKimlikNo.Size = new System.Drawing.Size(153, 20);
             this.TxtKimlikNo.TabIndex = 29;
@@ -358,7 +360,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(662, 209);
+            this.label5.Location = new System.Drawing.Point(713, 209);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(57, 13);
             this.label5.TabIndex = 28;
@@ -428,6 +430,13 @@
             this.label2.Size = new System.Drawing.Size(61, 13);
             this.label2.TabIndex = 21;
             this.label2.Text = "Bordro No :";
+            // 
+            // kesintiEkleVeSilToolStripMenuItem
+            // 
+            this.kesintiEkleVeSilToolStripMenuItem.Name = "kesintiEkleVeSilToolStripMenuItem";
+            this.kesintiEkleVeSilToolStripMenuItem.Size = new System.Drawing.Size(232, 24);
+            this.kesintiEkleVeSilToolStripMenuItem.Text = "Kesinti Ekle ve Sil";
+            this.kesintiEkleVeSilToolStripMenuItem.Click += new System.EventHandler(this.kesintiEkleVeSilToolStripMenuItem_Click);
             // 
             // FrmAna
             // 
@@ -514,6 +523,7 @@
         private System.Windows.Forms.Label LblAciklama;
         private System.Windows.Forms.Label LblBordroNo;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ToolStripMenuItem kesintiEkleVeSilToolStripMenuItem;
     }
 }
 

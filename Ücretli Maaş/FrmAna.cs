@@ -161,6 +161,7 @@ namespace Ücretli_Maaş
             }
             else
             {
+                TxtEkders.Enabled = false;
                 baglanti.Close();
             }
 
@@ -173,7 +174,7 @@ namespace Ücretli_Maaş
 
         private void BtnCikis_Click(object sender, EventArgs e)
         {
-            DialogResult cevap = MessageBox.Show("Silmek İstediğinize Emin misiniz?", "Dikkat", MessageBoxButtons.YesNo);
+            DialogResult cevap = MessageBox.Show("Çıkmak İstediğinize Emin misiniz?", "Dikkat", MessageBoxButtons.YesNo);
             if (cevap == DialogResult.Yes)
             {
                 Application.Exit();
@@ -230,6 +231,12 @@ namespace Ücretli_Maaş
         {
             id = LstPersonel.SelectedItems[0].SubItems[0].Text;
             PersonelGetir();
+        }
+
+        private void kesintiEkleVeSilToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmKesinti frmkesinti = new FrmKesinti();
+            frmkesinti.Show();
         }
     }
 }
