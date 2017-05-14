@@ -21,6 +21,18 @@ namespace Ücretli_Maaş
         SqlConnection baglanti = new SqlConnection("Data Source=85.214.46.212;Initial Catalog=mustafa_gurbuz_db;User ID=mustafa_gurbuz_user;Password=mustafa_gurbuz_user");
         SqlConnection baglantiek = new SqlConnection("Data Source=85.214.46.212;Initial Catalog=mustafa_gurbuz_db;User ID=mustafa_gurbuz_user;Password=mustafa_gurbuz_user");
 
+        private void Temizle()
+        {
+            TxtKimlikNo.Clear();
+            TxtAd.Clear();
+            TxtSoyad.Clear();
+            TxtTutar.Clear();
+            RtxtAciklama.Clear();
+            CmbKesinti.Items.Clear();
+            CmbKesinti.Text = "Kesinti Seçiniz :";
+            CmbTur.Text = "Kesinti Türü Seçiniz";
+
+        }
         private void BordroKontrol()
         {
             baglanti.Open();
@@ -41,6 +53,7 @@ namespace Ücretli_Maaş
         }
         private void PersonelDoldur()
         {
+            
             LstPersonel.Items.Clear();
             baglanti.Open();
 
@@ -112,6 +125,9 @@ namespace Ücretli_Maaş
                     komut.ExecuteNonQuery();
                     baglanti.Close();
                     MessageBox.Show("Kayıt Tamamlandı!!");
+                    Temizle();
+                    PersonelGetir();
+                    IcraGetir();
                 }
             }
             else
@@ -125,6 +141,7 @@ namespace Ücretli_Maaş
         }
         private void PersonelGetir()
         {
+            Temizle();
             baglanti.Open();
             SqlCommand komut = new SqlCommand("Select * From Personel Where KimlikNo='" + Kimlik + "'", baglanti);
             komut.ExecuteNonQuery();
@@ -152,7 +169,7 @@ namespace Ücretli_Maaş
          private void IcraDoldur()
         {
             baglanti.Open();
-            SqlCommand komut = new SqlCommand("Select * From Kesinti Where KimlikNo='" + TxtKimlikNo.Text + "' And BordroId='" + LblBordroNo.Text + "'", baglanti);
+            SqlCommand komut = new SqlCommand("Select * From Kesinti Where KimlikNo='" + TxtKimlikNo.Text + "' And BordroId='" + LblBordroNo.Text + "' And Aciklama='"+CmbKesinti.Text+"'", baglanti);
             komut.ExecuteNonQuery();
             SqlDataReader oku = komut.ExecuteReader();
             if (oku.Read())
@@ -176,6 +193,28 @@ namespace Ücretli_Maaş
         private void CmbKesinti_SelectedValueChanged(object sender, EventArgs e)
         {
             IcraDoldur();
+        }
+
+        private void IcraSil()
+        {
+            DialogResult cevap = MessageBox.Show("Silmek İstediğinize Emin misiniz?", "Dikkat", MessageBoxButtons.YesNo);
+            if (cevap == DialogResult.Yes)
+            {
+                baglanti.Open();
+                SqlCommand komut = new SqlCommand("Delete From Kesinti Where KimlikNo='" + TxtKimlikNo.Text + "' And BordroId='" + LblBordroNo.Text + "' And Aciklama='" + CmbKesinti.Text + "'", baglanti);
+                komut.ExecuteNonQuery();
+                baglanti.Close();
+                Temizle();
+                PersonelGetir();
+                IcraDoldur();
+                MessageBox.Show("Seçilen İcra Kaydı Silindi!!");
+
+            }
+        }
+
+        private void BtnSil_Click(object sender, EventArgs e)
+        {
+            IcraSil();
         }
     }
 }
