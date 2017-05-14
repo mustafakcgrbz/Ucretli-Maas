@@ -17,6 +17,7 @@ namespace Ücretli_Maaş
         {
             InitializeComponent();
         }
+        String Kimlik;
         SqlConnection baglanti = new SqlConnection("Data Source=85.214.46.212;Initial Catalog=mustafa_gurbuz_db;User ID=mustafa_gurbuz_user;Password=mustafa_gurbuz_user");
         SqlConnection baglantiek = new SqlConnection("Data Source=85.214.46.212;Initial Catalog=mustafa_gurbuz_db;User ID=mustafa_gurbuz_user;Password=mustafa_gurbuz_user");
 
@@ -65,6 +66,22 @@ namespace Ücretli_Maaş
             }
             baglanti.Close();
         }
+
+        private void IcraGetir()
+        {
+            CmbKesinti.Items.Clear();
+            CmbKesinti.Text = "Kesinti Seçiniz :";
+            //Personele ait icraları getirecek
+            baglanti.Open();
+            SqlCommand komut = new SqlCommand("Select * From Kesinti Where KimlikNo = '" + Kimlik + "' And BordroId='" + LblBordroNo.Text + "'", baglanti);
+            komut.ExecuteNonQuery();
+            SqlDataReader oku = komut.ExecuteReader();
+            while (oku.Read())
+            {
+                CmbKesinti.Items.Add(oku["Aciklama"].ToString());
+            }
+            baglanti.Close();
+        }
         private void FrmKesinti_Load(object sender, EventArgs e)
         {
             BordroKontrol();
@@ -78,6 +95,87 @@ namespace Ücretli_Maaş
             {
                 this.Close();
             }
+        }
+
+        private void IcraKaydet()
+        {
+            if (TxtKimlikNo.Text != "")
+            {
+                if (CmbTur.Text == "Kesinti Türü Seçiniz" | RtxtAciklama.Text == "" | TxtTutar.Text == "")
+                {
+                    MessageBox.Show("Lütfen Alanları Boş Bırakmayınız");
+                }
+                else
+                {
+                    baglanti.Open();
+                    SqlCommand komut = new SqlCommand("Insert Into Kesinti (KimlikNo, BordroId, Tutar, KesintiTuru, Aciklama) Values ('" + TxtKimlikNo.Text + "', '" + LblBordroNo.Text + "', '" + TxtTutar.Text + "', '" + CmbTur.Text + "', '" + RtxtAciklama.Text + "')", baglanti);
+                    komut.ExecuteNonQuery();
+                    baglanti.Close();
+                    MessageBox.Show("Kayıt Tamamlandı!!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Önce Personel Seçiniz");
+            }
+        }
+        private void BtnKaydet_Click(object sender, EventArgs e)
+        {
+            IcraKaydet();
+        }
+        private void PersonelGetir()
+        {
+            baglanti.Open();
+            SqlCommand komut = new SqlCommand("Select * From Personel Where KimlikNo='" + Kimlik + "'", baglanti);
+            komut.ExecuteNonQuery();
+            SqlDataReader oku = komut.ExecuteReader();
+            if (oku.Read())
+            {
+                TxtKimlikNo.Text = oku["KimlikNo"].ToString();
+                TxtAd.Text = oku["Adi"].ToString();
+                TxtSoyad.Text = oku["Soyadi"].ToString();
+                baglanti.Close();
+                IcraGetir();
+
+            }
+            else
+            {
+                baglanti.Close();
+            }
+
+        }
+        private void LstPersonel_DoubleClick(object sender, EventArgs e)
+        {
+            Kimlik = LstPersonel.SelectedItems[0].SubItems[0].Text;
+            PersonelGetir();
+        }
+         private void IcraDoldur()
+        {
+            baglanti.Open();
+            SqlCommand komut = new SqlCommand("Select * From Kesinti Where KimlikNo='" + TxtKimlikNo.Text + "' And BordroId='" + LblBordroNo.Text + "'", baglanti);
+            komut.ExecuteNonQuery();
+            SqlDataReader oku = komut.ExecuteReader();
+            if (oku.Read())
+            {
+                CmbTur.Text = oku["KesintiTuru"].ToString();
+                TxtTutar.Text = oku["Tutar"].ToString();
+                RtxtAciklama.Text = oku["Aciklama"].ToString();
+                baglanti.Close();
+            }
+            else
+            {
+                baglanti.Close();
+            }
+            
+        }
+        private void CmbKesinti_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void CmbKesinti_SelectedValueChanged(object sender, EventArgs e)
+        {
+            IcraDoldur();
         }
     }
 }
