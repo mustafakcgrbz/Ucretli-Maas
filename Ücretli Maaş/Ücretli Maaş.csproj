@@ -104,6 +104,12 @@
     <Compile Include="FrmKurumGuncelle.Designer.cs">
       <DependentUpon>FrmKurumGuncelle.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmMaasHesapla.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMaasHesapla.Designer.cs">
+      <DependentUpon>FrmMaasHesapla.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmOkul.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -156,6 +162,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmKurumGuncelle.resx">
       <DependentUpon>FrmKurumGuncelle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMaasHesapla.resx">
+      <DependentUpon>FrmMaasHesapla.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmOkul.resx">
       <DependentUpon>FrmOkul.cs</DependentUpon>

@@ -16,7 +16,7 @@ namespace Ücretli_Maaş
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmKesinti());
+            Application.Run(new FrmMaasHesapla());
         }
     }
 }

@@ -238,5 +238,11 @@ namespace Ücretli_Maaş
             FrmKesinti frmkesinti = new FrmKesinti();
             frmkesinti.Show();
         }
+
+        private void MaasHesaplaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmMaasHesapla frmMaas = new FrmMaasHesapla();
+            frmMaas.Show();
+        }
     }
 }
