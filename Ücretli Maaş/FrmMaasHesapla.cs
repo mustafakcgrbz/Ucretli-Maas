@@ -81,7 +81,15 @@ namespace Ücretli_Maaş
 
         private void NafakaTopla()
         {
-            //Nafaka Toplamı bulunacak
+            baglantip.Open();
+            SqlCommand komutp= new SqlCommand("Select Tutar From Kesinti Where BordroId='" + BordroNo + "' And KimlikNo='" + KimlikNo + "' And KesintiTuru='Nafaka'", baglantip);
+            komutp.ExecuteNonQuery();
+            SqlDataReader okup = komutp.ExecuteReader();
+            while (okup.Read())
+            {
+                Nafaka += Convert.ToDouble(okup["Tutar"].ToString());
+            }
+            baglantip.Close();
         }
         private void GeciciHesap()
         {
