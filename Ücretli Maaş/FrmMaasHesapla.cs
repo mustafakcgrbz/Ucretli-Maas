@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.Sql;
 using System.Data.SqlClient;
+
 namespace Ücretli_Maaş
 {
     public partial class FrmMaasHesapla : Form
@@ -21,7 +22,8 @@ namespace Ücretli_Maaş
         SqlConnection baglanti = new SqlConnection("Data Source=85.214.46.212;Initial Catalog=mustafa_gurbuz_db;User ID=mustafa_gurbuz_user;Password=mustafa_gurbuz_user");
         SqlConnection baglantim = new SqlConnection("Data Source=85.214.46.212;Initial Catalog=mustafa_gurbuz_db;User ID=mustafa_gurbuz_user;Password=mustafa_gurbuz_user");
         SqlConnection baglantip = new SqlConnection("Data Source=85.214.46.212;Initial Catalog=mustafa_gurbuz_db;User ID=mustafa_gurbuz_user;Password=mustafa_gurbuz_user");
-        Double Icra, Nafaka;
+        Double SaatUcreti, AylikTutar, SGKDevlet, Tahakkuk, SGKKesMatrah, SGKKisi, YVergiMatrah, AVergiMatrah, GelirVergi, DamgaVergi, Icra, Nafaka, ToplamKesinti, AGI, NetTutar;
+        int DersSaati, SGKGun;        
         String BordroNo, KimlikNo;
 
         private void BordroCek()
@@ -73,7 +75,7 @@ namespace Ücretli_Maaş
             SqlDataReader okup = komutp.ExecuteReader();
             while (okup.Read())
             {
-                Icra += Convert.ToDouble(okup["Tutar"].ToString());
+                Icra =Icra+ Math.Round(Convert.ToDouble(okup["Tutar"].ToString()), 2);
             }
             baglantip.Close();
 
@@ -81,18 +83,67 @@ namespace Ücretli_Maaş
 
         private void NafakaTopla()
         {
+            //Nafaka Toplamı Bulacak
             baglantip.Open();
             SqlCommand komutp= new SqlCommand("Select Tutar From Kesinti Where BordroId='" + BordroNo + "' And KimlikNo='" + KimlikNo + "' And KesintiTuru='Nafaka'", baglantip);
             komutp.ExecuteNonQuery();
             SqlDataReader okup = komutp.ExecuteReader();
             while (okup.Read())
             {
-                Nafaka += Convert.ToDouble(okup["Tutar"].ToString());
+                Nafaka = Nafaka+Math.Round(Convert.ToDouble(okup["Tutar"].ToString()), 2);
             }
             baglantip.Close();
         }
+
+        private void DegerSifirla()
+        {
+            SaatUcreti = 0;
+            AylikTutar = 0;
+            SGKDevlet = 0;
+            Tahakkuk = 0;
+            SGKKesMatrah = 0;
+            SGKKisi = 0;
+            YVergiMatrah = 0;
+            AVergiMatrah = 0;
+            GelirVergi = 0;
+            DamgaVergi = 0;
+            Icra = 0;
+            Nafaka = 0;
+            ToplamKesinti = 0;
+            AGI = 0;
+            NetTutar=0;
+            DersSaati = 0;
+            SGKGun=0;            
+            KimlikNo="";
+        }
+
+        private void GeciciKayit()
+        {
+            baglantip.Open();
+            SqlCommand komutp = new SqlCommand("Insert Into GeciciHesap (KimlikNo, SaatUcreti, DersSaati, SGKGun, AylikTutar, SGKDevlet, Tahakkuk, SGKKesMatrah, SGKKisi, YVergiMatrah, AVergiMatrah, GelirVergi, DamgaVergi, Icra, Nafaka, ToplamKesinti, AGI, NetTutar) Values ('" + KimlikNo.ToString() + "', '" + SaatUcreti.ToString() + "', '" + DersSaati.ToString() + "', '" + SGKGun.ToString() + "', '" + AylikTutar.ToString() + "', '" + SGKDevlet.ToString() + "', '" + Tahakkuk.ToString() + "', '" + SGKKesMatrah.ToString() + "', '" + SGKKisi.ToString() + "', '" + YVergiMatrah.ToString() + "', '" + AVergiMatrah.ToString() + "', '" + GelirVergi.ToString() + "', '" + DamgaVergi.ToString() + "', '" + Icra.ToString() + "', '" + Nafaka.ToString() + "', '" + ToplamKesinti.ToString() + "', '" + AGI.ToString() + "', '" + NetTutar.ToString() + "')", baglantip);
+            komutp.ExecuteNonQuery();            
+            baglantip.Close();
+        }
+
+        private void TabloTemizle()
+        {            
+            baglanti.Open();
+            SqlCommand komut = new SqlCommand("Select * From GeciciHesap", baglanti);
+            komut.ExecuteNonQuery();
+            SqlDataReader oku = komut.ExecuteReader();
+            if (oku.Read())
+            {
+                baglanti.Close();
+                baglanti.Open();
+                SqlCommand komuts = new SqlCommand("Truncate Table GeciciHesap", baglanti);
+                komuts.ExecuteNonQuery();
+                baglanti.Close();
+            }            
+
+        }
         private void GeciciHesap()
         {
+            TabloTemizle();
             baglanti.Open();
             SqlCommand komut = new SqlCommand("Select * From Puantaj Where BordroId=(Select BordroId From Bordro Where BordroDurum='Acik Bordro' And Aciklama='" + CmbBordro.Text + "')", baglanti);
             komut.ExecuteNonQuery();
@@ -105,16 +156,15 @@ namespace Ücretli_Maaş
                 SqlDataReader okum = komutm.ExecuteReader();
                 if (okum.Read())
                 {
-                    Double SaatUcreti, AylikTutar, SGKDevlet, Tahakkuk, SGKKesMatrah, SGKKisi, YVergiMatrah, AVergiMatrah, GelirVergi, DamgaVergi, ToplamKesinti, AGI, NetTutar;
-                    int DersSaati, SGKGun;
-                    SaatUcreti = Convert.ToDouble(okum["MaasKatsayi"].ToString()) * Convert.ToDouble(okum["EkdersKatsayi"].ToString());
+                    DegerSifirla();
+                    SaatUcreti = Math.Round((Convert.ToDouble(okum["MaasKatsayi"].ToString()) * Convert.ToDouble(okum["EkdersKatsayi"].ToString())),2);
                     DersSaati = Convert.ToInt32(oku["DersSaati"].ToString());
                     SGKGun = Convert.ToInt32( DersSaati / 7.5);
-                    AylikTutar = SaatUcreti * DersSaati;
-                    SGKDevlet = AylikTutar * Convert.ToDouble(okum["SGKDevlet"].ToString());
-                    Tahakkuk = AylikTutar + SGKDevlet;
-                    SGKKesMatrah = AylikTutar;
-                    SGKKisi = AylikTutar * Convert.ToDouble(okum["SgkKisi"].ToString());
+                    AylikTutar = Math.Round((SaatUcreti * DersSaati),2);
+                    SGKDevlet = Math.Round((AylikTutar * Convert.ToDouble(okum["SGKDevlet"].ToString())), 2);
+                    Tahakkuk = Math.Round((AylikTutar + SGKDevlet),2);
+                    SGKKesMatrah = Math.Round(AylikTutar,2);
+                    SGKKisi = Math.Round((AylikTutar * Convert.ToDouble(okum["SgkKisi"].ToString())), 2);
                     baglantip.Open();
                     SqlCommand komutp = new SqlCommand("Select KimlikNo, VergiMatrah From Personel Where PersonelId='" + oku["PersonelId"].ToString() + "'", baglantip);
                     komutp.ExecuteNonQuery();
@@ -122,18 +172,18 @@ namespace Ücretli_Maaş
                     if (okup.Read())
                     {
                         KimlikNo = okup["KimlikNo"].ToString();
-                        YVergiMatrah = Convert.ToDouble(okup["VergiMatrah"].ToString());
+                        YVergiMatrah = Math.Round(Convert.ToDouble(okup["VergiMatrah"].ToString()),2);
                     }
                     baglantip.Close();
-                    AVergiMatrah = AylikTutar - SGKKisi;
-                    GelirVergi = AVergiMatrah * Convert.ToDouble(okum["GelirVergiOran"].ToString());
-                    DamgaVergi = AylikTutar * Convert.ToDouble(okum["DamgaVergiOran"].ToString());
-                    Icra = 0;
-                    IcraTopla();
-                    MessageBox.Show(Icra.ToString());
-                    Nafaka = 0;
+                    AVergiMatrah = Math.Round((AylikTutar - SGKKisi),2);
+                    GelirVergi = Math.Round((AVergiMatrah * Convert.ToDouble(okum["GelirVergiOran"].ToString()) / 100), 2);
+                    DamgaVergi = Math.Round((AylikTutar * Convert.ToDouble(okum["DamgaVergiOran"].ToString())), 2);                    
+                    IcraTopla();                                      
                     NafakaTopla();
-
+                    ToplamKesinti = Math.Round((GelirVergi + DamgaVergi + Icra + Nafaka), 2);
+                    //Agi Hesaplanacak
+                    NetTutar = Math.Round((Tahakkuk - ToplamKesinti + AGI), 2);
+                    GeciciKayit();
 
                 }
                 //SqlCommand komutp = new SqlCommand("Insert Into GeciciHesap (KimlikNo, SaatUcreti, DersSaati, SGKGun, AylikTutar, SGKDevlet, Tahakkuk, SGKKesMatrah, SGKKisi, YVergiMatrah, AVergiMatrah, DamgaVergi, Icra, Nafaka, ToplamKesinti, AGI, NetTutar) Values ((Select KimlikNo From Personel Where PersonelId='"+oku["PersonelId"].ToString()+"'), ((Select MaasKatsayi From MaasAyar)))");
@@ -142,6 +192,7 @@ namespace Ücretli_Maaş
 
             }
             baglanti.Close();
+            MessageBox.Show("Hesaplama Tamamlandı!!");
         }
         private void BtnGecici_Click(object sender, EventArgs e)
         {
