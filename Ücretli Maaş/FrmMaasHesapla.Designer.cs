@@ -37,6 +37,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.TxtAciklama = new System.Windows.Forms.TextBox();
             this.BtnGecici = new System.Windows.Forms.Button();
+            this.BtnKontrol = new System.Windows.Forms.Button();
+            this.BtnKesin = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -129,6 +131,28 @@
             this.BtnGecici.UseVisualStyleBackColor = true;
             this.BtnGecici.Click += new System.EventHandler(this.BtnGecici_Click);
             // 
+            // BtnKontrol
+            // 
+            this.BtnKontrol.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.BtnKontrol.Location = new System.Drawing.Point(185, 213);
+            this.BtnKontrol.Name = "BtnKontrol";
+            this.BtnKontrol.Size = new System.Drawing.Size(108, 55);
+            this.BtnKontrol.TabIndex = 9;
+            this.BtnKontrol.Text = "Geçici Hesap Kontrol";
+            this.BtnKontrol.UseVisualStyleBackColor = true;
+            this.BtnKontrol.Click += new System.EventHandler(this.BtnKontrol_Click);
+            // 
+            // BtnKesin
+            // 
+            this.BtnKesin.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.BtnKesin.Location = new System.Drawing.Point(355, 213);
+            this.BtnKesin.Name = "BtnKesin";
+            this.BtnKesin.Size = new System.Drawing.Size(108, 55);
+            this.BtnKesin.TabIndex = 10;
+            this.BtnKesin.Text = "Kesin Hesap";
+            this.BtnKesin.UseVisualStyleBackColor = true;
+            this.BtnKesin.Click += new System.EventHandler(this.BtnKesin_Click);
+            // 
             // FrmMaasHesapla
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -136,6 +160,8 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(481, 372);
+            this.Controls.Add(this.BtnKesin);
+            this.Controls.Add(this.BtnKontrol);
             this.Controls.Add(this.BtnGecici);
             this.Controls.Add(this.TxtAciklama);
             this.Controls.Add(this.label4);
@@ -166,5 +192,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox TxtAciklama;
         private System.Windows.Forms.Button BtnGecici;
+        private System.Windows.Forms.Button BtnKontrol;
+        private System.Windows.Forms.Button BtnKesin;
     }
 }

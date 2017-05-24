@@ -23,11 +23,99 @@ namespace Ücretli_Maaş
         SqlConnection baglantim = new SqlConnection("Data Source=85.214.46.212;Initial Catalog=mustafa_gurbuz_db;User ID=mustafa_gurbuz_user;Password=mustafa_gurbuz_user");
         SqlConnection baglantip = new SqlConnection("Data Source=85.214.46.212;Initial Catalog=mustafa_gurbuz_db;User ID=mustafa_gurbuz_user;Password=mustafa_gurbuz_user");
         Double AsgariUcret, AgiKatsayi, SaatUcreti, AylikTutar, SGKDevlet, Tahakkuk, SGKKesMatrah, SGKKisi, YVergiMatrah, AVergiMatrah, GelirVergi, DamgaVergi, Icra, Nafaka, ToplamKesinti, AGI, NetTutar;
-        int DersSaati, SGKGun, CocukSayi;        
+        int DersSaati, SGKGun, CocukSayi;
         String BordroNo, KimlikNo, EsDurum;
+        int Durum = 0;
+        private void KesinHesap()
+        {
+            
+            //Kesin Hesaplama Yapılacak ve Vergi Matrahları Toplanacak
+            baglanti.Open();
+            SqlCommand komut = new SqlCommand("Select * From GeciciHesap", baglanti);
+            komut.ExecuteNonQuery();
+            SqlDataReader oku = komut.ExecuteReader();
+            while (oku.Read())
+            {
+                Double ToplamMatrah = 0;
+                ToplamMatrah = Math.Round((Convert.ToDouble(oku["YVergiMatrah"].ToString()) + Convert.ToDouble(oku["AVergiMatrah"].ToString())), 2);
+                KimlikNo = oku["KimlikNo"].ToString();
+                NetTutar = Convert.ToDouble( oku["NetTutar"].ToString());
+                baglantim.Open();
+                SqlCommand komutm = new SqlCommand("Insert Into KesinHesap Values('"+BordroNo+"', '" + oku["KimlikNo"].ToString() + "', '" + oku["SaatUcreti"].ToString() + "','" + oku["DersSaati"].ToString() + "', '" + oku["SGKGun"].ToString() + "', '" + oku["AylikTutar"].ToString() + "', '" + oku["SGKDevlet"].ToString() + "', '" + oku["Tahakkuk"].ToString() + "', '" + oku["SGKKesMatrah"].ToString() + "', '" + oku["SGKKisi"].ToString() + "', '" + oku["YVergiMatrah"].ToString() + "', '" + oku["AVergiMatrah"].ToString() + "', '" + oku["GelirVergi"].ToString() + "', '" + oku["DamgaVergi"].ToString() + "', '" + oku["Icra"].ToString() + "', '" + oku["Nafaka"].ToString() + "', '" + oku["ToplamKesinti"].ToString() + "', '" + oku["AGI"].ToString() + "', '" + oku["NetTutar"].ToString() + "')", baglantim);
+                komutm.ExecuteNonQuery();
+                baglantim.Close();
+                baglantip.Open();
+                SqlCommand komutp = new SqlCommand("Update Personel Set VergiMatrah ='" + ToplamMatrah.ToString() + "' Where KimlikNo='" + oku["KimlikNo"].ToString() + "'", baglantip);
+                komutp.ExecuteNonQuery();
+                baglantip.Close();
+                BankaListe();
+                BordroKapat();
+                BordroNo = null;
+                BordroCek();
+
+            }
+            baglanti.Close();
+            MessageBox.Show("Kesin Hesaplama Tamamlandı");
+
+
+        }
+        private void BtnKesin_Click(object sender, EventArgs e)
+        {
+            if (BordroNo!=null && Durum!=0)
+            {
+                DialogResult cevap = MessageBox.Show("Kesin Hesaplama Yapıldıktan Sonra Düzelme Yapılamayacaktır!!", "Dikkat", MessageBoxButtons.YesNo);
+                if (cevap == DialogResult.Yes)
+                {
+                    KesinHesap();
+                }
+                else
+                {
+                    MessageBox.Show("Kesin Hesaplama İptal Edildi!!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Bordro Seçilmedi veya Geçici Hesaplama Yapılmadı");
+            }
+            
+        }
+
+        private void BankaListe()
+        {
+            //Banka Listesi Hazırlanıyor
+            baglantim.Open();
+            SqlCommand komutm = new SqlCommand("Select Adi, Soyadi, IbanNo From Personel Where KimlikNo='" + KimlikNo + "'", baglantim);
+            komutm.ExecuteNonQuery();
+            SqlDataReader okum = komutm.ExecuteReader();
+            if (okum.Read())
+            {
+                baglantip.Open();
+                SqlCommand komutp = new SqlCommand("Insert Into BankaListe Values('"+KimlikNo+"', '"+okum["Adi"].ToString()+"', '"+okum["Soyadi"].ToString()+"', '"+okum["IbanNo"].ToString()+"', '"+NetTutar.ToString()+"')",baglantip);
+                komutp.ExecuteNonQuery();
+                baglantip.Close();
+            }
+        
+            baglantim.Close();
+        }
+
+        private void BordroKapat()
+        {
+            baglantip.Open();
+            SqlCommand komutp = new SqlCommand("Update Bordro Set BordroDurum='Kapali Bordro' Where BordroId='" + BordroNo + "'", baglantip);
+            komutp.ExecuteNonQuery();
+            baglantip.Close();
+        }
+        private void BtnKontrol_Click(object sender, EventArgs e)
+        {
+            FrmHesapRapor raporfrm = new FrmHesapRapor();
+            raporfrm.Show();
+        }
+
+        
 
         private void BordroCek()
         {
+            CmbBordro.Items.Clear();
             baglanti.Open();
             SqlCommand komut = new SqlCommand("Select * From Bordro Where BordroDurum='Acik Bordro'", baglanti);
             komut.ExecuteNonQuery();
@@ -37,6 +125,8 @@ namespace Ücretli_Maaş
                 CmbBordro.Items.Add(oku["Aciklama"].ToString());               
             }
             baglanti.Close();
+            CmbBordro.Text = "Bordro Seçiniz :";
+            TxtAciklama.Clear();
             
         }
 
@@ -140,8 +230,28 @@ namespace Ücretli_Maaş
                 SqlCommand komuts = new SqlCommand("Truncate Table GeciciHesap", baglanti);
                 komuts.ExecuteNonQuery();
                 baglanti.Close();
-            }            
-
+            }
+            else
+            {
+                baglanti.Close();
+            }
+            baglantim.Open();
+            SqlCommand komutm = new SqlCommand("Select * From BankaListe", baglantim);
+            komutm.ExecuteNonQuery();
+            SqlDataReader okum = komutm.ExecuteReader();
+            if (okum.Read())
+            {
+                baglantim.Close();
+                baglantim.Open();
+                SqlCommand komuts = new SqlCommand("Truncate Table BankaListe", baglantim);
+                komuts.ExecuteNonQuery();
+                baglantim.Close();
+            }
+            else
+            {
+                baglantim.Close();
+            }
+            
         }
 
         
@@ -239,6 +349,7 @@ namespace Ücretli_Maaş
             if (CmbBordro.Text != "Bordro Seçiniz :")
             {
                 GeciciHesap();
+                Durum = 1;
             }
             else
             {
