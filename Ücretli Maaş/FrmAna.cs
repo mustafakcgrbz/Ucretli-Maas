@@ -106,14 +106,15 @@ namespace Ücretli_Maaş
                 ekle.SubItems.Add(oku["Adi"].ToString());
                 ekle.SubItems.Add(oku["Soyadi"].ToString());
                 baglantiek.Open();
-                SqlCommand komutb = new SqlCommand("Select BordroDurum From Bordro Where BordroDurum='Acik Bordro'", baglantiek);
+                SqlCommand komutb = new SqlCommand("Select BordroDurum, BordroId From Bordro Where BordroDurum='Acik Bordro'", baglantiek);
                 komutb.ExecuteNonQuery();
                 SqlDataReader okub = komutb.ExecuteReader();
                 if (okub.Read())
                 {
+                    string BordroNo = okub["BordroId"].ToString();
                     baglantiek.Close();
                     baglantiek.Open();
-                    SqlCommand komutek = new SqlCommand("Select DersSaati From Puantaj Where PersonelId='" + oku["PersonelId"].ToString() + "'", baglantiek);
+                    SqlCommand komutek = new SqlCommand("Select DersSaati From Puantaj Where PersonelId='" + oku["PersonelId"].ToString() + "' And BordroId='"+BordroNo+"'", baglantiek);
                     komutek.ExecuteNonQuery();
                     SqlDataReader okuek = komutek.ExecuteReader();
                     if (okuek.Read())

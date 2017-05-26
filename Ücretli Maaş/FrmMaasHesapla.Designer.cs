@@ -39,6 +39,9 @@
             this.BtnGecici = new System.Windows.Forms.Button();
             this.BtnKontrol = new System.Windows.Forms.Button();
             this.BtnKesin = new System.Windows.Forms.Button();
+            this.BtnMuhasebe = new System.Windows.Forms.Button();
+            this.BtnBanka = new System.Windows.Forms.Button();
+            this.BtnCikis = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -127,7 +130,7 @@
             this.BtnGecici.Name = "BtnGecici";
             this.BtnGecici.Size = new System.Drawing.Size(108, 55);
             this.BtnGecici.TabIndex = 8;
-            this.BtnGecici.Text = "Geçici Hesaplama";
+            this.BtnGecici.Text = "&Geçici Hesaplama";
             this.BtnGecici.UseVisualStyleBackColor = true;
             this.BtnGecici.Click += new System.EventHandler(this.BtnGecici_Click);
             // 
@@ -138,7 +141,7 @@
             this.BtnKontrol.Name = "BtnKontrol";
             this.BtnKontrol.Size = new System.Drawing.Size(108, 55);
             this.BtnKontrol.TabIndex = 9;
-            this.BtnKontrol.Text = "Geçici Hesap Kontrol";
+            this.BtnKontrol.Text = "Geçici &Hesap Kontrol";
             this.BtnKontrol.UseVisualStyleBackColor = true;
             this.BtnKontrol.Click += new System.EventHandler(this.BtnKontrol_Click);
             // 
@@ -149,9 +152,42 @@
             this.BtnKesin.Name = "BtnKesin";
             this.BtnKesin.Size = new System.Drawing.Size(108, 55);
             this.BtnKesin.TabIndex = 10;
-            this.BtnKesin.Text = "Kesin Hesap";
+            this.BtnKesin.Text = "&Kesin Hesap";
             this.BtnKesin.UseVisualStyleBackColor = true;
             this.BtnKesin.Click += new System.EventHandler(this.BtnKesin_Click);
+            // 
+            // BtnMuhasebe
+            // 
+            this.BtnMuhasebe.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.BtnMuhasebe.Location = new System.Drawing.Point(16, 292);
+            this.BtnMuhasebe.Name = "BtnMuhasebe";
+            this.BtnMuhasebe.Size = new System.Drawing.Size(108, 55);
+            this.BtnMuhasebe.TabIndex = 11;
+            this.BtnMuhasebe.Text = "&Muhasebe Bordro";
+            this.BtnMuhasebe.UseVisualStyleBackColor = true;
+            this.BtnMuhasebe.Click += new System.EventHandler(this.BtnMuhasebe_Click);
+            // 
+            // BtnBanka
+            // 
+            this.BtnBanka.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.BtnBanka.Location = new System.Drawing.Point(185, 292);
+            this.BtnBanka.Name = "BtnBanka";
+            this.BtnBanka.Size = new System.Drawing.Size(108, 55);
+            this.BtnBanka.TabIndex = 12;
+            this.BtnBanka.Text = "&Banka Listesi";
+            this.BtnBanka.UseVisualStyleBackColor = true;
+            this.BtnBanka.Click += new System.EventHandler(this.BtnBanka_Click);
+            // 
+            // BtnCikis
+            // 
+            this.BtnCikis.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.BtnCikis.Location = new System.Drawing.Point(355, 292);
+            this.BtnCikis.Name = "BtnCikis";
+            this.BtnCikis.Size = new System.Drawing.Size(108, 55);
+            this.BtnCikis.TabIndex = 13;
+            this.BtnCikis.Text = "&Çıkış";
+            this.BtnCikis.UseVisualStyleBackColor = true;
+            this.BtnCikis.Click += new System.EventHandler(this.BtnCikis_Click);
             // 
             // FrmMaasHesapla
             // 
@@ -160,6 +196,9 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(481, 372);
+            this.Controls.Add(this.BtnCikis);
+            this.Controls.Add(this.BtnBanka);
+            this.Controls.Add(this.BtnMuhasebe);
             this.Controls.Add(this.BtnKesin);
             this.Controls.Add(this.BtnKontrol);
             this.Controls.Add(this.BtnGecici);
@@ -194,5 +233,8 @@
         private System.Windows.Forms.Button BtnGecici;
         private System.Windows.Forms.Button BtnKontrol;
         private System.Windows.Forms.Button BtnKesin;
+        private System.Windows.Forms.Button BtnMuhasebe;
+        private System.Windows.Forms.Button BtnBanka;
+        private System.Windows.Forms.Button BtnCikis;
     }
 }

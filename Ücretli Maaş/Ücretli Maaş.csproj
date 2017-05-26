@@ -53,6 +53,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="dbDataSetBanka.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbDataSetBanka.xsd</DependentUpon>
+    </Compile>
     <Compile Include="FrmAlanEkle.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,6 +81,12 @@
     </Compile>
     <Compile Include="FrmAyar.Designer.cs">
       <DependentUpon>FrmAyar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmBanka.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmBanka.Designer.cs">
+      <DependentUpon>FrmBanka.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmBordroAc.cs">
       <SubType>Form</SubType>
@@ -162,6 +173,9 @@
     <EmbeddedResource Include="FrmAyar.resx">
       <DependentUpon>FrmAyar.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmBanka.resx">
+      <DependentUpon>FrmBanka.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmBordroAc.resx">
       <DependentUpon>FrmBordroAc.cs</DependentUpon>
     </EmbeddedResource>
@@ -205,6 +219,18 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Report1.rdlc" />
+    <EmbeddedResource Include="Report2.rdlc" />
+    <None Include="dbDataSetBanka.xsc">
+      <DependentUpon>dbDataSetBanka.xsd</DependentUpon>
+    </None>
+    <None Include="dbDataSetBanka.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dbDataSetBanka.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dbDataSetBanka.xss">
+      <DependentUpon>dbDataSetBanka.xsd</DependentUpon>
+    </None>
     <None Include="mustafa_gurbuz_dbDataSet.xsc">
       <DependentUpon>mustafa_gurbuz_dbDataSet.xsd</DependentUpon>
     </None>

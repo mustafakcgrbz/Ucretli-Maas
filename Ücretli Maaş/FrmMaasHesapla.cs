@@ -25,6 +25,28 @@ namespace Ücretli_Maaş
         Double AsgariUcret, AgiKatsayi, SaatUcreti, AylikTutar, SGKDevlet, Tahakkuk, SGKKesMatrah, SGKKisi, YVergiMatrah, AVergiMatrah, GelirVergi, DamgaVergi, Icra, Nafaka, ToplamKesinti, AGI, NetTutar;
         int DersSaati, SGKGun, CocukSayi;
         String BordroNo, KimlikNo, EsDurum;
+
+        private void BtnBanka_Click(object sender, EventArgs e)
+        {
+            FrmBanka bankafrm = new FrmBanka();
+            bankafrm.Show();
+        }
+
+        private void BtnMuhasebe_Click(object sender, EventArgs e)
+        {
+            FrmHesapRapor muhasebefrm = new FrmHesapRapor();
+            muhasebefrm.Show();
+        }
+
+        private void BtnCikis_Click(object sender, EventArgs e)
+        {
+            DialogResult cevap = MessageBox.Show("Çıkmak İstediğinize Emin misiniz?", "Dikkat", MessageBoxButtons.YesNo);
+            if (cevap == DialogResult.Yes)
+            {
+                this.Close();
+            }
+        }
+
         int Durum = 0;
         private void KesinHesap()
         {
