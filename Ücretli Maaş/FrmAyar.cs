@@ -71,7 +71,7 @@ namespace Ücretli_Maaş
             TxtVergi27.Clear();
         }
         private void BtnCikis_Click(object sender, EventArgs e)
-        {
+        {            
             this.Close();
         }
 

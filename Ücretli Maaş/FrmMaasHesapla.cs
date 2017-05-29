@@ -42,7 +42,7 @@ namespace Ücretli_Maaş
         {
             DialogResult cevap = MessageBox.Show("Çıkmak İstediğinize Emin misiniz?", "Dikkat", MessageBoxButtons.YesNo);
             if (cevap == DialogResult.Yes)
-            {
+            {                
                 this.Close();
             }
         }
@@ -144,7 +144,7 @@ namespace Ücretli_Maaş
             SqlDataReader oku = komut.ExecuteReader();
             if (oku.Read())
             {
-                CmbBordro.Items.Add(oku["Aciklama"].ToString());               
+                CmbBordro.Items.Add(oku["BordroId"].ToString() + " - " + oku["Aciklama"].ToString());
             }
             baglanti.Close();
             CmbBordro.Text = "Bordro Seçiniz :";
@@ -155,7 +155,7 @@ namespace Ücretli_Maaş
         private void BordroDoldur()
         {
             baglanti.Open();
-            SqlCommand komut = new SqlCommand("Select * From Bordro Where BordroDurum='Acik Bordro' And Aciklama='"+CmbBordro.Text+"'", baglanti);
+            SqlCommand komut = new SqlCommand("Select * From Bordro Where BordroDurum='Acik Bordro'", baglanti);
             komut.ExecuteNonQuery();
             SqlDataReader oku = komut.ExecuteReader();
             if (oku.Read())
@@ -314,7 +314,7 @@ namespace Ücretli_Maaş
         {
             TabloTemizle();
             baglanti.Open();
-            SqlCommand komut = new SqlCommand("Select * From Puantaj Where BordroId=(Select BordroId From Bordro Where BordroDurum='Acik Bordro' And Aciklama='" + CmbBordro.Text + "')", baglanti);
+            SqlCommand komut = new SqlCommand("Select * From Puantaj Where BordroId='"+BordroNo+"' And DersSaati !='0'", baglanti); 
             komut.ExecuteNonQuery();
             SqlDataReader oku = komut.ExecuteReader();
             while (oku.Read())

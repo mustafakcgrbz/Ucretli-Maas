@@ -24,50 +24,53 @@ namespace Ücretli_Maaş
         private void maasAyarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmAyar ayarform = new FrmAyar();
-            ayarform.Show();
+            ayarform.ShowDialog();            
 
         }
 
         private void kurumEkleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             KurumEkle KurumEkleFrm = new KurumEkle();
-            KurumEkleFrm.Show();
+            KurumEkleFrm.ShowDialog();
         }
 
         private void güncelleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmKurumGuncelle frmguncelle = new FrmKurumGuncelle();
-            frmguncelle.Show();
+            frmguncelle.ShowDialog();
         }
 
         private void personelEkleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmPersonelEkle frmperekle = new FrmPersonelEkle();
-            frmperekle.Show();
+            frmperekle.ShowDialog();
+            PersonelDoldur();
+
         }
 
         private void alanEklemeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmAlanEkle AlanEkleFrm = new FrmAlanEkle();
-            AlanEkleFrm.Show();
+            AlanEkleFrm.ShowDialog();
         }
 
         private void güncelleVeyaSilToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmAlanGuncelle AlanGuncelleFrm = new FrmAlanGuncelle();
-            AlanGuncelleFrm.Show();
+            AlanGuncelleFrm.ShowDialog();
         }
 
         private void güncelleVeSilToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmPersonelGuncelle pguncellefrm = new FrmPersonelGuncelle();
-            pguncellefrm.Show();
+            pguncellefrm.ShowDialog();
+            PersonelDoldur();
         }
 
         private void kullanıcıVeSifreislemleriToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmKullanici Kullanici = new FrmKullanici();            
-            Kullanici.Show();
+            Kullanici.ShowDialog();
         }
 
         private void FrmAna_FormClosed(object sender, FormClosedEventArgs e)
@@ -79,7 +82,9 @@ namespace Ücretli_Maaş
         private void EkdersBordroToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmBordroAc bordrofrm = new FrmBordroAc();
-            bordrofrm.Show();
+            bordrofrm.ShowDialog();
+            BordroGetir();
+
         }
 
         private void Temizle()
@@ -91,7 +96,7 @@ namespace Ücretli_Maaş
 
         }
 
-        private void PersonelDoldur()
+        public void PersonelDoldur()
         {
             LstPersonel.Items.Clear();
             baglanti.Open();
@@ -120,6 +125,10 @@ namespace Ücretli_Maaş
                     if (okuek.Read())
                     {
                         ekle.SubItems.Add(okuek["DersSaati"].ToString());
+                    }
+                    else
+                    {
+                        ekle.SubItems.Add("0");
                     }
                     baglantiek.Close();
                 }
@@ -237,13 +246,14 @@ namespace Ücretli_Maaş
         private void kesintiEkleVeSilToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmKesinti frmkesinti = new FrmKesinti();
-            frmkesinti.Show();
+            frmkesinti.ShowDialog();
         }
 
         private void MaasHesaplaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmMaasHesapla frmMaas = new FrmMaasHesapla();
-            frmMaas.Show();
+            frmMaas.ShowDialog();
+
         }
     }
 }

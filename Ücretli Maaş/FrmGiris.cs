@@ -63,7 +63,8 @@ namespace Ücretli_Maaş
         }
         private void BtnGiris_Click(object sender, EventArgs e)
         {
-            Giris();            
+            Giris();
+            this.Visible = false;            
             
         }
 
