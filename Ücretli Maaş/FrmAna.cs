@@ -98,81 +98,95 @@ namespace Ücretli_Maaş
 
         public void PersonelDoldur()
         {
-            LstPersonel.Items.Clear();
-            baglanti.Open();
-            SqlCommand komut = new SqlCommand("Select * From Personel Where Durum='1' Order By Kurum, Adi, Soyadi", baglanti);
-            komut.ExecuteNonQuery();
-            SqlDataReader oku = komut.ExecuteReader();
-            while (oku.Read())
+            try
             {
-                ListViewItem ekle = new ListViewItem();
-                ekle.Text = oku["PersonelId"].ToString();
-                ekle.SubItems.Add(oku["KimlikNo"].ToString());
-                ekle.SubItems.Add(oku["Adi"].ToString());
-                ekle.SubItems.Add(oku["Soyadi"].ToString());
-                baglantiek.Open();
-                SqlCommand komutb = new SqlCommand("Select BordroDurum, BordroId From Bordro Where BordroDurum='Acik Bordro'", baglantiek);
-                komutb.ExecuteNonQuery();
-                SqlDataReader okub = komutb.ExecuteReader();
-                if (okub.Read())
+                LstPersonel.Items.Clear();
+                baglanti.Open();
+                SqlCommand komut = new SqlCommand("Select * From Personel Where Durum='1' Order By Kurum, Adi, Soyadi", baglanti);
+                komut.ExecuteNonQuery();
+                SqlDataReader oku = komut.ExecuteReader();
+                while (oku.Read())
                 {
-                    string BordroNo = okub["BordroId"].ToString();
-                    baglantiek.Close();
+                    ListViewItem ekle = new ListViewItem();
+                    ekle.Text = oku["PersonelId"].ToString();
+                    ekle.SubItems.Add(oku["KimlikNo"].ToString());
+                    ekle.SubItems.Add(oku["Adi"].ToString());
+                    ekle.SubItems.Add(oku["Soyadi"].ToString());
                     baglantiek.Open();
-                    SqlCommand komutek = new SqlCommand("Select DersSaati From Puantaj Where PersonelId='" + oku["PersonelId"].ToString() + "' And BordroId='"+BordroNo+"'", baglantiek);
-                    komutek.ExecuteNonQuery();
-                    SqlDataReader okuek = komutek.ExecuteReader();
-                    if (okuek.Read())
+                    SqlCommand komutb = new SqlCommand("Select BordroDurum, BordroId From Bordro Where BordroDurum='Acik Bordro'", baglantiek);
+                    komutb.ExecuteNonQuery();
+                    SqlDataReader okub = komutb.ExecuteReader();
+                    if (okub.Read())
                     {
-                        ekle.SubItems.Add(okuek["DersSaati"].ToString());
+                        string BordroNo = okub["BordroId"].ToString();
+                        baglantiek.Close();
+                        baglantiek.Open();
+                        SqlCommand komutek = new SqlCommand("Select DersSaati From Puantaj Where PersonelId='" + oku["PersonelId"].ToString() + "' And BordroId='" + BordroNo + "'", baglantiek);
+                        komutek.ExecuteNonQuery();
+                        SqlDataReader okuek = komutek.ExecuteReader();
+                        if (okuek.Read())
+                        {
+                            ekle.SubItems.Add(okuek["DersSaati"].ToString());
+                        }
+                        else
+                        {
+                            ekle.SubItems.Add("0");
+                        }
+                        baglantiek.Close();
                     }
                     else
                     {
                         ekle.SubItems.Add("0");
+                        baglantiek.Close();
+
+                    }
+
+
+                    baglantiek.Open();
+                    SqlCommand komutk = new SqlCommand("Select KurumAd From KurumBilgi Where KurumId='" + oku["Kurum"].ToString() + "'", baglantiek);
+                    komutk.ExecuteNonQuery();
+                    SqlDataReader okuk = komutk.ExecuteReader();
+                    if (okuk.Read())
+                    {
+                        ekle.SubItems.Add(okuk["KurumAd"].ToString());
                     }
                     baglantiek.Close();
-                }
-                else
-                {
-                    ekle.SubItems.Add("0");
-                    baglantiek.Close();
-                
-                }
-                
-                
-                baglantiek.Open();
-                SqlCommand komutk = new SqlCommand("Select KurumAd From KurumBilgi Where KurumId='" + oku["Kurum"].ToString() + "'", baglantiek);
-                komutk.ExecuteNonQuery();
-                SqlDataReader okuk = komutk.ExecuteReader();
-                if (okuk.Read())
-                {
-                    ekle.SubItems.Add(okuk["KurumAd"].ToString());
-                }
-                baglantiek.Close();
-                LstPersonel.Items.Add(ekle);
-                                
+                    LstPersonel.Items.Add(ekle);
 
+
+                }
+                baglanti.Close();
             }
-            baglanti.Close();
+            catch
+            {
+                MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
+            }
         }
         private void BordroGetir()
         {
-            baglanti.Open();
-            SqlCommand komut = new SqlCommand("Select BordroId, BaslangicTarihi, BitisTarihi, Aciklama From Bordro Where BordroDurum='Acik Bordro'", baglanti);
-            komut.ExecuteNonQuery();
-            SqlDataReader oku = komut.ExecuteReader();
-            if (oku.Read())
+            try
             {
-                LblBordroNo.Text = oku["BordroId"].ToString();
-                LblAciklama.Text = oku["Aciklama"].ToString();
-                DtpBaslangic.Text = oku["BaslangicTarihi"].ToString();
-                DtpBitis.Text = oku["BitisTarihi"].ToString();
-                baglanti.Close();
+                baglanti.Open();
+                SqlCommand komut = new SqlCommand("Select BordroId, BaslangicTarihi, BitisTarihi, Aciklama From Bordro Where BordroDurum='Acik Bordro'", baglanti);
+                komut.ExecuteNonQuery();
+                SqlDataReader oku = komut.ExecuteReader();
+                if (oku.Read())
+                {
+                    LblBordroNo.Text = oku["BordroId"].ToString();
+                    LblAciklama.Text = oku["Aciklama"].ToString();
+                    DtpBaslangic.Text = oku["BaslangicTarihi"].ToString();
+                    DtpBitis.Text = oku["BitisTarihi"].ToString();
+                    baglanti.Close();
+                }
+                else
+                {
+                    TxtEkders.Enabled = false;
+                    baglanti.Close();
+                }
             }
-            else
+            catch
             {
-                TxtEkders.Enabled = false;
-                baglanti.Close();
+                MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
             }
 
         }
@@ -205,12 +219,19 @@ namespace Ücretli_Maaş
 
         private void EkdersGuncelle()
         {
-            baglanti.Open();
-            SqlCommand komut = new SqlCommand("Update Puantaj Set DersSaati='" + TxtEkders.Text + "', KurumId=(Select KurumId From KurumBilgi Where KurumAd='" + LstPersonel.SelectedItems[0].SubItems[5].Text + "') Where PersonelId='" + id + "' And BordroId='" + LblBordroNo.Text + "'", baglanti);
-            komut.ExecuteNonQuery();
-            baglanti.Close();
-            PersonelDoldur();
-            MessageBox.Show("Ekders Başarıyla Güncellendi!!");
+            try
+            {
+                baglanti.Open();
+                SqlCommand komut = new SqlCommand("Update Puantaj Set DersSaati='" + TxtEkders.Text + "', KurumId=(Select KurumId From KurumBilgi Where KurumAd='" + LstPersonel.SelectedItems[0].SubItems[5].Text + "') Where PersonelId='" + id + "' And BordroId='" + LblBordroNo.Text + "'", baglanti);
+                komut.ExecuteNonQuery();
+                baglanti.Close();
+                PersonelDoldur();
+                MessageBox.Show("Ekders Başarıyla Güncellendi!!");
+            }
+            catch
+            {
+                MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
+            }
 
         }
 

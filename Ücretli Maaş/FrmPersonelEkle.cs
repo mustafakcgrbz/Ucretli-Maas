@@ -103,11 +103,21 @@ namespace Ücretli_Maaş
         }
         private void VeriOku()
         {
-            MDurumOku();
-            CDurumOku();
-            AlanOku();
-            KurumOku();
-            TxtKimlik.Select();
+            try
+            {
+                MDurumOku();
+                CDurumOku();
+                AlanOku();
+                KurumOku();
+            }
+            catch
+            {
+                MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
+            }
+            finally
+            {
+                TxtKimlik.Select();
+            }
         }
 
         private void VeriKaydet()
@@ -120,14 +130,21 @@ namespace Ücretli_Maaş
             }
             else
             {
-                baglanti.Open();
-                SqlCommand komut = new SqlCommand("Insert Into Personel (KimlikNo, Adi, Soyadi, MedeniHal, CocukSayi, CepTelefonu, SabitTelefon, Eposta, Durum, Alan, Kurum, BaslamaTarihi, AyrilmaTarihi, BireyselEmeklilik, IbanNo, Adres) Values ('" + TxtKimlik.Text + "','" + TxtAd.Text + "','" + TxtSoyad.Text + "',(select DurumId From MedeniDurum Where DurumAd='" + CmbMedeniDurum.Text + "'),'" + TxtCocuk.Text + "','" + MskCep.Text + "','" + MskSabit.Text + "','" + TxtEposta.Text + "',(Select DurumId From CalismaDurumu Where DurumAd='" + CmbCalisma.Text + "'),(Select AlanId From AlanBilgi Where AlanAd='" + CmbAlan.Text + "'),(Select KurumId From KurumBilgi Where KurumAd='" + CmbKurum.Text + "'),'" + DtpBaslama.Value.ToString("yyyy-MM-dd") + "','" + DtpAyrilma.Value.ToString("yyyy-MM-dd") + "','" + TxtBes.Text + "','" + TxtIban.Text + "','" + RtxtAdres.Text + "') ", baglanti);
-                komut.ExecuteNonQuery();
+                try
+                {
+                    baglanti.Open();
+                    SqlCommand komut = new SqlCommand("Insert Into Personel (KimlikNo, Adi, Soyadi, MedeniHal, CocukSayi, CepTelefonu, SabitTelefon, Eposta, Durum, Alan, Kurum, BaslamaTarihi, AyrilmaTarihi, BireyselEmeklilik, IbanNo, Adres) Values ('" + TxtKimlik.Text + "','" + TxtAd.Text + "','" + TxtSoyad.Text + "',(select DurumId From MedeniDurum Where DurumAd='" + CmbMedeniDurum.Text + "'),'" + TxtCocuk.Text + "','" + MskCep.Text + "','" + MskSabit.Text + "','" + TxtEposta.Text + "',(Select DurumId From CalismaDurumu Where DurumAd='" + CmbCalisma.Text + "'),(Select AlanId From AlanBilgi Where AlanAd='" + CmbAlan.Text + "'),(Select KurumId From KurumBilgi Where KurumAd='" + CmbKurum.Text + "'),'" + DtpBaslama.Value.ToString("yyyy-MM-dd") + "','" + DtpAyrilma.Value.ToString("yyyy-MM-dd") + "','" + TxtBes.Text + "','" + TxtIban.Text + "','" + RtxtAdres.Text + "') ", baglanti);
+                    komut.ExecuteNonQuery();
 
-                baglanti.Close();
-                MessageBox.Show("Personel Başarılı Bir Şekilde Kaydedildi!!");
-                Temizle();
-                VeriOku();
+                    baglanti.Close();
+                    MessageBox.Show("Personel Başarılı Bir Şekilde Kaydedildi!!");
+                    Temizle();
+                    VeriOku();
+                }
+                catch
+                {
+                    MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
+                }
             }
 
         }

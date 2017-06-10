@@ -116,34 +116,41 @@ namespace Ücretli_Maaş
         }
         private void PersonelGetir()
         {
-            baglanti.Open();
-            SqlCommand komut = new SqlCommand("Select * From Personel Where PersonelId='" + id + "'", baglanti);
-            komut.ExecuteNonQuery();
-            SqlDataReader oku = komut.ExecuteReader();
-            if (oku.Read())
+            try
             {
-                TxtKimlik.Text = oku["KimlikNo"].ToString();
-                TxtAd.Text = oku["Adi"].ToString();
-                TxtSoyad.Text = oku["Soyadi"].ToString();
-                TxtCocuk.Text = oku["CocukSayi"].ToString();
-                MskCep.Text = oku["CepTelefonu"].ToString();
-                MskSabit.Text = oku["SabitTelefon"].ToString();
-                TxtEposta.Text = oku["EPosta"].ToString();
-                DtpBaslama.Text = oku["BaslamaTarihi"].ToString();
-                DtpAyrilma.Text = oku["AyrilmaTarihi"].ToString();
-                TxtBes.Text = oku["BireyselEmeklilik"].ToString();
-                TxtIban.Text = oku["IbanNo"].ToString();
-                RtxtAdres.Text = oku["Adres"].ToString();
-                baglanti.Close();
-                MedeniDurum();
-                CalismaDurumu();
-                AlanGetir();
-                KurumGetir();
+                baglanti.Open();
+                SqlCommand komut = new SqlCommand("Select * From Personel Where PersonelId='" + id + "'", baglanti);
+                komut.ExecuteNonQuery();
+                SqlDataReader oku = komut.ExecuteReader();
+                if (oku.Read())
+                {
+                    TxtKimlik.Text = oku["KimlikNo"].ToString();
+                    TxtAd.Text = oku["Adi"].ToString();
+                    TxtSoyad.Text = oku["Soyadi"].ToString();
+                    TxtCocuk.Text = oku["CocukSayi"].ToString();
+                    MskCep.Text = oku["CepTelefonu"].ToString();
+                    MskSabit.Text = oku["SabitTelefon"].ToString();
+                    TxtEposta.Text = oku["EPosta"].ToString();
+                    DtpBaslama.Text = oku["BaslamaTarihi"].ToString();
+                    DtpAyrilma.Text = oku["AyrilmaTarihi"].ToString();
+                    TxtBes.Text = oku["BireyselEmeklilik"].ToString();
+                    TxtIban.Text = oku["IbanNo"].ToString();
+                    RtxtAdres.Text = oku["Adres"].ToString();
+                    baglanti.Close();
+                    MedeniDurum();
+                    CalismaDurumu();
+                    AlanGetir();
+                    KurumGetir();
 
+                }
+                else
+                {
+                    baglanti.Close();
+                }
             }
-            else
+            catch
             {
-                baglanti.Close();
+                MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
             }
         }
         private void MDurumOku()
@@ -207,12 +214,22 @@ namespace Ücretli_Maaş
         }
         private void VeriOku()
         {
-            MDurumOku();
-            CDurumOku();
-            AlanOku();
-            KurumOku();
-            PersonelDoldur();
-            TxtKimlik.Select();
+            try
+            {
+                MDurumOku();
+                CDurumOku();
+                AlanOku();
+                KurumOku();
+                PersonelDoldur();
+            }
+            catch
+            {
+                MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
+            }
+            finally
+            {
+                TxtKimlik.Select();
+            }
         }
         private void PersonelSil()
         {
@@ -220,13 +237,20 @@ namespace Ücretli_Maaş
             DialogResult cevap = MessageBox.Show("Silmek İstediğinize Emin misiniz?", "Dikkat", MessageBoxButtons.YesNo);
             if (cevap == DialogResult.Yes)
             {
-                baglanti.Open();
-                SqlCommand komut = new SqlCommand("Delete From Personel Where PersonelId='" + id + "'", baglanti);
-                komut.ExecuteNonQuery();
-                baglanti.Close();
-                MessageBox.Show("Kayıt Başarıyla Silindi!!");
-                Temizle();
-                VeriOku();
+                try
+                {
+                    baglanti.Open();
+                    SqlCommand komut = new SqlCommand("Delete From Personel Where PersonelId='" + id + "'", baglanti);
+                    komut.ExecuteNonQuery();
+                    baglanti.Close();
+                    MessageBox.Show("Kayıt Başarıyla Silindi!!");
+                    Temizle();
+                    VeriOku();
+                }
+                catch
+                {
+                    MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
+                }
             }
         }
     private void button2_Click(object sender, EventArgs e)
@@ -255,12 +279,19 @@ namespace Ücretli_Maaş
             }
             else
             {
-                baglanti.Open();
-                SqlCommand komut = new SqlCommand("Update Personel Set KimlikNo='" + TxtKimlik.Text + "', Adi='" + TxtAd.Text + "', Soyadi='" + TxtSoyad.Text + "', MedeniHal=(select DurumId From MedeniDurum Where DurumAd='" + CmbMedeniDurum.Text + "'), CocukSayi='" + TxtCocuk.Text + "', CepTelefonu='" + MskCep.Text + "', SabitTelefon='" + MskSabit.Text + "', EPosta='" + TxtEposta.Text + "', Durum=(Select DurumId From CalismaDurumu Where DurumAd='" + CmbCalisma.Text + "'), Alan=(Select AlanId From AlanBilgi Where AlanAd='" + CmbAlan.Text + "'), Kurum=(Select KurumId From KurumBilgi Where KurumAd='" + CmbKurum.Text + "'), BaslamaTarihi='" + DtpBaslama.Value.ToString("yyyy-MM-dd") + "', AyrilmaTarihi='" + DtpAyrilma.Value.ToString("yyyy-MM-dd") + "', BireyselEmeklilik='" + TxtBes.Text + "',IbanNo='" + TxtIban.Text + "', Adres='" + RtxtAdres.Text + "' Where PersonelId='"+id+"'", baglanti);
-                komut.ExecuteNonQuery();                
-                baglanti.Close();
-                MessageBox.Show("Kayıt Başarıyla Güncellendi!!");
-                
+                try
+                {
+                    baglanti.Open();
+                    SqlCommand komut = new SqlCommand("Update Personel Set KimlikNo='" + TxtKimlik.Text + "', Adi='" + TxtAd.Text + "', Soyadi='" + TxtSoyad.Text + "', MedeniHal=(select DurumId From MedeniDurum Where DurumAd='" + CmbMedeniDurum.Text + "'), CocukSayi='" + TxtCocuk.Text + "', CepTelefonu='" + MskCep.Text + "', SabitTelefon='" + MskSabit.Text + "', EPosta='" + TxtEposta.Text + "', Durum=(Select DurumId From CalismaDurumu Where DurumAd='" + CmbCalisma.Text + "'), Alan=(Select AlanId From AlanBilgi Where AlanAd='" + CmbAlan.Text + "'), Kurum=(Select KurumId From KurumBilgi Where KurumAd='" + CmbKurum.Text + "'), BaslamaTarihi='" + DtpBaslama.Value.ToString("yyyy-MM-dd") + "', AyrilmaTarihi='" + DtpAyrilma.Value.ToString("yyyy-MM-dd") + "', BireyselEmeklilik='" + TxtBes.Text + "',IbanNo='" + TxtIban.Text + "', Adres='" + RtxtAdres.Text + "' Where PersonelId='" + id + "'", baglanti);
+                    komut.ExecuteNonQuery();
+                    baglanti.Close();
+                    MessageBox.Show("Kayıt Başarıyla Güncellendi!!");
+                }
+                catch
+                {
+                    MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
+                }
+
             }
             }
         private void BtnGuncelle_Click(object sender, EventArgs e)

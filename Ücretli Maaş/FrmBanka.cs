@@ -20,9 +20,17 @@ namespace Ücretli_Maaş
         private void FrmBanka_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'dbDataSetBanka.BankaListe' table. You can move, or remove it, as needed.
-            this.BankaListeTableAdapter.Fill(this.dbDataSetBanka.BankaListe);
+            try
+            {
+                this.BankaListeTableAdapter.Fill(this.dbDataSetBanka.BankaListe);
 
-            this.reportViewer1.RefreshReport();
+                this.reportViewer1.RefreshReport();
+            }
+            catch
+            {
+                MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
+            }
+
         }
     }
 }

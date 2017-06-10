@@ -23,49 +23,54 @@ namespace Ücretli_Maaş
         string KurumId;
         private void Giris()
         {
-            baglanti.Open();
-            SqlCommand komut = new SqlCommand("Select KurumId From Kullanicilar Where KullaniciAd='" + TxtKullanici.Text + "' And Parola='" + TxtParola.Text + "'", baglanti);
-            komut.ExecuteNonQuery();
-            SqlDataReader oku = komut.ExecuteReader();
-            if (oku.Read())
+            try
             {
-                 KurumId= oku["KurumId"].ToString();
-                if (oku["KurumId"].ToString() == "1")
+                baglanti.Open();
+                SqlCommand komut = new SqlCommand("Select KurumId From Kullanicilar Where KullaniciAd='" + TxtKullanici.Text + "' And Parola='" + TxtParola.Text + "'", baglanti);
+                komut.ExecuteNonQuery();
+                SqlDataReader oku = komut.ExecuteReader();
+                if (oku.Read())
                 {
-                    FrmAna AnaFrm = new FrmAna();
-                    AnaFrm.Show();
-                    this.Visible = false;
+                    KurumId = oku["KurumId"].ToString();
+                    if (oku["KurumId"].ToString() == "1")
+                    {
+                        FrmAna AnaFrm = new FrmAna();
+                        AnaFrm.Show();
+                        this.Visible = false;
+                    }
+                    else
+                    {
+                        baglanti.Close();
+                        baglanti.Open();
+                        SqlCommand komutk = new SqlCommand("Select KurumAd From KurumBilgi Where KurumId='" + KurumId + "'", baglanti);
+                        komutk.ExecuteNonQuery();
+                        SqlDataReader okuk = komutk.ExecuteReader();
+                        if (okuk.Read())
+                        {
+                            FrmOkul OkulFrm = new FrmOkul();
+                            OkulFrm.LblKurumAd.Text = okuk["KurumAd"].ToString();
+                            OkulFrm.Show();
+                            this.Visible = false;
+                        }
+
+                    }
+
+
                 }
                 else
                 {
-                    baglanti.Close();
-                    baglanti.Open();
-                    SqlCommand komutk = new SqlCommand("Select KurumAd From KurumBilgi Where KurumId='" + KurumId + "'", baglanti);
-                    komutk.ExecuteNonQuery();
-                    SqlDataReader okuk = komutk.ExecuteReader();
-                    if (okuk.Read())
-                    {                        
-                        FrmOkul OkulFrm = new FrmOkul();
-                        OkulFrm.LblKurumAd.Text = okuk["KurumAd"].ToString();                        
-                        OkulFrm.Show();
-                        this.Visible = false;
-                    }
-                    
+                    MessageBox.Show("Kullanıcı Adı veya Parola Hatalı!!");
                 }
-                
-                
+                baglanti.Close();
             }
-            else
+            catch(Exception) 
             {
-                MessageBox.Show("Kullanıcı Adı veya Parola Hatalı!!");
+                MessageBox.Show("Bağlantı sırasında Hata Oluştu. Lütfen Bağlantıyı Kontrol Edin");
             }
-            baglanti.Close();
         }
         private void BtnGiris_Click(object sender, EventArgs e)
         {
-            Giris();
-            this.Visible = false;            
-            
+            Giris();  
         }
 
         private void BtnCikis_Click(object sender, EventArgs e)

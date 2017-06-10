@@ -27,13 +27,22 @@ namespace Ücretli_Maaş
 
         private void VeriEkle()
         {
-            baglanti.Open();
-            SqlCommand komut = new SqlCommand("Insert Into AlanBilgi Values('" + TxtAlan.Text + "','" + RtxtAciklama.Text + "')", baglanti);
-            komut.ExecuteNonQuery();
-            MessageBox.Show("Kayıt Başarıyla Eklendi!!");
-
-            baglanti.Close();
-            Temizle();
+            try
+            {
+                baglanti.Open();
+                SqlCommand komut = new SqlCommand("Insert Into AlanBilgi Values('" + TxtAlan.Text + "','" + RtxtAciklama.Text + "')", baglanti);
+                komut.ExecuteNonQuery();
+                MessageBox.Show("Kayıt Başarıyla Eklendi!!");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Bağlantı Esnasında Hata Oluştu");
+            }
+            finally
+            {
+                baglanti.Close();
+                Temizle();
+            }
 
         }
         private void BtnCikis_Click(object sender, EventArgs e)

@@ -35,49 +35,62 @@ namespace Ücretli_Maaş
         }
         private void BordroKontrol()
         {
-            baglanti.Open();
-            SqlCommand komut = new SqlCommand("Select * From Bordro Where BordroDurum='Acik Bordro'", baglanti);
-            komut.ExecuteNonQuery();
-            SqlDataReader oku = komut.ExecuteReader();
-            if (oku.Read())
+            try
             {
-                LblBordroNo.Text = oku["BordroId"].ToString();
-                LblAciklama.Text = oku["Aciklama"].ToString();
+                baglanti.Open();
+                SqlCommand komut = new SqlCommand("Select * From Bordro Where BordroDurum='Acik Bordro'", baglanti);
+                komut.ExecuteNonQuery();
+                SqlDataReader oku = komut.ExecuteReader();
+                if (oku.Read())
+                {
+                    LblBordroNo.Text = oku["BordroId"].ToString();
+                    LblAciklama.Text = oku["Aciklama"].ToString();
+                }
+                else
+                {
+                    LblAciklama.Text = "Açık Bordro Yok!!";
+                    TxtTutar.Enabled = false;
+                }
+                baglanti.Close();
             }
-            else
+            catch
             {
-                LblAciklama.Text = "Açık Bordro Yok!!";
-                TxtTutar.Enabled = false;
+                MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
             }
-            baglanti.Close();
         }
         private void PersonelDoldur()
         {
-            
-            LstPersonel.Items.Clear();
-            baglanti.Open();
+            try
+            {
+                LstPersonel.Items.Clear();
+                baglanti.Open();
 
-            SqlCommand komut = new SqlCommand("Select KimlikNo, Adi, Soyadi, Kurum From Personel Where Durum='1' Order By Adi,Soyadi", baglanti);
-            SqlDataReader oku = komut.ExecuteReader();
-            while (oku.Read())
-            {                
-                ListViewItem ekle = new ListViewItem();
-                ekle.Text = oku["KimlikNo"].ToString();                
-                ekle.SubItems.Add(oku["Adi"].ToString());
-                ekle.SubItems.Add(oku["Soyadi"].ToString());
-                baglantiek.Open();
-                SqlCommand komutek = new SqlCommand("Select KurumAd From KurumBilgi Where KurumId='" + oku["Kurum"].ToString() + "'", baglantiek);
-                komutek.ExecuteNonQuery();
-                SqlDataReader okuek = komutek.ExecuteReader();
-                if (okuek.Read())
+                SqlCommand komut = new SqlCommand("Select KimlikNo, Adi, Soyadi, Kurum From Personel Where Durum='1' Order By Adi,Soyadi", baglanti);
+                SqlDataReader oku = komut.ExecuteReader();
+                while (oku.Read())
                 {
-                    ekle.SubItems.Add(okuek["KurumAd"].ToString());
+                    ListViewItem ekle = new ListViewItem();
+                    ekle.Text = oku["KimlikNo"].ToString();
+                    ekle.SubItems.Add(oku["Adi"].ToString());
+                    ekle.SubItems.Add(oku["Soyadi"].ToString());
+                    baglantiek.Open();
+                    SqlCommand komutek = new SqlCommand("Select KurumAd From KurumBilgi Where KurumId='" + oku["Kurum"].ToString() + "'", baglantiek);
+                    komutek.ExecuteNonQuery();
+                    SqlDataReader okuek = komutek.ExecuteReader();
+                    if (okuek.Read())
+                    {
+                        ekle.SubItems.Add(okuek["KurumAd"].ToString());
 
+                    }
+                    LstPersonel.Items.Add(ekle);
+                    baglantiek.Close();
                 }
-                LstPersonel.Items.Add(ekle);
-                baglantiek.Close();
+                baglanti.Close();
             }
-            baglanti.Close();
+            catch
+            {
+                MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
+            }
         }
 
         private void IcraGetir()
@@ -85,15 +98,22 @@ namespace Ücretli_Maaş
             CmbKesinti.Items.Clear();
             CmbKesinti.Text = "Kesinti Seçiniz :";
             //Personele ait icraları getirecek
-            baglanti.Open();
-            SqlCommand komut = new SqlCommand("Select * From Kesinti Where KimlikNo = '" + Kimlik + "' And BordroId='" + LblBordroNo.Text + "'", baglanti);
-            komut.ExecuteNonQuery();
-            SqlDataReader oku = komut.ExecuteReader();
-            while (oku.Read())
+            try
             {
-                CmbKesinti.Items.Add(oku["Aciklama"].ToString());
+                baglanti.Open();
+                SqlCommand komut = new SqlCommand("Select * From Kesinti Where KimlikNo = '" + Kimlik + "' And BordroId='" + LblBordroNo.Text + "'", baglanti);
+                komut.ExecuteNonQuery();
+                SqlDataReader oku = komut.ExecuteReader();
+                while (oku.Read())
+                {
+                    CmbKesinti.Items.Add(oku["Aciklama"].ToString());
+                }
+                baglanti.Close();
             }
-            baglanti.Close();
+            catch
+            {
+                MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
+            }
         }
         private void FrmKesinti_Load(object sender, EventArgs e)
         {
@@ -120,14 +140,21 @@ namespace Ücretli_Maaş
                 }
                 else
                 {
-                    baglanti.Open();
-                    SqlCommand komut = new SqlCommand("Insert Into Kesinti (KimlikNo, BordroId, Tutar, KesintiTuru, Aciklama) Values ('" + TxtKimlikNo.Text + "', '" + LblBordroNo.Text + "', '" + TxtTutar.Text + "', '" + CmbTur.Text + "', '" + RtxtAciklama.Text + "')", baglanti);
-                    komut.ExecuteNonQuery();
-                    baglanti.Close();
-                    MessageBox.Show("Kayıt Tamamlandı!!");
-                    Temizle();
-                    PersonelGetir();
-                    IcraGetir();
+                    try
+                    {
+                        baglanti.Open();
+                        SqlCommand komut = new SqlCommand("Insert Into Kesinti (KimlikNo, BordroId, Tutar, KesintiTuru, Aciklama) Values ('" + TxtKimlikNo.Text + "', '" + LblBordroNo.Text + "', '" + TxtTutar.Text + "', '" + CmbTur.Text + "', '" + RtxtAciklama.Text + "')", baglanti);
+                        komut.ExecuteNonQuery();
+                        baglanti.Close();
+                        MessageBox.Show("Kayıt Tamamlandı!!");
+                        Temizle();
+                        PersonelGetir();
+                        IcraGetir();
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
+                    }
                 }
             }
             else
@@ -142,22 +169,29 @@ namespace Ücretli_Maaş
         private void PersonelGetir()
         {
             Temizle();
-            baglanti.Open();
-            SqlCommand komut = new SqlCommand("Select * From Personel Where KimlikNo='" + Kimlik + "'", baglanti);
-            komut.ExecuteNonQuery();
-            SqlDataReader oku = komut.ExecuteReader();
-            if (oku.Read())
+            try
             {
-                TxtKimlikNo.Text = oku["KimlikNo"].ToString();
-                TxtAd.Text = oku["Adi"].ToString();
-                TxtSoyad.Text = oku["Soyadi"].ToString();
-                baglanti.Close();
-                IcraGetir();
+                baglanti.Open();
+                SqlCommand komut = new SqlCommand("Select * From Personel Where KimlikNo='" + Kimlik + "'", baglanti);
+                komut.ExecuteNonQuery();
+                SqlDataReader oku = komut.ExecuteReader();
+                if (oku.Read())
+                {
+                    TxtKimlikNo.Text = oku["KimlikNo"].ToString();
+                    TxtAd.Text = oku["Adi"].ToString();
+                    TxtSoyad.Text = oku["Soyadi"].ToString();
+                    baglanti.Close();
+                    IcraGetir();
 
+                }
+                else
+                {
+                    baglanti.Close();
+                }
             }
-            else
+            catch
             {
-                baglanti.Close();
+                MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
             }
 
         }
@@ -168,22 +202,29 @@ namespace Ücretli_Maaş
         }
          private void IcraDoldur()
         {
-            baglanti.Open();
-            SqlCommand komut = new SqlCommand("Select * From Kesinti Where KimlikNo='" + TxtKimlikNo.Text + "' And BordroId='" + LblBordroNo.Text + "' And Aciklama='"+CmbKesinti.Text+"'", baglanti);
-            komut.ExecuteNonQuery();
-            SqlDataReader oku = komut.ExecuteReader();
-            if (oku.Read())
+            try
             {
-                CmbTur.Text = oku["KesintiTuru"].ToString();
-                TxtTutar.Text = oku["Tutar"].ToString();
-                RtxtAciklama.Text = oku["Aciklama"].ToString();
-                baglanti.Close();
+                baglanti.Open();
+                SqlCommand komut = new SqlCommand("Select * From Kesinti Where KimlikNo='" + TxtKimlikNo.Text + "' And BordroId='" + LblBordroNo.Text + "' And Aciklama='" + CmbKesinti.Text + "'", baglanti);
+                komut.ExecuteNonQuery();
+                SqlDataReader oku = komut.ExecuteReader();
+                if (oku.Read())
+                {
+                    CmbTur.Text = oku["KesintiTuru"].ToString();
+                    TxtTutar.Text = oku["Tutar"].ToString();
+                    RtxtAciklama.Text = oku["Aciklama"].ToString();
+                    baglanti.Close();
+                }
+                else
+                {
+                    baglanti.Close();
+                }
             }
-            else
+            catch
             {
-                baglanti.Close();
+                MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
             }
-            
+
         }
         private void CmbKesinti_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -200,14 +241,21 @@ namespace Ücretli_Maaş
             DialogResult cevap = MessageBox.Show("Silmek İstediğinize Emin misiniz?", "Dikkat", MessageBoxButtons.YesNo);
             if (cevap == DialogResult.Yes)
             {
-                baglanti.Open();
-                SqlCommand komut = new SqlCommand("Delete From Kesinti Where KimlikNo='" + TxtKimlikNo.Text + "' And BordroId='" + LblBordroNo.Text + "' And Aciklama='" + CmbKesinti.Text + "'", baglanti);
-                komut.ExecuteNonQuery();
-                baglanti.Close();
-                Temizle();
-                PersonelGetir();
-                IcraDoldur();
-                MessageBox.Show("Seçilen İcra Kaydı Silindi!!");
+                try
+                {
+                    baglanti.Open();
+                    SqlCommand komut = new SqlCommand("Delete From Kesinti Where KimlikNo='" + TxtKimlikNo.Text + "' And BordroId='" + LblBordroNo.Text + "' And Aciklama='" + CmbKesinti.Text + "'", baglanti);
+                    komut.ExecuteNonQuery();
+                    baglanti.Close();
+                    Temizle();
+                    PersonelGetir();
+                    IcraDoldur();
+                    MessageBox.Show("Seçilen İcra Kaydı Silindi!!");
+                }
+                catch
+                {
+                    MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
+                }
 
             }
         }

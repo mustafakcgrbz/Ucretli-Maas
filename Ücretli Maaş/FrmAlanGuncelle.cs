@@ -29,36 +29,57 @@ namespace Ücretli_Maaş
 
         private void VeriOku()
         {
-            baglanti.Open();
-            SqlCommand komut = new SqlCommand("Select AlanAd From AlanBilgi Order By AlanAd", baglanti);
-            SqlDataReader oku = komut.ExecuteReader();
-            while (oku.Read())
+            try
             {
-                CmbAlan.Items.Add(oku["AlanAd"]);
-            }
+                baglanti.Open();
+                SqlCommand komut = new SqlCommand("Select AlanAd From AlanBilgi Order By AlanAd", baglanti);
+                SqlDataReader oku = komut.ExecuteReader();
+                while (oku.Read())
+                {
+                    CmbAlan.Items.Add(oku["AlanAd"]);
+                }
 
-            baglanti.Close();
+                baglanti.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
+            }
         }
         private void VeriGuncelle()
         {
-            baglanti.Open();
-            SqlCommand komut = new SqlCommand("Update AlanBilgi Set AlanAd='" + TxtAlan.Text + "', Aciklama='" + RtxtAciklama.Text + "' Where AlanAd='" + CmbAlan.Text + "'", baglanti);
-            komut.ExecuteNonQuery();
-            baglanti.Close();
-            Temizle();
-            VeriOku();
-            MessageBox.Show("Kayıt Başarıyla Güncellendi!!");
+            try
+            {
+                baglanti.Open();
+                SqlCommand komut = new SqlCommand("Update AlanBilgi Set AlanAd='" + TxtAlan.Text + "', Aciklama='" + RtxtAciklama.Text + "' Where AlanAd='" + CmbAlan.Text + "'", baglanti);
+                komut.ExecuteNonQuery();
+                baglanti.Close();
+                Temizle();
+                VeriOku();
+                MessageBox.Show("Kayıt Başarıyla Güncellendi!!");
+            }
+            catch
+            {
+                MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
+            }
         }
         private void VeriSil()
         {
             DialogResult cevap = MessageBox.Show("Silmek İstediğinize Emin misiniz?", "Dikkat", MessageBoxButtons.YesNo);
             if (cevap == DialogResult.Yes)
             {
-                baglanti.Open();
-                SqlCommand komut = new SqlCommand("Delete From AlanBilgi Where AlanAd='" + CmbAlan.Text + "'", baglanti);
-                komut.ExecuteNonQuery();
-                baglanti.Close();
-                MessageBox.Show("Kayıt Başarıyla Silindi!!");
+                try
+                {
+                    baglanti.Open();
+                    SqlCommand komut = new SqlCommand("Delete From AlanBilgi Where AlanAd='" + CmbAlan.Text + "'", baglanti);
+                    komut.ExecuteNonQuery();
+                    baglanti.Close();
+                    MessageBox.Show("Kayıt Başarıyla Silindi!!");
+                }
+                catch
+                {
+                    MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
+                }
                 Temizle();
                 VeriOku();
             }

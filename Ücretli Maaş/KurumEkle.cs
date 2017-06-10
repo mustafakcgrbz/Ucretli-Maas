@@ -21,26 +21,33 @@ namespace Ücretli_Maaş
         SqlConnection baglanti = new SqlConnection("Data Source=85.214.46.212;Initial Catalog=mustafa_gurbuz_db;User ID=mustafa_gurbuz_user;Password=mustafa_gurbuz_user");
         private void VeriKaydet()
         {
-            baglanti.Open();
-            SqlCommand komutk = new SqlCommand("Select * From KurumBilgi Where KurumAd='"+TxtKurumAd.Text+"'",baglanti);
-            komutk.ExecuteNonQuery();
-            SqlDataReader oku = komutk.ExecuteReader();
-            
-            if (oku.Read())
+            try
             {
-                MessageBox.Show("Eklemek İstediğiniz Kurum Sistemde Bulunmakta!!!");
-            }
-            else
-            {
-                baglanti.Close();
                 baglanti.Open();
+                SqlCommand komutk = new SqlCommand("Select * From KurumBilgi Where KurumAd='" + TxtKurumAd.Text + "'", baglanti);
+                komutk.ExecuteNonQuery();
+                SqlDataReader oku = komutk.ExecuteReader();
 
-                SqlCommand komut = new SqlCommand("Insert Into KurumBilgi (KurumAd) Values ('" + TxtKurumAd.Text + "')", baglanti);
-                komut.ExecuteNonQuery();
-                MessageBox.Show("Kurum Başarıyla Kaydedilmiştir!!!");
-                
+                if (oku.Read())
+                {
+                    MessageBox.Show("Eklemek İstediğiniz Kurum Sistemde Bulunmakta!!!");
+                }
+                else
+                {
+                    baglanti.Close();
+                    baglanti.Open();
+
+                    SqlCommand komut = new SqlCommand("Insert Into KurumBilgi (KurumAd) Values ('" + TxtKurumAd.Text + "')", baglanti);
+                    komut.ExecuteNonQuery();
+                    MessageBox.Show("Kurum Başarıyla Kaydedilmiştir!!!");
+
+                }
+                baglanti.Close();
             }
-            baglanti.Close();
+            catch
+            {
+                MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
+            }
         }
         private void Temizle()
         {

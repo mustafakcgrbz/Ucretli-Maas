@@ -34,91 +34,132 @@ namespace Ücretli_Maaş
 
         private void KullaniciDoldur()
         {
-            baglanti.Open();
-            SqlCommand komut = new SqlCommand("Select KullaniciAd From Kullanicilar Order By KullaniciAd", baglanti);
-            SqlDataReader oku = komut.ExecuteReader();
-            while (oku.Read())
+            try
             {
-                CmbKullanici.Items.Add(oku["KullaniciAd"].ToString());
+                baglanti.Open();
+                SqlCommand komut = new SqlCommand("Select KullaniciAd From Kullanicilar Order By KullaniciAd", baglanti);
+                SqlDataReader oku = komut.ExecuteReader();
+                while (oku.Read())
+                {
+                    CmbKullanici.Items.Add(oku["KullaniciAd"].ToString());
+                }
+                baglanti.Close();
             }
-            baglanti.Close();
+            catch
+            {
+                MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
+            }
         }
         private void KurumDoldur()
         {
-            baglanti.Open();
-            SqlCommand komut = new SqlCommand("Select KurumAd From KurumBilgi Order By KurumAd", baglanti);
-            SqlDataReader oku = komut.ExecuteReader();
-            while (oku.Read())
+            try
             {
-                CmbKurum.Items.Add(oku["KurumAd"].ToString());
+                baglanti.Open();
+                SqlCommand komut = new SqlCommand("Select KurumAd From KurumBilgi Order By KurumAd", baglanti);
+                SqlDataReader oku = komut.ExecuteReader();
+                while (oku.Read())
+                {
+                    CmbKurum.Items.Add(oku["KurumAd"].ToString());
+                }
+                baglanti.Close();
             }
-            baglanti.Close();
+            catch
+            {
+                MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
+            }
         }
 
         private void KullaniciGetir()
         {
-            baglanti.Open();
-            SqlCommand komut = new SqlCommand("Select KullaniciAd, Parola, Aciklama From Kullanicilar Where KullaniciAd='" + CmbKullanici.Text + "'", baglanti);
-            komut.ExecuteNonQuery();
-            SqlDataReader oku = komut.ExecuteReader();
-            if (oku.Read())
+            try
             {
-                TxtKullanici.Text = oku["KullaniciAd"].ToString();
-                TxtParola.Text = oku["Parola"].ToString();
-                RTxtAciklama.Text = oku["Aciklama"].ToString();
-                baglanti.Close();
-                KurumGetir();
+                baglanti.Open();
+                SqlCommand komut = new SqlCommand("Select KullaniciAd, Parola, Aciklama From Kullanicilar Where KullaniciAd='" + CmbKullanici.Text + "'", baglanti);
+                komut.ExecuteNonQuery();
+                SqlDataReader oku = komut.ExecuteReader();
+                if (oku.Read())
+                {
+                    TxtKullanici.Text = oku["KullaniciAd"].ToString();
+                    TxtParola.Text = oku["Parola"].ToString();
+                    RTxtAciklama.Text = oku["Aciklama"].ToString();
+                    baglanti.Close();
+                    KurumGetir();
+                }
+                else
+                {
+                    baglanti.Close();
+                }
             }
-            else
+            catch
             {
-                baglanti.Close();
+                MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
             }
-            
         }
 
         private void KurumGetir()
         {
-            baglanti.Open();
-            SqlCommand komut = new SqlCommand("Select KurumAd From KurumBilgi Where KurumId=(Select KurumId From Kullanicilar Where KullaniciAd='" + CmbKullanici.Text + "')", baglanti);
-            komut.ExecuteNonQuery();
-            SqlDataReader oku = komut.ExecuteReader();
-            if (oku.Read())
+            try
             {
-                CmbKurum.Text = oku["KurumAd"].ToString();
+                baglanti.Open();
+                SqlCommand komut = new SqlCommand("Select KurumAd From KurumBilgi Where KurumId=(Select KurumId From Kullanicilar Where KullaniciAd='" + CmbKullanici.Text + "')", baglanti);
+                komut.ExecuteNonQuery();
+                SqlDataReader oku = komut.ExecuteReader();
+                if (oku.Read())
+                {
+                    CmbKurum.Text = oku["KurumAd"].ToString();
+                }
+                baglanti.Close();
             }
-            baglanti.Close();
+            catch
+            {
+                MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
+            }
         }
 
         private void KullaniciKaydet()
         {
-            baglanti.Open();
-            SqlCommand komut = new SqlCommand("Insert Into Kullanicilar (KullaniciAd, Parola, KurumId, Aciklama) Values ('" + TxtKullanici.Text + "', '" + TxtParola.Text + "', (Select KurumId From KurumBilgi Where KurumAd='" + CmbKurum.Text + "'), '" + RTxtAciklama.Text + "')", baglanti);
-            komut.ExecuteNonQuery();
+            try
+            {
+                baglanti.Open();
+                SqlCommand komut = new SqlCommand("Insert Into Kullanicilar (KullaniciAd, Parola, KurumId, Aciklama) Values ('" + TxtKullanici.Text + "', '" + TxtParola.Text + "', (Select KurumId From KurumBilgi Where KurumAd='" + CmbKurum.Text + "'), '" + RTxtAciklama.Text + "')", baglanti);
+                komut.ExecuteNonQuery();
 
-            baglanti.Close();
-            MessageBox.Show("Kullanıcı Kaydı Yapıldı");
-            Temizle();
-            KullaniciDoldur();
-            KurumDoldur();
+                baglanti.Close();
+                MessageBox.Show("Kullanıcı Kaydı Yapıldı");
+                Temizle();
+                KullaniciDoldur();
+                KurumDoldur();
+            }
+            catch
+            {
+                MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
+            }
 
         }
         private void Kontrol()
         {
-            baglanti.Open();
-            SqlCommand komut = new SqlCommand("Select KullaniciAd From Kullanicilar Where KullaniciAd='" + TxtKullanici.Text + "'", baglanti);
-            komut.ExecuteNonQuery();
-            SqlDataReader oku = komut.ExecuteReader();
-            if (oku.Read())
+            try
             {
-                MessageBox.Show("Aynı Kullanıcı Adı Sistemde Mevcut!!!");
-                baglanti.Close();
+                baglanti.Open();
+                SqlCommand komut = new SqlCommand("Select KullaniciAd From Kullanicilar Where KullaniciAd='" + TxtKullanici.Text + "'", baglanti);
+                komut.ExecuteNonQuery();
+                SqlDataReader oku = komut.ExecuteReader();
+                if (oku.Read())
+                {
+                    MessageBox.Show("Aynı Kullanıcı Adı Sistemde Mevcut!!!");
+                    baglanti.Close();
+                }
+                else
+                {
+                    baglanti.Close();
+                    KullaniciKaydet();
+                }
             }
-            else
+            catch
             {
-                baglanti.Close();
-                KullaniciKaydet();
+                MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
             }
-            
+
         }
         private void BtnCikis_Click(object sender, EventArgs e)
         {
@@ -157,11 +198,18 @@ namespace Ücretli_Maaş
             }
             else
             {
-                baglanti.Open();
-                SqlCommand komut = new SqlCommand("Update Kullanicilar Set KullaniciAd='" + TxtKullanici.Text + "', Parola='" + TxtParola.Text + "', KurumId=(Select KurumId From KurumBilgi Where KurumAd='" + CmbKurum.Text + "'), Aciklama='" + RTxtAciklama.Text + "' Where KullaniciAd='" + CmbKullanici.Text + "'", baglanti);
-                komut.ExecuteNonQuery();
-                baglanti.Close();
-                MessageBox.Show("Kullanıcı Başarılı Bir Şekilde Güncellendi!!");
+                try
+                {
+                    baglanti.Open();
+                    SqlCommand komut = new SqlCommand("Update Kullanicilar Set KullaniciAd='" + TxtKullanici.Text + "', Parola='" + TxtParola.Text + "', KurumId=(Select KurumId From KurumBilgi Where KurumAd='" + CmbKurum.Text + "'), Aciklama='" + RTxtAciklama.Text + "' Where KullaniciAd='" + CmbKullanici.Text + "'", baglanti);
+                    komut.ExecuteNonQuery();
+                    baglanti.Close();
+                    MessageBox.Show("Kullanıcı Başarılı Bir Şekilde Güncellendi!!");
+                }
+                catch
+                {
+                    MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
+                }
             }
         }
         private void BtnDuzenle_Click(object sender, EventArgs e)
@@ -175,14 +223,21 @@ namespace Ücretli_Maaş
 
         private void KullaniciSil()
         {
-            baglanti.Open();
-            SqlCommand komut = new SqlCommand("Delete From Kullanicilar Where KullaniciAd='" + CmbKullanici.Text + "'", baglanti);
-            komut.ExecuteNonQuery();
-            baglanti.Close();
-            MessageBox.Show("Kullanıcı Silindi!!");
-            Temizle();
-            KullaniciDoldur();
-            KurumDoldur();
+            try
+            {
+                baglanti.Open();
+                SqlCommand komut = new SqlCommand("Delete From Kullanicilar Where KullaniciAd='" + CmbKullanici.Text + "'", baglanti);
+                komut.ExecuteNonQuery();
+                baglanti.Close();
+                MessageBox.Show("Kullanıcı Silindi!!");
+                Temizle();
+                KullaniciDoldur();
+                KurumDoldur();
+            }
+            catch
+            {
+                MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
+            }
         }
         private void BtnSil_Click(object sender, EventArgs e)
         {

@@ -22,46 +22,67 @@ namespace Ücretli_Maaş
         SqlConnection baglantip = new SqlConnection("Data Source=85.214.46.212;Initial Catalog=mustafa_gurbuz_db;User ID=mustafa_gurbuz_user;Password=mustafa_gurbuz_user");
         private void Olustur()
         {
-            baglanti.Open();
-            SqlCommand komut = new SqlCommand("Insert Into Bordro (BordroDurum, BaslangicTarihi, BitisTarihi, Aciklama) Values ('Acik Bordro', '" + DtpBaslangic.Value.ToString("yyyy-MM-dd") + "','" + DtpBitis.Value.ToString("yyyy-MM-dd") + "','" + TxtAciklama.Text + "')", baglanti);
-            komut.ExecuteNonQuery();
-            baglanti.Close();
-            PuantajOlustur();
-            MessageBox.Show("Bordro Başarıyla Oluşturuldu!!");
+            try
+            {
+                baglanti.Open();
+                SqlCommand komut = new SqlCommand("Insert Into Bordro (BordroDurum, BaslangicTarihi, BitisTarihi, Aciklama) Values ('Acik Bordro', '" + DtpBaslangic.Value.ToString("yyyy-MM-dd") + "','" + DtpBitis.Value.ToString("yyyy-MM-dd") + "','" + TxtAciklama.Text + "')", baglanti);
+                komut.ExecuteNonQuery();
+                baglanti.Close();
+                PuantajOlustur();
+                MessageBox.Show("Bordro Başarıyla Oluşturuldu!!");
+            }
+            catch
+            {
+                MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
+            }
         }
 
         private void PuantajOlustur()
         {
-            baglanti.Open();
-            SqlCommand komut = new SqlCommand("Select PersonelId From Personel Where Durum='1'", baglanti);
-            komut.ExecuteNonQuery();
-            SqlDataReader oku = komut.ExecuteReader();
-            
-            while (oku.Read())
+            try
             {
-                baglantip.Open();
-                SqlCommand komutp = new SqlCommand("Insert Into Puantaj (BordroId, PersonelId, KurumId, KullaniciAd, DersSaati) Values ((Select BordroId From Bordro Where BordroDurum='Acik Bordro'), '" + oku["PersonelId"].ToString() + "','0', '', '0')", baglantip);
-                komutp.ExecuteNonQuery();
-                baglantip.Close();
+                baglanti.Open();
+                SqlCommand komut = new SqlCommand("Select PersonelId From Personel Where Durum='1'", baglanti);
+                komut.ExecuteNonQuery();
+                SqlDataReader oku = komut.ExecuteReader();
+
+                while (oku.Read())
+                {
+                    baglantip.Open();
+                    SqlCommand komutp = new SqlCommand("Insert Into Puantaj (BordroId, PersonelId, KurumId, KullaniciAd, DersSaati) Values ((Select BordroId From Bordro Where BordroDurum='Acik Bordro'), '" + oku["PersonelId"].ToString() + "','0', '', '0')", baglantip);
+                    komutp.ExecuteNonQuery();
+                    baglantip.Close();
+                }
+                baglanti.Close();
             }
-            baglanti.Close();
+            catch
+            {
+                MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
+            }
         }
         private void Kontrol()
         {
-            baglanti.Open();
-            SqlCommand komut = new SqlCommand("Select Aciklama From Bordro Where BordroDurum='Acik Bordro'", baglanti);
-            komut.ExecuteNonQuery();
-            SqlDataReader oku = komut.ExecuteReader();
-            if (oku.Read())
+            try
             {
-                MessageBox.Show("Şu Anda Açık Bordro Bulunmaktadır ve Kapatılmadan Yeni Bordro Açılamaz!!");
-            }
-            else
-            {
+                baglanti.Open();
+                SqlCommand komut = new SqlCommand("Select Aciklama From Bordro Where BordroDurum='Acik Bordro'", baglanti);
+                komut.ExecuteNonQuery();
+                SqlDataReader oku = komut.ExecuteReader();
+                if (oku.Read())
+                {
+                    MessageBox.Show("Şu Anda Açık Bordro Bulunmaktadır ve Kapatılmadan Yeni Bordro Açılamaz!!");
+                }
+                else
+                {
+                    baglanti.Close();
+                    Olustur();
+                }
                 baglanti.Close();
-                Olustur();
             }
-            baglanti.Close();
+            catch
+            {
+                MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
+            }
         }
         private void BtnCikis_Click(object sender, EventArgs e)
         {
@@ -71,16 +92,23 @@ namespace Ücretli_Maaş
         private void BordroOku()
         {
             CmbBordro.Items.Clear();
-            baglanti.Open();
-            SqlCommand komut = new SqlCommand("Select * From Bordro Where BordroDurum='Acik Bordro'", baglanti);
-            komut.ExecuteNonQuery();
-            SqlDataReader oku = komut.ExecuteReader();
-            if (oku.Read())
+            try
             {
-                CmbBordro.Items.Add(oku["Aciklama"].ToString());
-                
+                baglanti.Open();
+                SqlCommand komut = new SqlCommand("Select * From Bordro Where BordroDurum='Acik Bordro'", baglanti);
+                komut.ExecuteNonQuery();
+                SqlDataReader oku = komut.ExecuteReader();
+                if (oku.Read())
+                {
+                    CmbBordro.Items.Add(oku["Aciklama"].ToString());
+
+                }
+                baglanti.Close();
             }
-            baglanti.Close();
+            catch
+            {
+                MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
+            }
         }
         private void FrmBordroAc_Load(object sender, EventArgs e)
         {
@@ -102,17 +130,24 @@ namespace Ücretli_Maaş
         }
         private void BordroDoldur()
         {
-            baglanti.Open();
-            SqlCommand komut = new SqlCommand("Select * From Bordro Where Aciklama='" + CmbBordro.Text + "'", baglanti);
-            komut.ExecuteNonQuery();
-            SqlDataReader oku = komut.ExecuteReader();
-            if (oku.Read())
+            try
             {
-                DtpBaslangic.Text = oku["BaslangicTarihi"].ToString();
-                DtpBitis.Text = oku["BitisTarihi"].ToString();
-                TxtAciklama.Text = oku["Aciklama"].ToString();
+                baglanti.Open();
+                SqlCommand komut = new SqlCommand("Select * From Bordro Where Aciklama='" + CmbBordro.Text + "'", baglanti);
+                komut.ExecuteNonQuery();
+                SqlDataReader oku = komut.ExecuteReader();
+                if (oku.Read())
+                {
+                    DtpBaslangic.Text = oku["BaslangicTarihi"].ToString();
+                    DtpBitis.Text = oku["BitisTarihi"].ToString();
+                    TxtAciklama.Text = oku["Aciklama"].ToString();
+                }
+                baglanti.Close();
             }
-            baglanti.Close();
+            catch
+            {
+                MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
+            }
         }
 
         private void BordroSil()
@@ -120,17 +155,24 @@ namespace Ücretli_Maaş
             DialogResult cevap = MessageBox.Show("Silmek İstediğinize Emin misiniz?", "Dikkat", MessageBoxButtons.YesNo);
             if (cevap == DialogResult.Yes)
             {
-                baglanti.Open();
-                baglantip.Open();
-                SqlCommand komut = new SqlCommand("Delete From Puantaj Where BordroId=(Select BordroId From Bordro Where Aciklama='" + CmbBordro.Text + "' And BordroDurum='Acik Bordro')", baglanti);
-                komut.ExecuteNonQuery();
-                SqlCommand komutp = new SqlCommand("Delete From Bordro Where Aciklama ='" + CmbBordro.Text + "' And BordroDurum='Acik Bordro'", baglantip);
-                komutp.ExecuteNonQuery();
+                try
+                {
+                    baglanti.Open();
+                    baglantip.Open();
+                    SqlCommand komut = new SqlCommand("Delete From Puantaj Where BordroId=(Select BordroId From Bordro Where Aciklama='" + CmbBordro.Text + "' And BordroDurum='Acik Bordro')", baglanti);
+                    komut.ExecuteNonQuery();
+                    SqlCommand komutp = new SqlCommand("Delete From Bordro Where Aciklama ='" + CmbBordro.Text + "' And BordroDurum='Acik Bordro'", baglantip);
+                    komutp.ExecuteNonQuery();
 
-                baglanti.Close();
-                baglantip.Close();
-                Temizle();
-                MessageBox.Show("Bordro Başarıyla Silindi!!");
+                    baglanti.Close();
+                    baglantip.Close();
+                    Temizle();
+                    MessageBox.Show("Bordro Başarıyla Silindi!!");
+                }
+                catch
+                {
+                    MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
+                }
 
             }
         }

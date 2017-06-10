@@ -20,9 +20,16 @@ namespace Ücretli_Maaş
         private void FrmHesapRapor_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'mustafa_gurbuz_dbDataSet.GeciciHesap' table. You can move, or remove it, as needed.
-            this.GeciciHesapTableAdapter.Fill(this.mustafa_gurbuz_dbDataSet.GeciciHesap);
+            try
+            {
+                this.GeciciHesapTableAdapter.Fill(this.mustafa_gurbuz_dbDataSet.GeciciHesap);
 
-            this.reportViewer1.RefreshReport();
+                this.reportViewer1.RefreshReport();
+            }
+            catch
+            {
+                MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
+            }
         }
     }
 }
