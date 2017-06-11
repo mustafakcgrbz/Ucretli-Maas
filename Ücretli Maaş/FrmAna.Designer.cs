@@ -44,7 +44,6 @@
             this.maaşİşlemleriToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MaasHesaplaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.EkdersBordroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.kişiBordroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kesintiEkleVeSilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.LstPersonel = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -193,8 +192,7 @@
             this.maaşİşlemleriToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MaasHesaplaToolStripMenuItem,
             this.EkdersBordroToolStripMenuItem,
-            this.kesintiEkleVeSilToolStripMenuItem,
-            this.kişiBordroToolStripMenuItem});
+            this.kesintiEkleVeSilToolStripMenuItem});
             this.maaşİşlemleriToolStripMenuItem.Name = "maaşİşlemleriToolStripMenuItem";
             this.maaşİşlemleriToolStripMenuItem.Size = new System.Drawing.Size(118, 30);
             this.maaşİşlemleriToolStripMenuItem.Text = "Maaş İşlemleri";
@@ -212,12 +210,6 @@
             this.EkdersBordroToolStripMenuItem.Size = new System.Drawing.Size(232, 24);
             this.EkdersBordroToolStripMenuItem.Text = "Ekders Bordrosu Açma";
             this.EkdersBordroToolStripMenuItem.Click += new System.EventHandler(this.EkdersBordroToolStripMenuItem_Click);
-            // 
-            // kişiBordroToolStripMenuItem
-            // 
-            this.kişiBordroToolStripMenuItem.Name = "kişiBordroToolStripMenuItem";
-            this.kişiBordroToolStripMenuItem.Size = new System.Drawing.Size(232, 24);
-            this.kişiBordroToolStripMenuItem.Text = "Kişi Bordrosu";
             // 
             // kesintiEkleVeSilToolStripMenuItem
             // 
@@ -496,7 +488,6 @@
         private System.Windows.Forms.ToolStripMenuItem maaşİşlemleriToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem MaasHesaplaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem EkdersBordroToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem kişiBordroToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem güncelleVeSilToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem kullanıcıVeSifreislemleriToolStripMenuItem;
         private System.Windows.Forms.ListView LstPersonel;

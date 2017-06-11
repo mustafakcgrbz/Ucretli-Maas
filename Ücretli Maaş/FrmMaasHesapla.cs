@@ -327,7 +327,7 @@ namespace Ücretli_Maaş
             }
             catch
             {
-                MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
+                MessageBox.Show("Bağlantı Sırasında Hata Oluştu TT");
             }
 
         }
@@ -404,7 +404,14 @@ namespace Ücretli_Maaş
                             KimlikNo = okup["KimlikNo"].ToString();
                             EsDurum = okup["MedeniHal"].ToString();
                             CocukSayi = Convert.ToInt32(okup["CocukSayi"].ToString());
-                            YVergiMatrah = Math.Round(Convert.ToDouble(okup["VergiMatrah"].ToString()), 2);
+                            try
+                            {
+                                YVergiMatrah = Math.Round(Convert.ToDouble(okup["VergiMatrah"].ToString()), 2);
+                            }
+                            catch
+                            {
+                                YVergiMatrah = 0;
+                            }
                         }
                         baglantip.Close();
                         AVergiMatrah = Math.Round((AylikTutar - SGKKisi), 2);
@@ -425,7 +432,7 @@ namespace Ücretli_Maaş
             }
             catch
             {
-                MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
+                MessageBox.Show("Bağlantı Sırasında Hata Oluştu GH");
             }
         }
 
