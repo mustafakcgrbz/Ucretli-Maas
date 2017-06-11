@@ -17,7 +17,9 @@ namespace Ücretli_Maaş
         {
             InitializeComponent();
         }
+        //SQL Bağlantısı Yapılıyor
         SqlConnection baglanti = new SqlConnection("Data Source=85.214.46.212;Initial Catalog=mustafa_gurbuz_db;User ID=mustafa_gurbuz_user;Password=mustafa_gurbuz_user");
+        //Text Alanları Temizleniyor
         private void Temizle()
         {
             TxtAlan.Clear();
@@ -25,6 +27,7 @@ namespace Ücretli_Maaş
             TxtAlan.Select();
         }
 
+        //Database Kayıt Ekleme
         private void VeriEkle()
         {
             try
@@ -45,9 +48,14 @@ namespace Ücretli_Maaş
             }
 
         }
+        //Form Çıkışı
         private void BtnCikis_Click(object sender, EventArgs e)
         {
-            this.Close();
+            DialogResult cevap = MessageBox.Show("Çıkmak İstediğinize Emin misiniz?", "Dikkat", MessageBoxButtons.YesNo);
+            if (cevap == DialogResult.Yes)
+            {
+                this.Close();
+            }
         }
 
         private void FrmAlanEkle_Load(object sender, EventArgs e)
@@ -55,6 +63,7 @@ namespace Ücretli_Maaş
 
         }
 
+        //Kaydet Butonu VeriEkle Fonksiyonunu Çağırıyor.
         private void BtnKaydet_Click(object sender, EventArgs e)
         {
             VeriEkle();

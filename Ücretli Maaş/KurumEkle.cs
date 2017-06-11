@@ -18,7 +18,11 @@ namespace Ücretli_Maaş
         {
             InitializeComponent();
         }
+
+        //SQL bağlantısı yapılıyor
         SqlConnection baglanti = new SqlConnection("Data Source=85.214.46.212;Initial Catalog=mustafa_gurbuz_db;User ID=mustafa_gurbuz_user;Password=mustafa_gurbuz_user");
+
+        //Kurum bilgisi kayıt ediliyor
         private void VeriKaydet()
         {
             try
@@ -49,6 +53,8 @@ namespace Ücretli_Maaş
                 MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
             }
         }
+
+        //Text alanı temizleniyor
         private void Temizle()
         {
             TxtKurumAd.Clear();
@@ -58,6 +64,7 @@ namespace Ücretli_Maaş
 
         }
 
+        //Kaydet butonu 
         private void BtnKaydet_Click(object sender, EventArgs e)
         {
             VeriKaydet();
@@ -65,6 +72,7 @@ namespace Ücretli_Maaş
             TxtKurumAd.Select();
         }
 
+        //Form çıkışı
         private void BtnCikis_Click(object sender, EventArgs e)
         {
             this.Close();

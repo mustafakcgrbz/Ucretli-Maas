@@ -18,8 +18,12 @@ namespace Ücretli_Maaş
         {
             InitializeComponent();
         }
+
+        //SQL Bağlantıları yapılıyor
         SqlConnection baglanti = new SqlConnection("Data Source=85.214.46.212;Initial Catalog=mustafa_gurbuz_db;User ID=mustafa_gurbuz_user;Password=mustafa_gurbuz_user");
         SqlConnection baglantip = new SqlConnection("Data Source=85.214.46.212;Initial Catalog=mustafa_gurbuz_db;User ID=mustafa_gurbuz_user;Password=mustafa_gurbuz_user");
+
+        //Bordro oluşturma fonksiyonu
         private void Olustur()
         {
             try
@@ -37,6 +41,8 @@ namespace Ücretli_Maaş
             }
         }
 
+
+        //Puantaj oluşturma fonksiyonu
         private void PuantajOlustur()
         {
             try
@@ -60,6 +66,8 @@ namespace Ücretli_Maaş
                 MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
             }
         }
+
+        //Açık bordro var mı diye kontrol ediliyor
         private void Kontrol()
         {
             try
@@ -84,11 +92,14 @@ namespace Ücretli_Maaş
                 MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
             }
         }
+
+        //Form Çıkışı
         private void BtnCikis_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        //Açık Bordro ComboBox' a ekleniyor
         private void BordroOku()
         {
             CmbBordro.Items.Clear();
@@ -110,16 +121,21 @@ namespace Ücretli_Maaş
                 MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
             }
         }
+
+        //Bordro Aç Formu çalıştığında Database' den Açık Bordro getiriyor
         private void FrmBordroAc_Load(object sender, EventArgs e)
         {
             BordroOku();
         }
 
+
+        //Bordro Oluştur butonu önce Kontrol fonksiyonunu çağırıyor
         private void BtnOlustur_Click(object sender, EventArgs e)
         {
             Kontrol();
         }
 
+        //Form üzerindeki alanlar temizleniyor
         private void Temizle()
         {
             DtpBaslangic.Text = "";
@@ -128,6 +144,8 @@ namespace Ücretli_Maaş
             BordroOku();
             CmbBordro.Text = "Bordro Seçiniz :";
         }
+
+        //Açık bordro seçildiğinde bilgileri alanlara dolduruluyor
         private void BordroDoldur()
         {
             try
@@ -150,6 +168,8 @@ namespace Ücretli_Maaş
             }
         }
 
+
+        //Açık Bordro Siliniyor
         private void BordroSil()
         {
             DialogResult cevap = MessageBox.Show("Silmek İstediğinize Emin misiniz?", "Dikkat", MessageBoxButtons.YesNo);
@@ -176,6 +196,8 @@ namespace Ücretli_Maaş
 
             }
         }
+
+        //Bordro Sil butonu kontrolü
         private void BtnSil_Click(object sender, EventArgs e)
         {
             if (CmbBordro.Text!="Bordro Seçiniz :")
@@ -189,6 +211,7 @@ namespace Ücretli_Maaş
             
         }
 
+        //ComboBox değiştiğinde Alanlar dolduruluyor
         private void CmbBordro_SelectedIndexChanged(object sender, EventArgs e)
         {
             BordroDoldur();

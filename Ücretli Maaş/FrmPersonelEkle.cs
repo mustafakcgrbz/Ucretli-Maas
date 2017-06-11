@@ -19,11 +19,13 @@ namespace Ücretli_Maaş
             InitializeComponent();
         }
 
+        //SQL bağlantısı yapılıyor
         SqlConnection baglanti = new SqlConnection("Data Source=85.214.46.212;Initial Catalog=mustafa_gurbuz_db;User ID=mustafa_gurbuz_user;Password=mustafa_gurbuz_user");
 
+
+        //Form alanları temizleniyor
         private void Temizle()
-        {
-            //Formda bulunan Textboxlar ve Açılır Kutular Temizleniyor.
+        {            
             TxtKimlik.Clear();
             TxtAd.Clear();
             TxtSoyad.Clear();
@@ -42,6 +44,8 @@ namespace Ücretli_Maaş
             DtpAyrilma.Text = "";
             
         }
+
+        //Medeni Durum ComboBox ekleniyor
         private void MDurumOku()
         {
             baglanti.Open();
@@ -57,9 +61,9 @@ namespace Ücretli_Maaş
             CmbMedeniDurum.Text = "Durum Seçiniz :";
         }
 
+        //Çalışma Durumu ComboBox ekleniyor
         private void CDurumOku()
-        {
-            //Çalışma Durumu Okunuyor.
+        {            
             baglanti.Open();
             SqlCommand komut = new SqlCommand("Select DurumAd From CalismaDurumu", baglanti);
             komut.ExecuteNonQuery();
@@ -72,9 +76,9 @@ namespace Ücretli_Maaş
             CmbCalisma.Text = "Durum Seçiniz :";
         }
 
+        //Alan Bilgisi ilgili ComboBox' a ekleniyor
         private void AlanOku()
-        {
-            //Alan Bilgisi Okunuyor.
+        {            
             baglanti.Open();
             SqlCommand komut = new SqlCommand("Select AlanAd From AlanBilgi", baglanti);
             komut.ExecuteNonQuery();
@@ -87,9 +91,9 @@ namespace Ücretli_Maaş
             CmbAlan.Text = "Alan Seçiniz :";
         }
 
+        //Kurum Bilgisi ilgili ComboBox' a ekleniyor
         private void KurumOku()
-        {
-            //Kurum Bilgisi Okunuyor.
+        {            
             baglanti.Open();
             SqlCommand komut = new SqlCommand("Select KurumAd From KurumBilgi", baglanti);
             komut.ExecuteNonQuery();
@@ -101,6 +105,8 @@ namespace Ücretli_Maaş
             baglanti.Close();
             CmbKurum.Text = "Kurum Seçiniz :";
         }
+
+        //ComboBox nesneleri gerekli bilgileri Database' den alıyor
         private void VeriOku()
         {
             try
@@ -120,9 +126,11 @@ namespace Ücretli_Maaş
             }
         }
 
+
+        //Personel Bilgileri Kaydediliyor.
         private void VeriKaydet()
         {
-            //Personel Bilgileri Kaydediliyor.
+            
             if (CmbMedeniDurum.Text == "Durum Seçiniz :" | CmbCalisma.Text == "Durum Seçiniz :" | CmbAlan.Text == "Alan Seçiniz :" | CmbKurum.Text == "Kurum Seçiniz :")
             {
                 MessageBox.Show("Lütfen Gerekli Bölümleri Seçiniz!!");
@@ -148,11 +156,14 @@ namespace Ücretli_Maaş
             }
 
         }
+        //Form çıkışı
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+
+        //Form çalıştığında çalışan fonksiyonlar
         private void FrmPersonelEkle_Load(object sender, EventArgs e)
         {
             Temizle();
@@ -160,6 +171,8 @@ namespace Ücretli_Maaş
 
         }
 
+
+        //Kaydet butonu ile VeriKaydet fonksiyonu çağrılıyor
         private void BtnKaydet_Click(object sender, EventArgs e)
         {
             VeriKaydet();

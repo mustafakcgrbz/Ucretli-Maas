@@ -17,10 +17,14 @@ namespace Ücretli_Maaş
         {
             InitializeComponent();
         }
+
+        //Database bağlantısı yapılıyor
         String Kimlik;
         SqlConnection baglanti = new SqlConnection("Data Source=85.214.46.212;Initial Catalog=mustafa_gurbuz_db;User ID=mustafa_gurbuz_user;Password=mustafa_gurbuz_user");
         SqlConnection baglantiek = new SqlConnection("Data Source=85.214.46.212;Initial Catalog=mustafa_gurbuz_db;User ID=mustafa_gurbuz_user;Password=mustafa_gurbuz_user");
 
+
+        //Form Alanları temizleniyor
         private void Temizle()
         {
             TxtKimlikNo.Clear();
@@ -33,6 +37,8 @@ namespace Ücretli_Maaş
             CmbTur.Text = "Kesinti Türü Seçiniz";
 
         }
+
+        //Açık Bordro kontrolü yapılıyor
         private void BordroKontrol()
         {
             try
@@ -58,6 +64,8 @@ namespace Ücretli_Maaş
                 MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
             }
         }
+
+        //Personeller ListView' e ekleniyor
         private void PersonelDoldur()
         {
             try
@@ -93,11 +101,12 @@ namespace Ücretli_Maaş
             }
         }
 
+
+        //Seçili Personelin kesilen icraları getiriliyor
         private void IcraGetir()
         {
             CmbKesinti.Items.Clear();
-            CmbKesinti.Text = "Kesinti Seçiniz :";
-            //Personele ait icraları getirecek
+            CmbKesinti.Text = "Kesinti Seçiniz :";            
             try
             {
                 baglanti.Open();
@@ -115,12 +124,15 @@ namespace Ücretli_Maaş
                 MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
             }
         }
+
+        //Form çalıştığında BordroKontrol ve PersonelDoldur fonksiyonları çağrılıyor
         private void FrmKesinti_Load(object sender, EventArgs e)
         {
             BordroKontrol();
             PersonelDoldur();
         }
 
+        //Form Çıkışı
         private void button2_Click(object sender, EventArgs e)
         {
             DialogResult cevap = MessageBox.Show("Çıkmak İstediğinize Emin misiniz?", "Dikkat", MessageBoxButtons.YesNo);
@@ -130,6 +142,8 @@ namespace Ücretli_Maaş
             }
         }
 
+
+        //Seçili Personele girilen icra kayıt ediliyor
         private void IcraKaydet()
         {
             if (TxtKimlikNo.Text != "")
@@ -162,10 +176,15 @@ namespace Ücretli_Maaş
                 MessageBox.Show("Önce Personel Seçiniz");
             }
         }
+
+
+        //Kaydet Butonu IcraKaydet fonksiyonunu çağırıyor
         private void BtnKaydet_Click(object sender, EventArgs e)
         {
             IcraKaydet();
         }
+
+        //ListView' de seçilen personel Form alanlarına dolduruluyor
         private void PersonelGetir()
         {
             Temizle();
@@ -195,12 +214,16 @@ namespace Ücretli_Maaş
             }
 
         }
+
+        //ListView çift tıklama ile Personel seçiliyor ve PersonelGetir fonksiyonu çağrılıyor
         private void LstPersonel_DoubleClick(object sender, EventArgs e)
         {
             Kimlik = LstPersonel.SelectedItems[0].SubItems[0].Text;
             PersonelGetir();
         }
-         private void IcraDoldur()
+
+        //Kayıtlı icra seçildiğinde Text alanlarına dolduruluyor
+        private void IcraDoldur()
         {
             try
             {
@@ -231,11 +254,14 @@ namespace Ücretli_Maaş
             
         }
 
+        //ComboBox değiştiğinde IcraDoldur fonksiyonu çağrılıyor
         private void CmbKesinti_SelectedValueChanged(object sender, EventArgs e)
         {
             IcraDoldur();
         }
 
+
+        //Seçili icra siliniyor
         private void IcraSil()
         {
             DialogResult cevap = MessageBox.Show("Silmek İstediğinize Emin misiniz?", "Dikkat", MessageBoxButtons.YesNo);
@@ -260,6 +286,7 @@ namespace Ücretli_Maaş
             }
         }
 
+        //İcra Sil butonu
         private void BtnSil_Click(object sender, EventArgs e)
         {
             IcraSil();

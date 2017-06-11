@@ -19,25 +19,30 @@ namespace Ücretli_Maaş
             InitializeComponent();
         }
 
+        //SQL Bağlantıları ve tanımlamalar yapılıyor
         SqlConnection baglanti = new SqlConnection("Data Source=85.214.46.212;Initial Catalog=mustafa_gurbuz_db;User ID=mustafa_gurbuz_user;Password=mustafa_gurbuz_user");
         SqlConnection baglantim = new SqlConnection("Data Source=85.214.46.212;Initial Catalog=mustafa_gurbuz_db;User ID=mustafa_gurbuz_user;Password=mustafa_gurbuz_user");
         SqlConnection baglantip = new SqlConnection("Data Source=85.214.46.212;Initial Catalog=mustafa_gurbuz_db;User ID=mustafa_gurbuz_user;Password=mustafa_gurbuz_user");
         Double AsgariUcret, AgiKatsayi, SaatUcreti, AylikTutar, SGKDevlet, Tahakkuk, SGKKesMatrah, SGKKisi, YVergiMatrah, AVergiMatrah, GelirVergi, DamgaVergi, Icra, Nafaka, ToplamKesinti, AGI, NetTutar;
         int DersSaati, SGKGun, CocukSayi;
         String BordroNo, KimlikNo, EsDurum;
+        int Durum = 0;
 
+        //Banka Listesi raporu gösteriliyor
         private void BtnBanka_Click(object sender, EventArgs e)
         {
             FrmBanka bankafrm = new FrmBanka();
             bankafrm.Show();
         }
 
+        //Muhasebe bordrosu gösteriliyor
         private void BtnMuhasebe_Click(object sender, EventArgs e)
         {
             FrmHesapRapor muhasebefrm = new FrmHesapRapor();
             muhasebefrm.Show();
         }
 
+        //Form çıkışı
         private void BtnCikis_Click(object sender, EventArgs e)
         {
             DialogResult cevap = MessageBox.Show("Çıkmak İstediğinize Emin misiniz?", "Dikkat", MessageBoxButtons.YesNo);
@@ -47,7 +52,7 @@ namespace Ücretli_Maaş
             }
         }
 
-        int Durum = 0;
+        
         private void KesinHesap()
         {
 
@@ -88,6 +93,8 @@ namespace Ücretli_Maaş
 
 
         }
+
+        //Kesin Hesap butonu
         private void BtnKesin_Click(object sender, EventArgs e)
         {
             if (BordroNo!=null && Durum!=0)
@@ -109,9 +116,9 @@ namespace Ücretli_Maaş
             
         }
 
+        //Banka Listesi Hazırlanıyor
         private void BankaListe()
-        {
-            //Banka Listesi Hazırlanıyor
+        {            
             try
             {
                 baglantim.Open();
@@ -134,6 +141,7 @@ namespace Ücretli_Maaş
             }
         }
 
+        //Açık bordro kapatılıyor
         private void BordroKapat()
         {           
                 baglantip.Open();
@@ -142,6 +150,8 @@ namespace Ücretli_Maaş
                 baglantip.Close();
             
         }
+
+        //Geçici hesaplama muhasebe bordro kontolü
         private void BtnKontrol_Click(object sender, EventArgs e)
         {
             FrmHesapRapor raporfrm = new FrmHesapRapor();
@@ -149,7 +159,7 @@ namespace Ücretli_Maaş
         }
 
         
-
+        //Açık bordro database'den kontrol ediliyor ve ilgili ComboBox' a ekleniyor
         private void BordroCek()
         {
             try
@@ -174,6 +184,7 @@ namespace Ücretli_Maaş
 
         }
 
+        //Seçili  açık bordro bilgileri Form alanlarına dolduruluyor
         private void BordroDoldur()
         {
             try
@@ -197,19 +208,23 @@ namespace Ücretli_Maaş
             }        
         }
 
+        //Form çalıştığında açık bordro kontrol ediliyor
         private void FrmMaasHesapla_Load(object sender, EventArgs e)
         {
             BordroCek();
         }
 
+
+        //Seçilen Bordro bilgileri dolduruluyor
         private void CmbBordro_SelectedIndexChanged(object sender, EventArgs e)
         {
             BordroDoldur();
         }
 
+
+        //Personel' e ait icra var ise toplanıyor
         private void IcraTopla()
-        {
-            //İcra Toplamı bulunacak
+        {            
             baglantip.Open();
             SqlCommand komutp = new SqlCommand("Select Tutar From Kesinti Where BordroId='" + BordroNo + "' And KimlikNo='" + KimlikNo + "' And KesintiTuru='Icra'", baglantip);
             komutp.ExecuteNonQuery();
@@ -222,9 +237,9 @@ namespace Ücretli_Maaş
 
         }
 
+        //Personel' e ait nafaka var ise toplanıyor
         private void NafakaTopla()
-        {
-            //Nafaka Toplamı Bulacak
+        {            
             baglantip.Open();
             SqlCommand komutp= new SqlCommand("Select Tutar From Kesinti Where BordroId='" + BordroNo + "' And KimlikNo='" + KimlikNo + "' And KesintiTuru='Nafaka'", baglantip);
             komutp.ExecuteNonQuery();
@@ -236,6 +251,7 @@ namespace Ücretli_Maaş
             baglantip.Close();
         }
 
+        //Değerler sıfırlanıyor
         private void DegerSifirla()
         {
             SaatUcreti = 0;
@@ -260,6 +276,8 @@ namespace Ücretli_Maaş
             CocukSayi = 0;
         }
 
+
+        //Geçici Muhasebe Bordrosuna ekleme yapılıyor
         private void GeciciKayit()
         {
             baglantip.Open();
@@ -268,6 +286,8 @@ namespace Ücretli_Maaş
             baglantip.Close();
         }
 
+
+        //GeçiciHesap ve BankaListe tabloları sıfırlanıyor
         private void TabloTemizle()
         {
             try
@@ -312,7 +332,7 @@ namespace Ücretli_Maaş
 
         }
 
-        
+        //Personel'e ait AGİ hesaplanıyor
         private void AgiHesapla()
         {
             AgiKatsayi = 50;
@@ -346,6 +366,8 @@ namespace Ücretli_Maaş
                 AGI = GelirVergi;
             }
         }
+
+        //Geçici Muhasebe Bordrosu hesaplanıyor
         private void GeciciHesap()
         {
             try
@@ -396,10 +418,7 @@ namespace Ücretli_Maaş
                         GeciciKayit();
 
                     }
-                    //SqlCommand komutp = new SqlCommand("Insert Into GeciciHesap (KimlikNo, SaatUcreti, DersSaati, SGKGun, AylikTutar, SGKDevlet, Tahakkuk, SGKKesMatrah, SGKKisi, YVergiMatrah, AVergiMatrah, DamgaVergi, Icra, Nafaka, ToplamKesinti, AGI, NetTutar) Values ((Select KimlikNo From Personel Where PersonelId='"+oku["PersonelId"].ToString()+"'), ((Select MaasKatsayi From MaasAyar)))");
-
                     baglantim.Close();
-
                 }
                 baglanti.Close();
                 MessageBox.Show("Hesaplama Tamamlandı!!");
@@ -409,6 +428,8 @@ namespace Ücretli_Maaş
                 MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
             }
         }
+
+        //Geçici Hesap butonu
         private void BtnGecici_Click(object sender, EventArgs e)
         {
             if (CmbBordro.Text != "Bordro Seçiniz :")

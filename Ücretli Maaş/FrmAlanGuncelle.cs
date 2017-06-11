@@ -17,7 +17,11 @@ namespace Ücretli_Maaş
         {
             InitializeComponent();
         }
+
+        //SQL Bağlantısı Yapılıyor.
         SqlConnection baglanti =new SqlConnection("Data Source=85.214.46.212;Initial Catalog=mustafa_gurbuz_db;User ID=mustafa_gurbuz_user;Password=mustafa_gurbuz_user");
+
+        //Text Alanları Temizleniyor.
         private void Temizle()
         {
             CmbAlan.Items.Clear();
@@ -27,6 +31,7 @@ namespace Ücretli_Maaş
             CmbAlan.Select();
         }
 
+        //Database Veri Okunuyor
         private void VeriOku()
         {
             try
@@ -46,6 +51,8 @@ namespace Ücretli_Maaş
                 MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
             }
         }
+
+        //Kayıt Güncelleme
         private void VeriGuncelle()
         {
             try
@@ -63,6 +70,8 @@ namespace Ücretli_Maaş
                 MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
             }
         }
+
+        //Kayıt Silme
         private void VeriSil()
         {
             DialogResult cevap = MessageBox.Show("Silmek İstediğinize Emin misiniz?", "Dikkat", MessageBoxButtons.YesNo);
@@ -84,22 +93,34 @@ namespace Ücretli_Maaş
                 VeriOku();
             }
         }
+
+        //Form Çalıştığında Çağrılan Fonksiyonlar
         private void FrmAlanGuncelle_Load(object sender, EventArgs e)
         {
             Temizle();
             VeriOku();
         }
 
+
+        //Form Çıkış
         private void BtnCikis_Click(object sender, EventArgs e)
         {
-            this.Close();
+            DialogResult cevap = MessageBox.Show("Çıkmak İstediğinize Emin misiniz?", "Dikkat", MessageBoxButtons.YesNo);
+            if (cevap == DialogResult.Yes)
+            {
+                this.Close();
+            }
         }
 
+
+        //Güncelle Butonu ile VeriGuncelle Fonksiyonu çağrılıyor.
         private void BtnGuncelle_Click(object sender, EventArgs e)
         {
             VeriGuncelle();
         }
 
+
+        //Sil Fonksiyonu çağrılıyor.
         private void BtnSil_Click(object sender, EventArgs e)
         {
             VeriSil();

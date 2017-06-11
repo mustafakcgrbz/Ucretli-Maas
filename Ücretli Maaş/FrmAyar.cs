@@ -17,7 +17,11 @@ namespace Ücretli_Maaş
         {
             InitializeComponent();
         }
+
+        //SQL Bağlantısı yapılıyor
         SqlConnection baglanti = new SqlConnection("Data Source=85.214.46.212;Initial Catalog=mustafa_gurbuz_db;User ID=mustafa_gurbuz_user;Password=mustafa_gurbuz_user");
+
+        //Text Alanları Database de kayıtlı veriler ile dolduruluyor
         private void VeriGoster()
         {
             try
@@ -46,6 +50,8 @@ namespace Ücretli_Maaş
                 MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
             }
         }
+
+        //TextBox larda bulunan veriler kayıt ediliyor
         private void VeriKaydet()
         {
             try
@@ -61,6 +67,8 @@ namespace Ücretli_Maaş
                 MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
             }
         }
+
+        //Database tablomuzda bulunan veriler siliniyor
         private void VeriTemizle()
         {
             try
@@ -76,6 +84,7 @@ namespace Ücretli_Maaş
             }
         }
 
+        //TextBox lar temizleniyor
         private void Temizle()
         {
             TxtMaasKatsayi.Clear();
@@ -89,16 +98,21 @@ namespace Ücretli_Maaş
             TxtVergi20.Clear();
             TxtVergi27.Clear();
         }
+
+
         private void BtnCikis_Click(object sender, EventArgs e)
         {            
             this.Close();
         }
 
+        //Ayar Formu çalıştığında TextBox'lar dolduruluyor
         private void FrmAyar_Load(object sender, EventArgs e)
         {
             VeriGoster();
         }
 
+
+        //Kaydet butonu ile fonksiyonlar çağrılıyor
         private void BtnKaydet_Click(object sender, EventArgs e)
         {
             VeriTemizle();

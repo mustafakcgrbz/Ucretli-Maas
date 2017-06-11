@@ -18,12 +18,18 @@ namespace Ücretli_Maaş
         {
             InitializeComponent();
         }
+
+        //SQL Bağlantısı yapılıyor
+        SqlConnection baglanti = new SqlConnection("Data Source=85.214.46.212;Initial Catalog=mustafa_gurbuz_db;User ID=mustafa_gurbuz_user;Password=mustafa_gurbuz_user");
+
+        //Form alanları temizleniyor
         private void Temizle()
         {
             CmbKurum.Items.Clear();
             TxtKurum.Clear();
         }
-        SqlConnection baglanti = new SqlConnection("Data Source=85.214.46.212;Initial Catalog=mustafa_gurbuz_db;User ID=mustafa_gurbuz_user;Password=mustafa_gurbuz_user");
+        
+        //Kurumlar ComboBox' a ekleniyor
         private void VeriOku()
         {
             try
@@ -47,6 +53,8 @@ namespace Ücretli_Maaş
             }
 
         }
+
+        //Kurum Adı güncelleniyor
         private void Guncelle()
         {
             if (CmbKurum.Text!="Kurum Seçiniz :")
@@ -71,6 +79,8 @@ namespace Ücretli_Maaş
                 MessageBox.Show("Lütfen Kurum Seçiniz!!");
             }
         }
+
+        //Kurum Siliniyor
         private void VeriSil()
         {
             DialogResult cevap = MessageBox.Show("Silmek İstediğinize Emin misiniz?", "Dikkat!!!", MessageBoxButtons.YesNo);
@@ -92,22 +102,29 @@ namespace Ücretli_Maaş
                 }
             }
         }
+
+        //Form çalıştığında gerekli fonksiyonlar çalıştırılıyor
         private void FrmKurumGuncelle_Load(object sender, EventArgs e)
         {
             Temizle();
             VeriOku();
         }
 
+        //Form çıkışı
         private void BtnCikis_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+
+        //Güncelle butonu 
         private void BtnGuncelle_Click(object sender, EventArgs e)
         {
             Guncelle();
         }
 
+
+        //Sil butonu
         private void BtnSil_Click(object sender, EventArgs e)
         {
             VeriSil();

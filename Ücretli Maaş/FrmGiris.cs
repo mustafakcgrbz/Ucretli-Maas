@@ -19,8 +19,11 @@ namespace Ücretli_Maaş
             InitializeComponent();
         }
 
+        //Database bağlantısı yapılıyor
         SqlConnection baglanti = new SqlConnection("Data Source=85.214.46.212;Initial Catalog=mustafa_gurbuz_db;User ID=mustafa_gurbuz_user;Password=mustafa_gurbuz_user");
         string KurumId;
+
+        //Kullanıcı ve Parola kontrol edilerek ilgili Form açılıyor
         private void Giris()
         {
             try
@@ -68,11 +71,14 @@ namespace Ücretli_Maaş
                 MessageBox.Show("Bağlantı sırasında Hata Oluştu. Lütfen Bağlantıyı Kontrol Edin");
             }
         }
+
+        //Giriş Butonu Giris fonksiyonunu çağırıyor
         private void BtnGiris_Click(object sender, EventArgs e)
         {
             Giris();  
         }
 
+        //Uygulama çıkışı
         private void BtnCikis_Click(object sender, EventArgs e)
         {
             Application.Exit();

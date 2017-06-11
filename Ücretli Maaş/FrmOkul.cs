@@ -18,10 +18,14 @@ namespace Ücretli_Maaş
         {
             InitializeComponent();
         }
+
+        //SQL bağlantıları yapılıyor
         string id;
         SqlConnection baglanti = new SqlConnection("Data Source=85.214.46.212;Initial Catalog=mustafa_gurbuz_db;User ID=mustafa_gurbuz_user;Password=mustafa_gurbuz_user");
         SqlConnection baglantiek = new SqlConnection("Data Source=85.214.46.212;Initial Catalog=mustafa_gurbuz_db;User ID=mustafa_gurbuz_user;Password=mustafa_gurbuz_user");
 
+
+        //Giriş yapan kullanıcının yetkili olduğu kurumda bulunan personeller ListView' e ekleniyor
         private void PersonelDoldur()
         {
             try
@@ -57,6 +61,8 @@ namespace Ücretli_Maaş
                 MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
             }
         }
+
+        //Açık Bordro kontrolü yapılıyor
         private void BordroKontrol()
         {
             if (LblBordroNo.Text=="0")
@@ -69,6 +75,7 @@ namespace Ücretli_Maaş
             }
         }
 
+        //Seçilen personel'in ekders saati güncelleniyor
         private void EkdersGuncelle()
         {
             try
@@ -86,6 +93,8 @@ namespace Ücretli_Maaş
             }
 
         }
+
+        //Açık Bordro getiriliyor
         private void BordroGetir()
         {
             try
@@ -114,6 +123,8 @@ namespace Ücretli_Maaş
             }
 
         }
+
+        //Seçilen personel bilgileri Form alanlarına dolduruluyor
         private void PersonelGetir()
         {
             try
@@ -139,6 +150,8 @@ namespace Ücretli_Maaş
             }
 
         }
+
+        //Form alanları temizleniyor
         private void Temizle()
         {
             TxtKimlikNo.Clear();
@@ -146,6 +159,8 @@ namespace Ücretli_Maaş
             TxtSoyad.Clear();
             TxtEkders.Clear();
         }
+
+        //Form çalıştığında gerekli fonksiyonlar çağrılıyor
         private void FrmOkul_Load(object sender, EventArgs e)
         {
             BordroGetir();
@@ -153,11 +168,14 @@ namespace Ücretli_Maaş
             
         }
 
+        //Uygulama çıkışı
         private void FrmOkul_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
         }
 
+
+        //Çıkış butonu
         private void BtnCikis_Click(object sender, EventArgs e)
         {
             DialogResult cevap = MessageBox.Show("Silmek İstediğinize Emin misiniz?", "Dikkat", MessageBoxButtons.YesNo);
@@ -167,11 +185,15 @@ namespace Ücretli_Maaş
             }
         }
 
+
+        //Güncelle butonu
         private void BtnGuncelle_Click(object sender, EventArgs e)
         {
             BordroKontrol();
         }
 
+
+        //ListView çift tıklama ile personel seçiliyor
         private void LstPersonel_DoubleClick(object sender, EventArgs e)
         {
             id = LstPersonel.SelectedItems[0].SubItems[0].Text;

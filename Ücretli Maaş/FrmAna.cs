@@ -18,9 +18,13 @@ namespace Ücretli_Maaş
         {
             InitializeComponent();
         }
+
+        //Tanımlama ve SQL Bağlantıları
         String id;
         SqlConnection baglanti = new SqlConnection("Data Source=85.214.46.212;Initial Catalog=mustafa_gurbuz_db;User ID=mustafa_gurbuz_user;Password=mustafa_gurbuz_user");
         SqlConnection baglantiek = new SqlConnection("Data Source=85.214.46.212;Initial Catalog=mustafa_gurbuz_db;User ID=mustafa_gurbuz_user;Password=mustafa_gurbuz_user");
+
+        //Ayar Formu çağrılıyor
         private void maasAyarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmAyar ayarform = new FrmAyar();
@@ -28,18 +32,21 @@ namespace Ücretli_Maaş
 
         }
 
+        //Kurum Ekle Formu çağrılıyor
         private void kurumEkleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             KurumEkle KurumEkleFrm = new KurumEkle();
             KurumEkleFrm.ShowDialog();
         }
 
+        //Kurum Güncelleme Formu çağrılıyor
         private void güncelleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmKurumGuncelle frmguncelle = new FrmKurumGuncelle();
             frmguncelle.ShowDialog();
         }
 
+        //Personel Ekleme Formu çağrılıyor
         private void personelEkleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmPersonelEkle frmperekle = new FrmPersonelEkle();
@@ -48,18 +55,22 @@ namespace Ücretli_Maaş
 
         }
 
+        //Alan Bilgisi Ekleme Formu çağrılıyor
         private void alanEklemeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmAlanEkle AlanEkleFrm = new FrmAlanEkle();
             AlanEkleFrm.ShowDialog();
         }
 
+        //Alan Bilgisi Güncelleme ve Silme Formu çağrılıyor.
         private void güncelleVeyaSilToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmAlanGuncelle AlanGuncelleFrm = new FrmAlanGuncelle();
             AlanGuncelleFrm.ShowDialog();
         }
 
+
+        //Personel Güncelleme ve Silme Formu Çağrılıyor
         private void güncelleVeSilToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmPersonelGuncelle pguncellefrm = new FrmPersonelGuncelle();
@@ -67,18 +78,20 @@ namespace Ücretli_Maaş
             PersonelDoldur();
         }
 
+        //Uygulama Kullanıcı İşlemleri Formu çağrılıyor
         private void kullanıcıVeSifreislemleriToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmKullanici Kullanici = new FrmKullanici();            
             Kullanici.ShowDialog();
         }
 
+
         private void FrmAna_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
         }
 
-       
+        //Bordro Açma Formu çağrılıyor       
         private void EkdersBordroToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmBordroAc bordrofrm = new FrmBordroAc();
@@ -87,6 +100,7 @@ namespace Ücretli_Maaş
 
         }
 
+        //Text Alanları Temizleniyor
         private void Temizle()
         {
             TxtKimlikNo.Clear();
@@ -96,6 +110,7 @@ namespace Ücretli_Maaş
 
         }
 
+        //Database Kayıtlarından Personeller ListView' e çekiliyor
         public void PersonelDoldur()
         {
             try
@@ -162,6 +177,8 @@ namespace Ücretli_Maaş
                 MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
             }
         }
+
+        //Database' den açık olan bordro varsa getiriliyor
         private void BordroGetir()
         {
             try
@@ -190,12 +207,15 @@ namespace Ücretli_Maaş
             }
 
         }
+
+        //Ana Form çalıştığında BordroGetir ve PersonelDoldur fonksiyonları çağrılıyor
         private void FrmAna_Load(object sender, EventArgs e)
         {
             BordroGetir();         
             PersonelDoldur();
         }
 
+        //Uygulama Çıkışı
         private void BtnCikis_Click(object sender, EventArgs e)
         {
             DialogResult cevap = MessageBox.Show("Çıkmak İstediğinize Emin misiniz?", "Dikkat", MessageBoxButtons.YesNo);
@@ -205,6 +225,7 @@ namespace Ücretli_Maaş
             }
         }
 
+        //Açık Bordro Kontrolü yapılıyor
         private void BordroKontrol()
         {
             if (LblBordroNo.Text == "0")
@@ -217,6 +238,8 @@ namespace Ücretli_Maaş
             }
         }
 
+
+        //ListView de bulanan personellerin Ekders güncellemesi yapılıyor
         private void EkdersGuncelle()
         {
             try
@@ -235,11 +258,14 @@ namespace Ücretli_Maaş
 
         }
 
+        //Güncelle Butonu önce BordroKontrolü yapılıyor
         private void BtnGuncelle_Click(object sender, EventArgs e)
         {
             BordroKontrol();
         }
 
+
+        //ListView de bulunan personellerden seçili olanın bilgilerini TextBox alanına getiriyor
         private void PersonelGetir()
         {
             Temizle();
@@ -258,18 +284,23 @@ namespace Ücretli_Maaş
             }
             baglanti.Close();
         }
+
+        //ListView çift tıklama ile id değişkenine personel no getiriliyor ve PersonelGetir fonksiyonu çağrılıyor
         private void LstPersonel_DoubleClick(object sender, EventArgs e)
         {
             id = LstPersonel.SelectedItems[0].SubItems[0].Text;
             PersonelGetir();
         }
 
+
+        //Kesinti Formu çağrılıyor
         private void kesintiEkleVeSilToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmKesinti frmkesinti = new FrmKesinti();
             frmkesinti.ShowDialog();
         }
 
+        //Maaş Hesaplama Formu çağrılıyor
         private void MaasHesaplaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmMaasHesapla frmMaas = new FrmMaasHesapla();

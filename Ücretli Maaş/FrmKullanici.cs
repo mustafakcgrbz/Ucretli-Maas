@@ -19,8 +19,11 @@ namespace Ücretli_Maaş
             InitializeComponent();
         }
 
+        //SQL bağlantısı yapılıyor
         SqlConnection baglanti = new SqlConnection("Data Source=85.214.46.212;Initial Catalog=mustafa_gurbuz_db;User ID=mustafa_gurbuz_user;Password=mustafa_gurbuz_user");
 
+
+        //Form üzerindeki alanlar temizleniyor
         private void Temizle()
         {
             CmbKullanici.Items.Clear();
@@ -32,6 +35,7 @@ namespace Ücretli_Maaş
             CmbKurum.Text = "Kurum Seçiniz";
         }
 
+        //Database' de kayıtlı kullanıcılar ComboBox' a ekleniyor
         private void KullaniciDoldur()
         {
             try
@@ -50,6 +54,8 @@ namespace Ücretli_Maaş
                 MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
             }
         }
+
+        //Database' de kayıtlı Kurumlar ilgili ComboBox' a dolduruluyor
         private void KurumDoldur()
         {
             try
@@ -69,6 +75,7 @@ namespace Ücretli_Maaş
             }
         }
 
+        //Seçili kullanıcının bilgileri form alanlarına getiriliyor
         private void KullaniciGetir()
         {
             try
@@ -96,6 +103,7 @@ namespace Ücretli_Maaş
             }
         }
 
+        //Seçilen kullanıcıya ait Kurum bilgisi getiriliyor
         private void KurumGetir()
         {
             try
@@ -116,6 +124,8 @@ namespace Ücretli_Maaş
             }
         }
 
+
+        //Kullanıcı Kaydı yapılıyor
         private void KullaniciKaydet()
         {
             try
@@ -136,6 +146,8 @@ namespace Ücretli_Maaş
             }
 
         }
+
+        //Kullanıcı adı database' de kontrol ediliyor
         private void Kontrol()
         {
             try
@@ -161,11 +173,15 @@ namespace Ücretli_Maaş
             }
 
         }
+
+        //Form çıkışı
         private void BtnCikis_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+
+        //Form çalıştığında gerekli fonksiyonlar çağrılıyor
         private void FrmKullanici_Load(object sender, EventArgs e)
         {
             Temizle();
@@ -173,16 +189,19 @@ namespace Ücretli_Maaş
             KurumDoldur();
         }
 
+        //Kaydet butonu
         private void BtnKaydet_Click(object sender, EventArgs e)
         {
             Kontrol();
         }
 
+        //ComboBox değiştiğinde seçili kullanıcı bilgileri için KullaniciGetir fonksiyonu çağrılıyor
         private void CmbKullanici_SelectedIndexChanged(object sender, EventArgs e)
         {
             KullaniciGetir();
         }
 
+        //Form üzerindeki alanlar temizleniyor
         private void BtnTemizle_Click(object sender, EventArgs e)
         {
             Temizle();
@@ -190,6 +209,8 @@ namespace Ücretli_Maaş
             KurumDoldur();
         }
 
+
+        //Kullanıcı bilgileri güncelleniyor
         private void KullaniciGuncelle()
         {
             if (TxtKullanici.Text=="" | TxtParola.Text=="" | CmbKurum.Text=="")
@@ -212,6 +233,8 @@ namespace Ücretli_Maaş
                 }
             }
         }
+
+        //Güncelle butonu kontrol ediliyor
         private void BtnDuzenle_Click(object sender, EventArgs e)
         {
             DialogResult cevap = MessageBox.Show("Kullanıcıyı Güncellemek İstediğinize Emin misiniz?", "Dikkat", MessageBoxButtons.YesNo);
@@ -221,6 +244,8 @@ namespace Ücretli_Maaş
             }
         }
 
+
+        //Seçili kullanıcı siliniyor
         private void KullaniciSil()
         {
             try
@@ -239,6 +264,8 @@ namespace Ücretli_Maaş
                 MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
             }
         }
+
+        //Sil butonu kontrolü
         private void BtnSil_Click(object sender, EventArgs e)
         {
             DialogResult cevap = MessageBox.Show("Kullanıcıyı Silmek İstediğinize Emin misiniz?", "Dikkat", MessageBoxButtons.YesNo);

@@ -18,11 +18,14 @@ namespace Ücretli_Maaş
         {
             InitializeComponent();
         }
+
+        //SQL bağlantısı yapılıyor
         SqlConnection baglanti = new SqlConnection("Data Source=85.214.46.212;Initial Catalog=mustafa_gurbuz_db;User ID=mustafa_gurbuz_user;Password=mustafa_gurbuz_user");
         string id;
+
+        //Formda bulunan Textboxlar ve Açılır Kutular Temizleniyor.
         private void Temizle()
-        {
-            //Formda bulunan Textboxlar ve Açılır Kutular Temizleniyor.
+        {            
             TxtKimlik.Clear();
             TxtAd.Clear();
             TxtSoyad.Clear();
@@ -41,6 +44,8 @@ namespace Ücretli_Maaş
             DtpAyrilma.Text = "";
 
         }
+
+        //Personeller ListView' e ekleniyor
         private void PersonelDoldur()
         {
             LstPersonel.Items.Clear();
@@ -60,6 +65,8 @@ namespace Ücretli_Maaş
             baglanti.Close();
         }
 
+
+        //Seçilen personelin medeni durum bilgisi ilgili ComboBox' a getiriliyor
         private void MedeniDurum()
         {
             baglanti.Open();
@@ -75,6 +82,7 @@ namespace Ücretli_Maaş
 
         }
 
+        //Seçilen personelin çalışma durumu bilgisi ilgili ComboBox' a getiriliyor
         private void CalismaDurumu()
         {
             baglanti.Open();
@@ -88,6 +96,7 @@ namespace Ücretli_Maaş
             baglanti.Close();
         }
 
+        //Seçilen personelin alan bilgisi ilgili ComboBox' a getiriliyor
         private void AlanGetir()
         {
             baglanti.Open();
@@ -102,6 +111,7 @@ namespace Ücretli_Maaş
 
         }
 
+        //Seçilen personelin kurum bilgisi ilgili ComboBox' a getiriliyor
         private void KurumGetir()
         {
             baglanti.Open();
@@ -114,6 +124,8 @@ namespace Ücretli_Maaş
             }
             baglanti.Close();
         }
+
+        //Seçili personelin bilgileri form alanlarına getiriliyor
         private void PersonelGetir()
         {
             try
@@ -153,6 +165,8 @@ namespace Ücretli_Maaş
                 MessageBox.Show("Bağlantı Sırasında Hata Oluştu");
             }
         }
+
+        //MedeniDurum ilgili ComboBox' a ekleniyor
         private void MDurumOku()
         {
             baglanti.Open();
@@ -168,9 +182,10 @@ namespace Ücretli_Maaş
             CmbMedeniDurum.Text = "Durum Seçiniz :";
         }
 
+
+        //Çalışma Durumu ilgili ComboBox' a ekleniyor
         private void CDurumOku()
-        {
-            //Çalışma Durumu Okunuyor.
+        {            
             baglanti.Open();
             SqlCommand komut = new SqlCommand("Select DurumAd From CalismaDurumu", baglanti);
             komut.ExecuteNonQuery();
@@ -183,9 +198,9 @@ namespace Ücretli_Maaş
             CmbCalisma.Text = "Durum Seçiniz :";
         }
 
+        //Alan bilgisi ilgili ComboBox' a ekleniyor
         private void AlanOku()
-        {
-            //Alan Bilgisi Okunuyor.
+        {            
             baglanti.Open();
             SqlCommand komut = new SqlCommand("Select AlanAd From AlanBilgi", baglanti);
             komut.ExecuteNonQuery();
@@ -198,9 +213,9 @@ namespace Ücretli_Maaş
             CmbAlan.Text = "Alan Seçiniz :";
         }
 
+        //Kurum bilgisi ilgili ComboBox' a ekleniyor
         private void KurumOku()
-        {
-            //Kurum Bilgisi Okunuyor.
+        {            
             baglanti.Open();
             SqlCommand komut = new SqlCommand("Select KurumAd From KurumBilgi", baglanti);
             komut.ExecuteNonQuery();
@@ -212,6 +227,8 @@ namespace Ücretli_Maaş
             baglanti.Close();
             CmbKurum.Text = "Kurum Seçiniz :";
         }
+
+        //ComboBoxlar ilgili bilgilerle dolduruluyor
         private void VeriOku()
         {
             try
@@ -231,6 +248,8 @@ namespace Ücretli_Maaş
                 TxtKimlik.Select();
             }
         }
+
+        //Seçili personel siliniyor
         private void PersonelSil()
         {
 
@@ -253,23 +272,30 @@ namespace Ücretli_Maaş
                 }
             }
         }
-    private void button2_Click(object sender, EventArgs e)
+
+        //Form çıkışı
+        private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        //Güncelle butonu
         private void FrmPersonelGuncelle_Load(object sender, EventArgs e)
         {
             Temizle();
             VeriOku();
         }
 
+
+        //ListView çift tıklama ile personel seçiyor
         private void LstPersonel_DoubleClick(object sender, EventArgs e)
         {
             id = LstPersonel.SelectedItems[0].SubItems[0].Text;
             PersonelGetir();
         }
 
+
+        //Seçili personel bilgileri güncelleniyor
         private void PersonelGuncelle()
         {
             if (CmbMedeniDurum.Text == "Durum Seçiniz :" | CmbCalisma.Text == "Durum Seçiniz :" | CmbAlan.Text == "Alan Seçiniz :" | CmbKurum.Text == "Kurum Seçiniz :")
@@ -293,7 +319,9 @@ namespace Ücretli_Maaş
                 }
 
             }
-            }
+        }
+
+        //Güncelle butonu
         private void BtnGuncelle_Click(object sender, EventArgs e)
         {
             PersonelGuncelle();
@@ -302,6 +330,7 @@ namespace Ücretli_Maaş
             PersonelGetir();
         }
 
+        //Sil butonu
         private void BtnSil_Click(object sender, EventArgs e)
         {
             PersonelSil();
